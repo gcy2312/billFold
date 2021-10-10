@@ -4,7 +4,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const apiUrl = 'https://expenses-api-2312.herokuapp.com/';
+import { User, Bills, Expenses } from './types';
+
+const apiUrl = 'https://expenses-api-2312.herokuapp.com';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,24 +17,23 @@ export class FetchApiDataService {
   constructor(private http: HttpClient) {
   }
   // register user POST
-  public userRegistration(userDetails: any): Observable<any> {
+  public userRegistration(userDetails: Partial<User>): Observable<any> {
     console.log(userDetails);
-    return this.http.post(`${apiUrl}/users`, userDetails).pipe(
+    return this.http.post<User>(`${apiUrl}/users`, userDetails).pipe(
       catchError(this.handleError)
     );
   }
 
   //user login POST
-  userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
-    return this.http.post(`${apiUrl}/login`, userDetails)
+  userLogin(userCred: { username: string, password: string }): Observable<any> {
+    console.log(userCred);
+    return this.http.post(`${apiUrl}/login`, userCred)
       .pipe(catchError(this.handleError));
   }
 
   //get user info
-  getUser(user: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${apiUrl}/users/${user}`, {
+  getUser(userId: string, token: string): Observable<any> {
+    return this.http.get(`${apiUrl}/users/${userId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -43,9 +44,8 @@ export class FetchApiDataService {
   }
 
   //user's list of expenses GET
-  getExpenses(user: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${apiUrl}/users/${user}/expenses`, {
+  getExpenses(userId: string, token: string): Observable<any> {
+    return this.http.get(`${apiUrl}/users/${userId}/expenses`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
@@ -56,9 +56,8 @@ export class FetchApiDataService {
   }
 
   //user's list of bills GET
-  getBills(user: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${apiUrl}/users/${user}/bills`, {
+  getBills(userId: string, token: string): Observable<any> {
+    return this.http.get(`${apiUrl}/users/${userId}/bills`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
@@ -69,9 +68,8 @@ export class FetchApiDataService {
   }
 
   //get info single expense
-  getOneExpense(expense: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${apiUrl}/expenses/${expense}`, {
+  getExpenseById(expenseId: string, token: string): Observable<any> {
+    return this.http.get(`${apiUrl}/expenses/${expenseId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -82,9 +80,8 @@ export class FetchApiDataService {
   }
 
   //get info single bill
-  getOneBill(bill: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${apiUrl}/bills/${bill}`, {
+  getBillById(billId: string, token: string): Observable<any> {
+    return this.http.get(`${apiUrl}/bills/${billId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -95,11 +92,9 @@ export class FetchApiDataService {
   }
 
   //create expense doc POST
-  createExpense(expenseInfo: any): Observable<any> {
+  createExpense(expenseInfo: Partial<Expenses>, token: string, userId: string): Observable<any> {
     console.log(expenseInfo);
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    return this.http.post(`${apiUrl}/users/${user}/expenses`, expenseInfo, {
+    return this.http.post(`${apiUrl}/users/${userId}/expenses`, expenseInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
@@ -109,11 +104,9 @@ export class FetchApiDataService {
   }
 
   //create bill doc POST
-  createBill(billInfo: any): Observable<any> {
+  createBill(billInfo: Partial<Bills>, userId: string, token: string): Observable<any> {
     console.log(billInfo);
-    const user = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    return this.http.post(`${apiUrl}/users/${user}/bills`, billInfo, {
+    return this.http.post(`${apiUrl}/users/${userId}/bills`, billInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
@@ -123,10 +116,8 @@ export class FetchApiDataService {
   }
 
   //edit user details PUT
-  editUser(userData: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    return this.http.put(`${apiUrl}/users/${user}`, userData, {
+  editUser(userData: Partial<User>, token: string, userId: string): Observable<any> {
+    return this.http.put(`${apiUrl}/users/${userId}`, userData, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -137,10 +128,8 @@ export class FetchApiDataService {
   }
 
   //edit expense doc PUT
-  editExpense(expenseInfo: any, expense: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    return this.http.put(`${apiUrl}/users/${user}/expenses/${expense}`, expenseInfo, {
+  editExpense(expenseInfo: Partial<Expenses>, expenseId: string, token: string, userId: string): Observable<any> {
+    return this.http.put(`${apiUrl}/users/${userId}/expenses/${expenseId}`, expenseInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -151,10 +140,8 @@ export class FetchApiDataService {
   }
 
   //edit bill doc PUT
-  editBill(billInfo: any, bill: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    return this.http.put(`${apiUrl}/users/${user}/bills/${bill}`, billInfo, {
+  editBill(billInfo: Partial<Bills>, billId: string, token: string, userId: string): Observable<any> {
+    return this.http.put(`${apiUrl}/users/${userId}/bills/${billId}`, billInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -165,10 +152,8 @@ export class FetchApiDataService {
   }
 
   //delete user
-  deleteUser(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    return this.http.delete(`${apiUrl}/users/${user}`, {
+  deleteUser(token: string, userId: string): Observable<any> {
+    return this.http.delete(`${apiUrl}/users/${userId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -178,9 +163,8 @@ export class FetchApiDataService {
   }
 
   //delete expense doc
-  deleteExpense(expense: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.delete(`${apiUrl}/expenses/${expense}`, {
+  deleteExpense(expenseId: string, token: string): Observable<any> {
+    return this.http.delete(`${apiUrl}/expenses/${expenseId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -190,9 +174,8 @@ export class FetchApiDataService {
   }
 
   //delete bill doc
-  deleteBill(bill: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.delete(`${apiUrl}/bills/${bill}`, {
+  deleteBill(billId: string, token: string): Observable<any> {
+    return this.http.delete(`${apiUrl}/bills/${billId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
