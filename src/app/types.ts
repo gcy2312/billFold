@@ -7,7 +7,7 @@ export interface User {
   Email: string
 }
 
-export interface Expenses {
+export interface Expense {
   Category: string,
   Description: string,
   Date: Date,
@@ -17,7 +17,7 @@ export interface Expenses {
   Index: boolean
 }
 
-export interface Bills {
+export interface Bill {
   Description: string,
   Date: Date,
   Amount: string, //Number || Decimal128
