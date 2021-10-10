@@ -1,4 +1,5 @@
 export interface User {
+  id: string,
   FirstName: string,
   LastName: string,
   Username: string,
@@ -8,6 +9,7 @@ export interface User {
 }
 
 export interface Expense {
+  id: string,
   Category: string,
   Description: string,
   Date: Date,
@@ -18,6 +20,7 @@ export interface Expense {
 }
 
 export interface Bill {
+  id: string
   Description: string,
   Date: Date,
   Amount: string, //Number || Decimal128
