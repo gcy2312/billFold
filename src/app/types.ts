@@ -1,5 +1,5 @@
 export interface User {
-  id: string,
+  _id: string,
   FirstName: string,
   LastName: string,
   Username: string,
@@ -9,21 +9,21 @@ export interface User {
 }
 
 export interface Expense {
-  id: string,
+  _id: string,
   Category: string,
   Description: string,
-  Date: Date,
-  Amount: string,  //Number || Decimal128?
+  Date: string,     //need to parse before Date
+  Amount: string,  //Decimal128 takes string value
   Currency: string,
   UserId: string,
   Index: boolean
 }
 
 export interface Bill {
-  id: string
+  _id: string
   Description: string,
-  Date: Date,
-  Amount: string, //Number || Decimal128
+  Date: string,    //need to parse befire Date
+  Amount: string, //Decimal128 takes string value
   Currency: string,
   UserId: string,
   Paid: boolean,
