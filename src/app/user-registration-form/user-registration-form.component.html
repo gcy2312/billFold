@@ -1,0 +1,43 @@
+<!-- <p>user-registration-form works!</p> -->
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Sign Up!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userDetails.FirstName" placeholder="First Name" type="text" name="FirstName"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userDetails.LastName" placeholder="Last Name" type="text" name="LastName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userDetails.Username" placeholder="Username" type="text" name="Username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userDetails.Password" type="password" placeholder="Password" name="Password"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userDetails.Email" type="email" placeholder="Email" name="Email" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Currency Preference</mat-label>
+        <mat-select matNativeControl [(ngModel)]="userDetails.CurrencyPref" type="text" placeholder="CAD"
+                    name="CurrencyPref">
+          <mat-option value="CAD">CAD</mat-option>
+          <mat-option value="USD">USD</mat-option>
+          <mat-option value="GBP">GBP</mat-option>
+          <mat-option value="EUR">EUR</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="registerUser()" color="primary">
+      Sign Up
+    </button>
+  </mat-card-actions>
+</mat-card>
