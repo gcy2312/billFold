@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userCred = { username: '', password: '' };
+  @Input() userCred = { Username: '', Password: '' };
 
   /**
    * 
@@ -36,16 +36,13 @@ export class UserLoginFormComponent implements OnInit {
       this.dialogRef.close();
       //store user & token to local storage
       localStorage.setItem('user', result.user.Username);
-      // localStorage.setItem('userId', result.user._id);
       localStorage.setItem('token', result.token);
-
-      // console.log(result.user._id);
-      // console.log(result.token);
+      console.log(result.token);
 
       this.snackBar.open('User successfull logged in', 'OK', {
         duration: 2000
       });
-      this.router.navigate(['main']);
+      this.router.navigate(['billFold']);
     }, (result) => {
       this.snackBar.open(result, 'OK', {
         duration: 2000
@@ -54,3 +51,5 @@ export class UserLoginFormComponent implements OnInit {
   }
 
 }
+
+
