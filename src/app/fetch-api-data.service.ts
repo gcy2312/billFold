@@ -30,6 +30,13 @@ export class FetchApiDataService {
     return this.http.post<{ user: User, token: string }>(`${apiUrl}/login`, userCred)
       .pipe(catchError(this.handleError));
   }
+  // userLogin(userCred: any): Observable<any> {
+  //   console.log(userCred);
+  //   //posts it to the API endpoint and returns the API's response
+  //   return this.http
+  //     .post(`${apiUrl}/login`, userCred)
+  //     .pipe(catchError(this.handleError));
+  // }
 
   //get user info
   getUser(userId: string, token: string): Observable<User> {
