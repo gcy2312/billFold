@@ -27,7 +27,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
-  { path: 'main', component: MainPageComponent },
+  { path: 'billFold', component: MainPageComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
