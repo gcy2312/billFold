@@ -24,18 +24,15 @@ export class FetchApiDataService {
     );
   }
 
-  //user login POST
-  userLogin(userCred: { username: string, password: string }): Observable<{ user: User, token: string }> {
+  // user login POST
+  userLogin(userCred: { Username: string, Password: string }): Observable<{ user: User, token: string }> {
     console.log(userCred);
     return this.http.post<{ user: User, token: string }>(`${apiUrl}/login`, userCred)
       .pipe(catchError(this.handleError));
   }
+
   // userLogin(userCred: any): Observable<any> {
-  //   console.log(userCred);
-  //   //posts it to the API endpoint and returns the API's response
-  //   return this.http
-  //     .post(`${apiUrl}/login`, userCred)
-  //     .pipe(catchError(this.handleError));
+  //   return this.http.post(`${apiUrl}/login`, userCred).pipe(catchError(this.handleError));
   // }
 
   //get user info
