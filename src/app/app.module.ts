@@ -31,6 +31,8 @@ import { ExpensesPageComponent } from './expenses-page/expenses-page.component';
 import { ExpenseCreateComponent } from './expense-create/expense-create.component';
 import { BillCreateComponent } from './bill-create/bill-create.component';
 import { BillPageComponent } from './bill-page/bill-page.component';
+import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
+import { BillDetailsComponent } from './bill-details/bill-details.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -52,7 +54,9 @@ const appRoutes: Routes = [
     UserProfileDeleteComponent,
     ExpenseCreateComponent,
     BillCreateComponent,
-    BillPageComponent
+    BillPageComponent,
+    ExpenseDetailsComponent,
+    BillDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
