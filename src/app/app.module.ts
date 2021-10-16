@@ -33,6 +33,8 @@ import { BillCreateComponent } from './bill-create/bill-create.component';
 import { BillPageComponent } from './bill-page/bill-page.component';
 import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
 import { BillDetailsComponent } from './bill-details/bill-details.component';
+import { ExpenseEditComponent } from './expense-edit/expense-edit.component';
+import { BillEditComponent } from './bill-edit/bill-edit.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -56,7 +58,9 @@ const appRoutes: Routes = [
     BillCreateComponent,
     BillPageComponent,
     ExpenseDetailsComponent,
-    BillDetailsComponent
+    BillDetailsComponent,
+    ExpenseEditComponent,
+    BillEditComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
