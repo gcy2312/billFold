@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,16 +19,24 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import { MainPageComponent } from './main-page/main-page.component';
 
-import { RouterModule, Routes } from '@angular/router';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileUpdateComponent } from './user-profile-update/user-profile-update.component';
+import { UserProfileDeleteComponent } from './user-profile-delete/user-profile-delete.component';
+
+import { ExpensesPageComponent } from './expenses-page/expenses-page.component';
+import { ExpenseCreateComponent } from './expense-create/expense-create.component';
+import { BillCreateComponent } from './bill-create/bill-create.component';
+import { BillPageComponent } from './bill-page/bill-page.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
-  { path: 'billFold', component: MainPageComponent },
+  { path: 'expenses', component: ExpensesPageComponent },
+  { path: 'calendar', component: BillPageComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -37,7 +46,13 @@ const appRoutes: Routes = [
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     WelcomePageComponent,
-    MainPageComponent
+    ExpensesPageComponent,
+    UserProfileComponent,
+    UserProfileUpdateComponent,
+    UserProfileDeleteComponent,
+    ExpenseCreateComponent,
+    BillCreateComponent,
+    BillPageComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
