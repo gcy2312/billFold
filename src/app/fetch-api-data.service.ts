@@ -54,7 +54,12 @@ export class FetchApiDataService {
         Authorization: `Bearer ${token}`,
       })
     }).pipe(
-      map(this.extractResponseData),
+      map(
+        (expenses: Expense[]): Expense[] =>
+          expenses.map(
+            (e) => ({ ...e, Date: e.Date.substr(0, 10) })
+          )
+      ),
       catchError(this.handleError)
     );
   }
@@ -66,7 +71,12 @@ export class FetchApiDataService {
         Authorization: `Bearer ${token}`,
       })
     }).pipe(
-      map(this.extractResponseData),
+      map(
+        (bills: Bill[]): Bill[] =>
+          bills.map(
+            (e) => ({ ...e, Date: e.Date.substr(0, 10) })
+          )
+      ),
       catchError(this.handleError)
     );
   }
