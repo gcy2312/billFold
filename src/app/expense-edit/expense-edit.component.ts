@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Expense } from '../types';
 
 @Component({
   selector: 'app-expense-edit',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpenseEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: Expense
+  ) { }
+
+
 
   ngOnInit(): void {
   }
