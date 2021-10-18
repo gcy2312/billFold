@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { ExpenseDetailsComponent } from './expense-details/expense-details.compo
 import { BillDetailsComponent } from './bill-details/bill-details.component';
 import { ExpenseEditComponent } from './expense-edit/expense-edit.component';
 import { BillEditComponent } from './bill-edit/bill-edit.component';
+
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -85,7 +87,7 @@ const appRoutes: Routes = [
     }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
