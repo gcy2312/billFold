@@ -1,1 +1,6 @@
 <p>expenses-page works!</p>
+
+<div *ngFor="let expense of expenses">
+  <p>{{expense.Date}}</p>
+  <p>{{expense.Amount.$numberDecimal}}</p>
+</div>
