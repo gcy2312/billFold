@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { ExpenseDetailsComponent } from '../expense-details/expense-details.component';
 
@@ -7,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ExpenseEditComponent } from '../expense-edit/expense-edit.component';
 import { ExpenseCreateComponent } from '../expense-create/expense-create.component';
 
+import { Expense } from '../types';
+
 
 @Component({
   selector: 'app-expenses-page',
@@ -14,7 +17,7 @@ import { ExpenseCreateComponent } from '../expense-create/expense-create.compone
   styleUrls: ['./expenses-page.component.scss']
 })
 export class ExpensesPageComponent implements OnInit {
-  expenses: any[] = [];
+  expenses: Expense[] = [];
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
@@ -22,6 +25,7 @@ export class ExpensesPageComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
+    public datepipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -32,26 +36,12 @@ export class ExpensesPageComponent implements OnInit {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
       console.log(this.expenses);
-      return this.expenses;
     });
   }
 
-  // getExpenseById(expenseId:string, token:string): void {
-  //   this.fetchApiData.getExpenseById(expenseId, token).subscribe((resp:any)=>{
-
-  //   })
-  // }
-
-  // getExpenseDetails(_id: string, Category: string, Description: string, Date: string, Amount: string, Currency: string): void {
-  //   this.dialog.open(ExpenseDetailsComponent, {
-  //     data: { Category: Category, Description: Description, Date: Date, Amount: Amount, Currency: Currency },
-  //     width: '500px'
-  //   });
-  // }
-
-  openEditExpenseDialog(_id: string, Category: string, Description: string, Date: string, Amount: string, Currency: string): void {
+  openEditExpenseDialog(expense: Partial<Expense>): void {
     this.dialog.open(ExpenseEditComponent, {
-      data: { Category: Category, Description: Description, Date: Date, Amount: Amount, Currency: Currency },
+      data: expense,
       width: '500px'
     });
   }
