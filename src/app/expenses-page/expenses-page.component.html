@@ -3,6 +3,10 @@
   +
 </button>
 
+<p-panel header="Expenses" class=ui-g-6 ui-md-6>
+  <p-chart type="line" [data]="userExpensesData"></p-chart>
+</p-panel>
+
 <div *ngFor="let expense of expenses">
   <p>{{expense.Date}}</p>
   <p>{{expense.Amount.$numberDecimal}}</p>
