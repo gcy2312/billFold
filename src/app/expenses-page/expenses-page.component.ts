@@ -16,8 +16,22 @@ import { Expense } from '../types';
   templateUrl: './expenses-page.component.html',
   styleUrls: ['./expenses-page.component.scss']
 })
+
 export class ExpensesPageComponent implements OnInit {
   expenses: Expense[] = [];
+  expense: Expense = {
+    _id: '',
+    Category: '',
+    Description: '',
+    Date: '',
+    Amount: {
+      $numberDecimal: ''
+    },
+    Currency: '',
+    UserId: '',
+    Index: false
+  };
+  userExpensesData: any;
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
@@ -30,6 +44,21 @@ export class ExpensesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getExpenses(this.userId, this.token);
+
+    this.userExpensesData = {
+      labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      datasets:
+        // this.getExpenses(this.userId, this.token),
+        [
+          {
+            label: 'First Dataset',
+            data: this.expense.Amount.$numberDecimal,
+            fill: false,
+            borderColor: '#42A5F5',
+            tension: .4
+          },
+        ]
+    }
   }
 
   getExpenses(userId: string, token: string): void {
