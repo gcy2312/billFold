@@ -10,6 +10,9 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ChartModule } from 'primeng/chart';
+import { PanelModule } from 'primeng/panel';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -69,6 +72,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ChartModule,
+    PanelModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
