@@ -14,6 +14,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartModule } from 'primeng/chart';
 import { PanelModule } from 'primeng/panel';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -75,6 +83,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ChartModule,
     PanelModule,
+    FullCalendarModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
