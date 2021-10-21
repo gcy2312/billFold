@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { FetchApiDataService } from './fetch-api-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,7 +93,7 @@ const appRoutes: Routes = [
     }),
     BrowserAnimationsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, FetchApiDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
