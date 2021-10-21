@@ -52,7 +52,6 @@ export class ExpensesPageComponent implements OnInit {
   ngOnInit(): void {
     this.getExpenses(this.userId, this.token);
 
-
     this.userData = {
       labels: this.expensesDates,
       datasets: [{
