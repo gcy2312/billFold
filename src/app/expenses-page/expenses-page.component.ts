@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DatePipe } from '@angular/common';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { ExpenseDetailsComponent } from '../expense-details/expense-details.component';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { Chart } from 'chart.js';
+
 import { ExpenseEditComponent } from '../expense-edit/expense-edit.component';
 import { ExpenseCreateComponent } from '../expense-create/expense-create.component';
 
 import { Expense } from '../types';
-
 
 @Component({
   selector: 'app-expenses-page',
@@ -31,9 +33,14 @@ export class ExpensesPageComponent implements OnInit {
     UserId: '',
     Index: false
   };
-  userExpensesData: any;
+
+  expensesDates: any = [];
+  expensesAmounts: any = [];
+  userData: any;
+
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -45,26 +52,28 @@ export class ExpensesPageComponent implements OnInit {
   ngOnInit(): void {
     this.getExpenses(this.userId, this.token);
 
-    this.userExpensesData = {
-      labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      datasets:
-        // this.getExpenses(this.userId, this.token),
-        [
-          {
-            label: 'First Dataset',
-            data: this.expense.Amount.$numberDecimal,
-            fill: false,
-            borderColor: '#42A5F5',
-            tension: .4
-          },
-        ]
+
+    this.userData = {
+      labels: this.expensesDates,
+      datasets: [{
+        data: this.expensesAmounts,
+        borderColor: '#3cba9f',
+        fill: false
+      }]
     }
+
   }
 
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
+      this.expensesDates = resp.map((resp: { Date: any; }) => resp.Date);
+      this.expensesAmounts = resp.map((resp: { Amount: any; }) => resp.Amount.$numberDecimal);
       console.log(this.expenses);
+      console.log(this.expensesDates);
+      console.log(this.expensesAmounts);
+      return this.expensesAmounts;
+      return this.expensesDates;
     });
   }
 
@@ -81,4 +90,8 @@ export class ExpensesPageComponent implements OnInit {
     });
   }
 
+
+
 }
+
+
