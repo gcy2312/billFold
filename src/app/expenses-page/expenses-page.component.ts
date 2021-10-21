@@ -37,9 +37,13 @@ export class ExpensesPageComponent implements OnInit {
   expensesDates: any = [];
   expensesAmounts: any = [];
   userData: any;
+  // data: any;
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  // dataSet = [];
+  // labels = [];
+  // chart: any;
 
 
   constructor(
@@ -61,13 +65,28 @@ export class ExpensesPageComponent implements OnInit {
       }]
     }
 
+    // this.fetchApiData.getExpenses('Date', 'Amount')
+    //   .subscribe(data => {
+    //     this.data.datasets[0].data = data.map(a => a.Amount.$numberDecimal);
+    //     this.data.labels = data.map(a => a.Date);
+    //     this.chart.refresh();
+
+    // });
+
   }
 
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
-      this.expensesDates = resp.map((resp: { Date: any; }) => resp.Date);
+      this.expensesDates = resp.map((resp: { Date: string; }) => resp.Date);
       this.expensesAmounts = resp.map((resp: { Amount: any; }) => resp.Amount.$numberDecimal);
+
+
+      // this.data.datasets[0].data = this.data.map((e: any) => e.Amount.$numberDecimal);
+      // this.data.labels = this.data.map((e: any) => e.Date);
+      // this.chart.refresh();
+
+
       console.log(this.expenses);
       console.log(this.expensesDates);
       console.log(this.expensesAmounts);
@@ -93,4 +112,12 @@ export class ExpensesPageComponent implements OnInit {
 
 }
 
+
+// function a(a: any, arg1: (any: any) => any): any {
+//   throw new Error('Function not implemented.');
+// }
+
+// function e(e: any): any {
+//   throw new Error('Function not implemented.');
+// }
 
