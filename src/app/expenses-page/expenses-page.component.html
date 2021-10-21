@@ -3,9 +3,15 @@
   +
 </button>
 
+
 <p-panel header="Expenses" class=ui-g-6 ui-md-6>
-  <p-chart type="line" [data]="userExpensesData"></p-chart>
+  <p-chart type="line" [data]="userData"></p-chart>
 </p-panel>
+
+<!-- <canvas></canvas> -->
+
+
+
 
 <div *ngFor="let expense of expenses">
   <p>{{expense.Date}}</p>
