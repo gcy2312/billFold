@@ -58,7 +58,8 @@ export class FetchApiDataService {
         (expenses: Expense[]): Expense[] =>
           expenses.map(
             (e) => ({ ...e, Date: e.Date.substr(0, 10) })
-          )
+          ).sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime())
+
       ),
       catchError(this.handleError)
     );
