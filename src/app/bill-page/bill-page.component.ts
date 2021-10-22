@@ -7,11 +7,11 @@ import { formatDate } from '@fullcalendar/angular';
 
 import { Bill } from '../types';
 
-let str = formatDate(new Date(), {
-  month: 'long',
-  year: 'numeric',
-  day: 'numeric'
-});
+// let str = formatDate(new Date(), {
+//   month: 'long',
+//   year: 'numeric',
+//   day: 'numeric'
+// });
 
 @Component({
   selector: 'app-bill-page',
@@ -25,6 +25,9 @@ export class BillPageComponent implements OnInit {
   token = localStorage.getItem('token') || '';
 
   bills: Bill[] = [];
+  calendarBills: [] = [];
+
+  calendarOptions: CalendarOptions | undefined;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -36,27 +39,32 @@ export class BillPageComponent implements OnInit {
     this.getBills(this.userId, this.token);
   }
 
+  getBills(userId: string, token: string): void {
+    this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
+      this.bills = resp;
+      this.calendarBills = resp.map((e: any) => ({ title: e.Description, date: e.Date }))
+      console.log(this.bills);
+      console.log(this.calendarBills);
 
-  calendarOptions: CalendarOptions = {
 
-    initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this), // bind is important!
-    events:
-      [
-        { title: 'event 1', date: '2021-10-27' },
-        { title: 'event 2', date: '2021-10-30' }
-      ]
-  };
+      this.calendarOptions = {
+        initialView: 'dayGridMonth',
+        dateClick: this.handleDateClick.bind(this), // bind is important!
+        events: this.calendarBills
+
+
+        // [
+        //   { title: 'event 1', date: '2021-10-27' },
+        //   { title: 'event 2', date: '2021-10-30' }
+        // ]
+      };
+    })
+  }
   handleDateClick(arg: { dateStr: string; }) {
     alert('date click! ' + arg.dateStr)
   }
 
-  getBills(userId: string, token: string): void {
-    this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
-      this.bills = resp;
-      console.log(this.bills);
-    })
-  }
+
 }
 
 
