@@ -17,9 +17,15 @@ import { PanelModule } from 'primeng/panel';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
-  interactionPlugin
+  interactionPlugin,
+  listPlugin,
+  timeGridPlugin,
+
 ]);
 
 import { MatInputModule } from '@angular/material/input';
@@ -31,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -91,6 +98,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     FormsModule,
     MatIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
