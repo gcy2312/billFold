@@ -32,11 +32,11 @@ export class ExpenseCreateComponent implements OnInit {
 
 
   ngOnInit(): void {
+
   }
 
   createExpense(userId: string, token: string): void {
     this.fetchApiData.createExpense(this.expenseInfo, userId, token).subscribe((result) => {
-      // Logic for a successful user registration goes here! (To be implemented)
       this.dialogRef.close(); // This will close the modal on success!
       this.snackBar.open('Expense document successfully added', 'OK', {
         duration: 2000
