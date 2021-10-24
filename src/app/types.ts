@@ -23,7 +23,7 @@ export interface Bill {
   _id: string
   Description: string,
   Date: string,    //need to parse befire Date
-  Amount: string, //Decimal128 takes string value
+  Amount: { $numberDecimal: string },   //Decimal128 takes string value
   Currency: string,
   UserId: string,
   Paid: boolean,

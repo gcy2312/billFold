@@ -1,17 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg } from '@fullcalendar/angular'; // useful for typechecking
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { formatDate } from '@fullcalendar/angular';
+
+import { BillDetailsComponent } from '../bill-details/bill-details.component';
 
 import { Bill } from '../types';
-
-// let str = formatDate(new Date(), {
-//   month: 'long',
-//   year: 'numeric',
-//   day: 'numeric'
-// });
+import { BillEditComponent } from '../bill-edit/bill-edit.component';
+import { BillCreateComponent } from '../bill-create/bill-create.component';
+import { DateClickArg } from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-bill-page',
@@ -26,6 +24,16 @@ export class BillPageComponent implements OnInit {
 
   bills: Bill[] = [];
   calendarBills: [] = [];
+  bill: Bill = {
+    _id: '',
+    Description: '',
+    Date: '',
+    Amount: { $numberDecimal: '' },
+    Currency: '',
+    UserId: '',
+    Paid: false,
+    Index: false
+  };
 
   calendarOptions: CalendarOptions | undefined;
 
@@ -39,30 +47,88 @@ export class BillPageComponent implements OnInit {
     this.getBills(this.userId, this.token);
   }
 
+
   getBills(userId: string, token: string): void {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
-      this.calendarBills = resp.map((e: any) => ({ title: e.Description, date: e.Date }))
+      this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, allDay: true, extendedProps: { Amount: e.Amount.$numberDecimal, Paid: e.Paid, Currency: e.Currency, userId: userId } }));
       console.log(this.bills);
       console.log(this.calendarBills);
 
-
       this.calendarOptions = {
+        headerToolbar: {
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        },
         initialView: 'dayGridMonth',
-        dateClick: this.handleDateClick.bind(this), // bind is important!
-        events: this.calendarBills
-        // [
-        //   { title: 'event 1', date: '2021-10-27' },
-        //   { title: 'event 2', date: '2021-10-30' }
-        // ]
+        events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
+        weekends: true,
+        editable: true,
+        selectable: true,
+        selectMirror: true,
+        dayMaxEvents: true,
+        // dateClick: this.handleDateClick.bind(this),
+        // select: this.handleDateSelect.bind(this),
+        // eventClick: this.handleBillChange.bind(this),
+        // eventsSet: this.handleEvents.bind(this)
+        ///you can update a remote database when these fire:
+        // eventAdd:
+        // eventChange: this.handleBillChange.bind(this),
+        // eventRemove:
+        dateClick: (bill) => {
+          // alert('Date: ' + bill.dateStr);
+          this.openBillCreateDialog.bind(this)(bill);
+        },
+        eventClick: (bill) => {
+          this.openBillViewDialog.bind(this)(bill);
+        }
+
+
       };
     })
   }
-  handleDateClick(arg: { dateStr: string; }) {
-    alert('date click! ' + arg.dateStr)
+
+  openBillViewDialog(bill: any) {
+    const dialogRef = this.dialog.open(BillDetailsComponent, {
+      data: {
+        title: bill.event.title,
+        amount: bill.event.extendedProps.Amount,
+        date: bill.event.date,
+        paid: bill.event.extendedProps.Paid,
+        currency: bill.event.extendedProps.Currency,
+        userId: bill.event.extendedProps.userId
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openBillCreateDialog(bill: any) {
+    const dialogRef = this.dialog.open(BillCreateComponent, {
+      data: {
+        // title: bill.event.title,
+        // amount: bill.event.extendedProps.Amount,
+        date: bill.dateStr,
+        // paid: bill.event.extendedProps.Paid,
+        // currency: bill.event.extendedProps.Currency,
+        // userId: bill.event.extendedProps.userId
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 
+
+
+
+
+
+
+
 }
+
 
 
