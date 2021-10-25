@@ -11,8 +11,8 @@ const PartialBill = {
   Description: '',
   Date: '',
   Amount: { $numberDecimal: '' },
+  Paid: false,
   Currency: '',
-  Paid: false
 };
 
 @Component({
@@ -28,6 +28,7 @@ export class BillCreateComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
+
   isChkChecked = false;
 
   constructor(
@@ -35,15 +36,21 @@ export class BillCreateComponent implements OnInit {
     public dialogRef: MatDialogRef<BillCreateComponent>,
     public snackBar: MatSnackBar,
 
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+
+
+  ) { }
 
 
   ngOnInit(): void {
-    console.log(this.userId);
+    this.getUser(this.token, this.userId);
+    this.billInfo.Date = this.data.date;
+
+    console.log(this.billInfo.Date);
   }
 
   createBill(userId: string, token: string): void {
-    this.fetchApiData.createExpense(this.billInfo, userId, token).subscribe((result) => {
+    this.fetchApiData.createBill(this.billInfo, userId, token).subscribe((result) => {
       this.dialogRef.close(); // This will close the modal on success!
       this.snackBar.open('Bill document successfully added', 'OK', {
         duration: 2000
@@ -61,6 +68,11 @@ export class BillCreateComponent implements OnInit {
     } else {
       this.billInfo.Paid = false;
     }
+  }
+
+  getUser(token: string, userId: string): void {
+    console.log('User Id: ' + this.userId);
+    console.log('User token: ' + this.token);
   }
 
 }
