@@ -119,7 +119,7 @@ export class FetchApiDataService {
   }
 
   //create bill doc POST
-  createBill(billInfo: Partial<Bill>, userId: string, token: string): Observable<Bill> {
+  createBill(billInfo: Partial<Bill>, token: string, userId: string): Observable<Bill> {
     console.log(billInfo);
     return this.http.post<Bill>(`${apiUrl}/users/${userId}/bills`, billInfo, {
       headers: new HttpHeaders({
