@@ -57,6 +57,7 @@ export class BillPageComponent implements OnInit {
 
       this.calendarOptions = {
         headerToolbar: {
+          left: 'prev,next today',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
@@ -70,7 +71,7 @@ export class BillPageComponent implements OnInit {
         // dateClick: this.handleDateClick.bind(this),
         // select: this.handleDateSelect.bind(this),
         // eventClick: this.handleBillChange.bind(this),
-        // eventsSet: this.handleEvents.bind(this)
+        // eventsSet: this.handleEvents.bind(this),
         ///you can update a remote database when these fire:
         // eventAdd:
         // eventChange: this.handleBillChange.bind(this),
@@ -82,8 +83,6 @@ export class BillPageComponent implements OnInit {
         eventClick: (bill) => {
           this.openBillViewDialog.bind(this)(bill);
         }
-
-
       };
     })
   }
@@ -119,6 +118,11 @@ export class BillPageComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+
+  // handleEvents(events: EventApi[]) {
+  //   this.calendarEvents = events;
+  // }
+  // calendarEvents: EventApi[] = [];
 
 
 
