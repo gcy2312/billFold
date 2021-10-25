@@ -10,16 +10,17 @@
         <input matInput [(ngModel)]="billInfo.Description" placeholder="Description" type="text" name="Description"
                required>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="billInfo.Date" placeholder={{data.date}} type="Date" name="Date"
-               required>{{data.date}}
+
+      <mat-form-field hintLabel="Date">
+        <input matInput name="Date" placeholder={{data.date}} value={{data.date}} [(ngModel)]="billInfo.Date" readonly>
       </mat-form-field>
+
       <mat-form-field>
-        <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="00.00" name="Amount" required>
+        <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="$$" name="Amount" required>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Currency Preference</mat-label>
-        <mat-select matNativeControl [(ngModel)]="billInfo.Currency" type="text" placeholder="CAD" name="CurrencyPref">
+        <mat-select matNativeControl [(ngModel)]="billInfo.Currency" type="text" placeholder="CAD" name="Currency">
           <mat-option value="CAD">CAD</mat-option>
           <mat-option value="USD">USD</mat-option>
           <mat-option value="GBP">GBP</mat-option>
