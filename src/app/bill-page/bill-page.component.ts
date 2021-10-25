@@ -51,7 +51,7 @@ export class BillPageComponent implements OnInit {
   getBills(userId: string, token: string): void {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
-      this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, allDay: true, extendedProps: { Amount: e.Amount.$numberDecimal, Paid: e.Paid, Currency: e.Currency, userId: userId } }));
+      this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount.$numberDecimal, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
       console.log(this.bills);
       console.log(this.calendarBills);
 
@@ -91,27 +91,25 @@ export class BillPageComponent implements OnInit {
     const dialogRef = this.dialog.open(BillDetailsComponent, {
       data: {
         title: bill.event.title,
-        amount: bill.event.extendedProps.Amount,
+        Amount: bill.event.extendedProps.Amount,
         date: bill.event.date,
-        paid: bill.event.extendedProps.Paid,
-        currency: bill.event.extendedProps.Currency,
-        userId: bill.event.extendedProps.userId
+        Paid: bill.event.extendedProps.Paid,
+        Currency: bill.event.extendedProps.Currency,
+        UserId: bill.event.extendedProps.userId,
+        _id: bill.event.extendedProps._id,
       }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.getBills(this.userId, this.token);
     });
+    //need to refresh calendar here!!!
   }
 
   openBillCreateDialog(bill: any) {
     const dialogRef = this.dialog.open(BillCreateComponent, {
       data: {
-        // title: bill.event.title,
-        // amount: bill.event.extendedProps.Amount,
         date: bill.dateStr,
-        // paid: bill.event.extendedProps.Paid,
-        // currency: bill.event.extendedProps.Currency,
-        // userId: bill.event.extendedProps.userId
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -119,10 +117,7 @@ export class BillPageComponent implements OnInit {
     });
   }
 
-  // handleEvents(events: EventApi[]) {
-  //   this.calendarEvents = events;
-  // }
-  // calendarEvents: EventApi[] = [];
+
 
 
 
