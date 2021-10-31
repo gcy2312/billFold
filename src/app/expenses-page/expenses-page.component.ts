@@ -13,6 +13,7 @@ import { ExpenseEditComponent } from '../expense-edit/expense-edit.component';
 import { ExpenseCreateComponent } from '../expense-create/expense-create.component';
 
 import { Expense } from '../types';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-expenses-page',
@@ -43,6 +44,8 @@ export class ExpensesPageComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
+  chartDates: any = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -52,14 +55,26 @@ export class ExpensesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getExpenses(this.userId, this.token);
+    this.getDaysArrayByMonth();
+  }
+
+  getDaysArrayByMonth() {
+    var daysInMonth = moment().daysInMonth();
+    var arrDays = [];
+
+    while (daysInMonth) {
+      var current = moment().date(daysInMonth).format('YYYY-MM-DD');
+      arrDays.push(current);
+      daysInMonth--;
+    }
+    this.chartDates = arrDays.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+    console.log(this.chartDates);
+    return this.chartDates
   }
 
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
-      this.expensesDates = ["2021-10-06", "2021-10-07", "2021-10-08", "20201-10-09", "2021-10-10"]
-      // this.expensesDates = resp.map((resp: { Date: string; }) => resp.Date);
-
       this.expensesAmounts = resp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: { $numberDecimal: string }; Date: string }) => {
@@ -72,24 +87,13 @@ export class ExpensesPageComponent implements OnInit {
         }, {}
       );
 
-
-      // this.expensesAmounts = resp.map((resp: { Amount: any; }) => resp.Amount.$numberDecimal);
-
       console.log(this.expenses);
-      console.log(this.expensesDates);
       console.log(this.expensesAmounts);
 
-      // this.expensesDates.sort(function (a, b) {
-      //   // Turn your strings into dates, and then subtract them
-      //   // to get a value that is either negative, positive, or zero.
-      //   return new Date(b.date) - new Date(a.date);
-      // });
-
       this.userData = {
-        // labels: this.expensesDates,
-        labels: this.expensesDates,
+        labels: this.chartDates,
         datasets: [{
-          data: this.expensesDates.map((date: number) => { return this.expensesAmounts[date] || 0 }),
+          data: this.chartDates.map((date: number) => { return this.expensesAmounts[date] || 0 }),
           // data: this.expensesAmounts,
           borderColor: '#3cba9f',
           fill: false
@@ -144,6 +148,5 @@ export class ExpensesPageComponent implements OnInit {
 
 
 }
-
 
 
