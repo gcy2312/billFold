@@ -38,6 +38,7 @@ export class ExpensesPageComponent implements OnInit {
   expensesDates: any = [];
   expensesAmounts: any = [];
   userData: any;
+  basicOptions: any;
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
@@ -53,13 +54,26 @@ export class ExpensesPageComponent implements OnInit {
     this.getExpenses(this.userId, this.token);
   }
 
-
-
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
-      this.expensesDates = resp.map((resp: { Date: string; }) => resp.Date);
-      this.expensesAmounts = resp.map((resp: { Amount: any; }) => resp.Amount.$numberDecimal);
+      this.expensesDates = ["2021-10-06", "2021-10-07", "2021-10-08", "20201-10-09", "2021-10-10"]
+      // this.expensesDates = resp.map((resp: { Date: string; }) => resp.Date);
+
+      this.expensesAmounts = resp.reduce(
+        (accumulator: Record<string, number>,
+          resp: { Amount: { $numberDecimal: string }; Date: string }) => {
+          if (accumulator[resp.Date]) {
+            accumulator[resp.Date] = accumulator[resp.Date] + Number(resp.Amount.$numberDecimal);
+          } else {
+            accumulator[resp.Date] = Number(resp.Amount.$numberDecimal)
+          }
+          return accumulator;
+        }, {}
+      );
+
+
+      // this.expensesAmounts = resp.map((resp: { Amount: any; }) => resp.Amount.$numberDecimal);
 
       console.log(this.expenses);
       console.log(this.expensesDates);
@@ -72,13 +86,45 @@ export class ExpensesPageComponent implements OnInit {
       // });
 
       this.userData = {
+        // labels: this.expensesDates,
         labels: this.expensesDates,
         datasets: [{
-          data: this.expensesAmounts,
+          data: this.expensesDates.map((date: number) => { return this.expensesAmounts[date] || 0 }),
+          // data: this.expensesAmounts,
           borderColor: '#3cba9f',
           fill: false
         }]
       }
+
+      // this.basicOptions = {
+      //   plugins: {
+      //     legend: {
+      //       labels: {
+      //         color: '#495057'
+      //       }
+      //     }
+      //   },
+      //   scales: {
+      //     yAxes: [{
+      //       scaleLabel: {
+      //         display: true,
+      //         // labelString: "ms"
+      //       },
+      //       ticks: {
+      //         beginAtZero: true,
+      //         suggestedMax: 100,
+      //       }
+      //     }],
+      //     xAxes: [{
+      //       type: 'time',
+      //       time: {
+      //         unit: 'month'
+      //       }
+      //     }],
+      //   }
+      // }
+
+
     });
   }
 
