@@ -109,6 +109,7 @@ export class FetchApiDataService {
   //create expense doc POST
   createExpense(expenseInfo: Partial<Expense>, token: string, userId: string): Observable<Expense> {
     console.log(expenseInfo);
+
     return this.http.post<Expense>(`${apiUrl}/users/${userId}/expenses`, expenseInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
