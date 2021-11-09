@@ -49,6 +49,8 @@ export class BillCreateComponent implements OnInit {
     console.log(this.billInfo.Date);
   }
 
+
+
   createBill(userId: string, token: string): void {
     this.fetchApiData.createBill(this.billInfo, userId, token).subscribe((result) => {
       this.dialogRef.close(); // This will close the modal on success!
