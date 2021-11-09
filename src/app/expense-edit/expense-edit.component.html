@@ -1,5 +1,38 @@
 <p>expense-edit works!</p>
 
-<div>
-  <p>Category: {{data.Category}}</p>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Edit Expense</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.Category" placeholder="Category" type="text" name="Category" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.Description" placeholder="Description" type="text" name="Description"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.Date" placeholder="Date" type="Date" name="Date" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.Amount" type="number" placeholder="" name="Amount" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Currency Preference</mat-label>
+        <mat-select matNativeControl [(ngModel)]="data.Currency" type="text" placeholder="CAD" name="Currency">
+          <mat-option value="CAD">CAD</mat-option>
+          <mat-option value="USD">USD</mat-option>
+          <mat-option value="GBP">GBP</mat-option>
+          <mat-option value="EUR">EUR</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="editExpense(userId, token, expenseId)" color="primary">
+      Save Changes
+    </button>
+  </mat-card-actions>
+</mat-card>
