@@ -23,14 +23,12 @@ import * as moment from 'moment';
 
 export class ExpensesPageComponent implements OnInit {
   expenses: Expense[] = [];
-  expense: Expense = {
+  expense = {
     _id: '',
     Category: '',
     Description: '',
     Date: '',
-    Amount: {
-      $numberDecimal: ''
-    },
+    Amount: { $numberDecimal: '' },
     Currency: '',
     UserId: '',
     Index: false
@@ -68,7 +66,7 @@ export class ExpensesPageComponent implements OnInit {
       daysInMonth--;
     }
     this.chartDates = arrDays.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-    console.log(this.chartDates);
+    // console.log(this.chartDates);
     return this.chartDates
   }
 
@@ -134,9 +132,11 @@ export class ExpensesPageComponent implements OnInit {
 
   openEditExpenseDialog(expense: Partial<Expense>): void {
     this.dialog.open(ExpenseEditComponent, {
+
       data: expense,
       width: '500px'
     });
+    console.log('data Date: ' + expense.Date);
   }
 
   openCreateExpenseDialog(): void {
