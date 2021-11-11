@@ -15,6 +15,7 @@ const PartialExpense = {
   Currency: '',
 };
 
+
 @Component({
   selector: 'app-expense-edit',
   templateUrl: './expense-edit.component.html',
@@ -25,7 +26,6 @@ export class ExpenseEditComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
-  // expenseId = this.expenseInfo._id;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -39,13 +39,14 @@ export class ExpenseEditComponent implements OnInit {
     console.log('expense id: ' + this.data._id);
     console.log('userId: ' + this.userId);
     console.log('token: ' + this.token);
+
+    console.log('amount test ' + this.data.Amount.$numberDecimal.toString().substring(0, 10));
   }
 
   expenseId = this.data._id;
 
-
-
   editExpense(userId: string, token: string, expenseId: string): void {
+    // this.expenseInfo.Amount = this.data.Amount.$numberDecimal.toString().substring(0, 10);
     this.fetchApiData.editExpense(this.expenseInfo, expenseId, token, userId).subscribe((result) => {
       this.dialogRef.close();
       this.snackBar.open('Expense document successfully updated', 'OK', {
