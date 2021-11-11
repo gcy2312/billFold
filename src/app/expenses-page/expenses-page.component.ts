@@ -66,9 +66,17 @@ export class ExpensesPageComponent implements OnInit {
       daysInMonth--;
     }
     this.chartDates = arrDays.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-    // console.log(this.chartDates);
+    console.log(this.chartDates);
     return this.chartDates
   }
+
+  // getExpenses(userId: string, token: string): void {
+  //   this.fetchApiData.getExpenses(userId).subscribe((resp: any) => {
+  //     this.expenses = resp;
+  //     console.log(this.expenses);
+  //     return this.expenses;
+  //   });
+  // }
 
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
@@ -84,8 +92,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-
-      console.log(this.expenses);
+      console.log('chart dates' + this.chartDates);
       console.log(this.expensesAmounts);
 
       this.userData = {
@@ -97,7 +104,6 @@ export class ExpensesPageComponent implements OnInit {
           fill: false
         }]
       }
-
       // this.basicOptions = {
       //   plugins: {
       //     legend: {
@@ -126,7 +132,6 @@ export class ExpensesPageComponent implements OnInit {
       //   }
       // }
 
-
     });
   }
 
@@ -148,5 +153,3 @@ export class ExpensesPageComponent implements OnInit {
 
 
 }
-
-
