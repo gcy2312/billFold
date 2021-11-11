@@ -12,8 +12,19 @@ export interface Expense {
   _id: string,
   Category: string,
   Description: string,
-  Date: string,     //need to parse before Date
+  Date: string,  //need to parse before Date
   Amount: { $numberDecimal: string },  //Decimal128 takes string value
+  Currency: string,
+  UserId: string,
+  Index: boolean
+}
+
+export interface editExpense {
+  _id: string,
+  Category: string,
+  Description: string,
+  Date: string,  //need to parse before Date
+  Amount: string,  //Decimal128 takes string value
   Currency: string,
   UserId: string,
   Index: boolean
