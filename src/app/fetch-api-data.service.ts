@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User, Bill, Expense } from './types';
+import { User, Bill, Expense, editExpense } from './types';
 
 const apiUrl = 'https://expenses-api-2312.herokuapp.com';
 @Injectable({
@@ -47,7 +47,6 @@ export class FetchApiDataService {
     );
   }
 
-  //user's list of expenses GET
   getExpenses(userId: string, token: string): Observable<Expense[]> {
     return this.http.get<Expense[]>(`${apiUrl}/users/${userId}/expenses`, {
       headers: new HttpHeaders({
@@ -56,14 +55,18 @@ export class FetchApiDataService {
     }).pipe(
       map(
         (expenses: Expense[]): Expense[] =>
-          expenses.map(
-            (e) => ({ ...e, Date: e.Date.substr(0, 10) })
-          ).sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime())
-
+          expenses
+            .map(
+              (e) => ({ ...e, Date: e.Date.substr(0, 10) })
+            )
+            .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime())
       ),
+
       catchError(this.handleError)
     );
   }
+  //user's list of expenses GET
+
 
   //user's list of bills GET
   getBills(userId: string, token: string): Observable<Bill[]> {
