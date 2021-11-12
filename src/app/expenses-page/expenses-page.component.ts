@@ -81,13 +81,16 @@ export class ExpensesPageComponent implements OnInit {
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
+      this.expensesDates = this.expenses.map((e) => e.Date);
+      console.log('expenses dates ' + this.expensesDates);
+
       this.expensesAmounts = resp.reduce(
         (accumulator: Record<string, number>,
-          resp: { Amount: { $numberDecimal: string }; Date: string }) => {
+          resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
-            accumulator[resp.Date] = accumulator[resp.Date] + Number(resp.Amount.$numberDecimal);
+            accumulator[resp.Date] = accumulator[resp.Date] + Number(resp.Amount);
           } else {
-            accumulator[resp.Date] = Number(resp.Amount.$numberDecimal)
+            accumulator[resp.Date] = Number(resp.Amount)
           }
           return accumulator;
         }, {}
@@ -99,7 +102,6 @@ export class ExpensesPageComponent implements OnInit {
         labels: this.chartDates,
         datasets: [{
           data: this.chartDates.map((date: number) => { return this.expensesAmounts[date] || 0 }),
-          // data: this.expensesAmounts,
           borderColor: '#3cba9f',
           fill: false
         }]
@@ -126,7 +128,7 @@ export class ExpensesPageComponent implements OnInit {
       //     xAxes: [{
       //       type: 'time',
       //       time: {
-      //         unit: 'month'
+      //         unit: 'day'
       //       }
       //     }],
       //   }
@@ -136,12 +138,14 @@ export class ExpensesPageComponent implements OnInit {
   }
 
   openEditExpenseDialog(expense: Partial<Expense>): void {
+
     this.dialog.open(ExpenseEditComponent, {
 
       data: expense,
       width: '500px'
     });
     console.log('data Date: ' + expense.Date);
+    console.log('data object' + expense.Amount);
   }
 
   openCreateExpenseDialog(): void {
