@@ -15,7 +15,7 @@
 
 <div *ngFor="let expense of expenses">
   <p>{{expense.Date}}</p>
-  <p>{{expense.Amount.$numberDecimal}}</p>
+  <p>{{expense.Amount}}</p>
   <button mat-raised-button color="primary" (click)="openEditExpenseDialog(expense)" style="margin-right: 10px;">
     Edit
   </button>
