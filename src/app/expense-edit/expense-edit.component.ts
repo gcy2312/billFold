@@ -39,8 +39,6 @@ export class ExpenseEditComponent implements OnInit {
     console.log('expense id: ' + this.data._id);
     console.log('userId: ' + this.userId);
     console.log('token: ' + this.token);
-
-    console.log('amount test ' + this.data.Amount.$numberDecimal.toString().substring(0, 10));
   }
 
   expenseId = this.data._id;
