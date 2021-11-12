@@ -10,7 +10,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 const PartialBill = {
   Description: '',
   Date: '',
-  Amount: { $numberDecimal: '' },
+  Amount: 0.0,
   Paid: false,
   Currency: '',
 };

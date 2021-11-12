@@ -5,13 +5,13 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Expense } from '../types';
-
+var date: DateConstructor;
 const PartialExpense = {
   _id: '',
   Category: '',
   Description: '',
   Date: '',
-  Amount: { $numberDecimal: '' },
+  Amount: 0.0,
   Currency: '',
 };
 

@@ -28,7 +28,7 @@ export class BillPageComponent implements OnInit {
     _id: '',
     Description: '',
     Date: '',
-    Amount: { $numberDecimal: '' },
+    Amount: 0.0,
     Currency: '',
     UserId: '',
     Paid: false,

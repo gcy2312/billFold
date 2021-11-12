@@ -9,7 +9,7 @@ const PartialExpense = {
   Category: '',
   Description: '',
   Date: '',
-  Amount: { $numberDecimal: '' },
+  Amount: 0.0,
   Currency: '',
 };
 

@@ -28,7 +28,7 @@ export class ExpensesPageComponent implements OnInit {
     Category: '',
     Description: '',
     Date: '',
-    Amount: { $numberDecimal: '' },
+    Amount: 0.0,
     Currency: '',
     UserId: '',
     Index: false
@@ -81,16 +81,20 @@ export class ExpensesPageComponent implements OnInit {
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
-      this.expensesDates = this.expenses.map((e) => e.Date);
+      console.log(this.expenses);
+      this.expensesDates = this.expenses.map((e) => e.Date.toString().substr(0, 10));
       console.log('expenses dates ' + this.expensesDates);
+
+      const newDate = resp.Date.toString().substr(0, 10);
 
       this.expensesAmounts = resp.reduce(
         (accumulator: Record<string, number>,
-          resp: { Amount: string; Date: string }) => {
-          if (accumulator[resp.Date]) {
-            accumulator[resp.Date] = accumulator[resp.Date] + Number(resp.Amount);
+          resp: { Amount: string; newDate: string }) => {
+
+          if (accumulator[resp.newDate]) {
+            accumulator[resp.newDate] = accumulator[resp.newDate] + Number(resp.Amount);
           } else {
-            accumulator[resp.Date] = Number(resp.Amount)
+            accumulator[resp.newDate] = Number(resp.Amount)
           }
           return accumulator;
         }, {}
