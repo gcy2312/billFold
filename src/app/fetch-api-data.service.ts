@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User, Bill, Expense, editExpense } from './types';
+import { User, Bill, Expense, ExpenseAPI, BillAPI } from './types';
 
 const apiUrl = 'https://expenses-api-2312.herokuapp.com';
 @Injectable({
@@ -47,25 +47,23 @@ export class FetchApiDataService {
     );
   }
 
+  //user's list of expenses GET
   getExpenses(userId: string, token: string): Observable<Expense[]> {
-    return this.http.get<Expense[]>(`${apiUrl}/users/${userId}/expenses`, {
+    return this.http.get<ExpenseAPI[]>(`${apiUrl}/users/${userId}/expenses`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
     }).pipe(
       map(
-        (expenses: Expense[]): Expense[] =>
-          expenses
-            .map(
-              (e) => ({ ...e, Date: e.Date.substr(0, 10) })
-            )
-            .sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime())
+        (expenses: ExpenseAPI[]): Expense[] => {
+          return expenses.map(
+            (e: ExpenseAPI) => ({ ...e, Amount: e.Amount.$numberDecimal, Date: e.Date.substr(0, 10) })
+          ).sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
+        }
       ),
-
       catchError(this.handleError)
     );
   }
-  //user's list of expenses GET
 
 
   //user's list of bills GET
