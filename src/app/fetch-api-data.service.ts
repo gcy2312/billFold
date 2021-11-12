@@ -57,7 +57,7 @@ export class FetchApiDataService {
       map(
         (expenses: Expense[]): Expense[] => {
           return expenses.map(
-            (e: Expense) => ({ ...e, Date: e.Date })
+            (e: Expense) => ({ ...e, Date: e.Date.toString().substr(0, 10) })
           ).sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
         }
       ),

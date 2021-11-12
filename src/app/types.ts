@@ -13,7 +13,7 @@ export interface Expense {
   Category: string,
   Description: string,
   Date: Date | string,  //need to parse before Date
-  Amount: number,  //Decimal128 takes string value
+  Amount: { $numberDecimal: string },  //Decimal128 takes string value
   Currency: string,
   UserId: string,
   Index: boolean
