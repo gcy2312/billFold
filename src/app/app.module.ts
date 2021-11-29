@@ -38,6 +38,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
@@ -94,6 +97,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    MatDividerModule,
     MatCardModule,
     MatFormFieldModule,
     MatDialogModule,
@@ -101,6 +105,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     FormsModule,
     MatIconModule,
+    NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
