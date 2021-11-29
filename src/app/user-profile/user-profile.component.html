@@ -8,13 +8,22 @@
   </mat-card-header>
   <mat-card-content>
     <p>First Name: <span>{{userData.FirstName}}</span></p>
-    <!-- <button onClick="updateUser(userData, token, userId)"></button> -->
-
+    <mat-divider></mat-divider>
     <p>Last Name: <span>{{userData.LastName}}</span></p>
+    <mat-divider></mat-divider>
     <p>Username: <span>{{userData.Username}}</span></p>
+    <mat-divider></mat-divider>
     <p>Email: <span>{{userData.Email}}</span></p>
+    <mat-divider></mat-divider>
     <p>Password: <input type="password" [(ngModel)]="userData.Password"></p>
+    <mat-divider></mat-divider>
     <p>Currency: <span>{{userData.CurrencyPref}}</span></p>
+    <mat-divider></mat-divider>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="openUpdateDialog()">Edit Profile</button>
+      <button mat-raised-button color="warn" (click)="openDeleteDialog()">Delete Profile</button>
+    </mat-card-actions>
 
   </mat-card-content>
 </mat-card>
