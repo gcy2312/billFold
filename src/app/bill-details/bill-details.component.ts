@@ -26,8 +26,6 @@ const PartialBill = {
 export class BillDetailsComponent implements OnInit {
   @Input() billDetails = transferBillData; billInfo = PartialBill;
 
-
-
   isChkChecked = false;
 
   userId = localStorage.getItem('userId') || '';
