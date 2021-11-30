@@ -58,6 +58,7 @@ import { ExpenseDetailsComponent } from './expense-details/expense-details.compo
 import { BillDetailsComponent } from './bill-details/bill-details.component';
 import { ExpenseEditComponent } from './expense-edit/expense-edit.component';
 import { BillEditComponent } from './bill-edit/bill-edit.component';
+import { UserUpdateUsernameComponent } from './user-update-username/user-update-username.component';
 
 
 const appRoutes: Routes = [
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
     ExpenseDetailsComponent,
     BillDetailsComponent,
     ExpenseEditComponent,
-    BillEditComponent
+    BillEditComponent,
+    UserUpdateUsernameComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
