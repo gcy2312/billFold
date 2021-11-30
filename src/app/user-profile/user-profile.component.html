@@ -11,7 +11,8 @@
     <mat-divider></mat-divider>
     <p>Last Name: <span>{{userData.LastName}}</span></p>
     <mat-divider></mat-divider>
-    <p>Username: <span>{{userData.Username}}</span></p>
+    <p>Username: <span>{{userData.Username}}</span><button mat-raised-button
+              (click)="openUpdateUsernameDialog(user)">Edit</button> </p>
     <mat-divider></mat-divider>
     <p>Email: <span>{{userData.Email}}</span></p>
     <mat-divider></mat-divider>
@@ -21,7 +22,7 @@
     <mat-divider></mat-divider>
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="openUpdateDialog()">Edit Profile</button>
+      <button mat-raised-button color="primary" (click)="openUpdateDialog(user)">Edit Profile</button>
       <button mat-raised-button color="warn" (click)="openDeleteDialog()">Delete Profile</button>
     </mat-card-actions>
 
