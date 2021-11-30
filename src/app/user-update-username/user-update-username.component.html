@@ -1,0 +1,11 @@
+<p>user-update-username works!</p>
+{{data.Username}}
+
+<mat-form-field>
+  <input matInput [(ngModel)]="userData.Username" placeholder={{data.Username}} type="text" name="Username" required>
+</mat-form-field>
+<mat-card-actions>
+  <button mat-raised-button (click)="updateUser(token, userId)" color="primary">
+    Edit Username
+  </button>
+</mat-card-actions>
