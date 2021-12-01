@@ -1,0 +1,10 @@
+<p>user-update-email works!</p>
+
+<mat-form-field>
+  <input matInput [(ngModel)]="userData.Email" placeholder={{data.Email}} type="email" name="Email" required>
+</mat-form-field>
+<mat-card-actions>
+  <button mat-raised-button (click)="updateUser(token, userId)" color="primary">
+    Edit Email
+  </button>
+</mat-card-actions>
