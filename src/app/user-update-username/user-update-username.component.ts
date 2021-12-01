@@ -51,7 +51,7 @@ export class UserUpdateUsernameComponent implements OnInit {
       console.log(resp);
       localStorage.setItem('user', resp.Username);
       localStorage.setItem('userId', resp._id);
-      this.snackBar.open('Your profile has been successfully updated!', 'OK', {
+      this.snackBar.open('Your username has been successfully updated!', 'OK', {
         duration: 2000,
       });
     }, (resp) => {
@@ -64,24 +64,5 @@ export class UserUpdateUsernameComponent implements OnInit {
       window.location.reload();
     }, 1000);
   }
-
-  // updateUser(token: string, userId: string): void {
-  //   this.fetchApiData.editUser(this.userData, userId, token).subscribe((resp) => {
-  //     this.dialogRef.close(); //this will close modal on success
-  //     console.log(resp);
-  //     localStorage.setItem('userId', resp._id);
-  //     this.snackBar.open('Your profile has been successfully updated!', 'OK', {
-  //       duration: 2000,
-  //     });
-  //   }, (resp) => {
-  //     console.log(resp);
-  //     this.snackBar.open(resp, 'OK', {
-  //       duration: 2000,
-  //     });
-  //   });
-  //   // setTimeout(function () {
-  //   //   window.location.reload();
-  //   // }, 1000);
-  // }
 
 }
