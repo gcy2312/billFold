@@ -59,6 +59,10 @@ import { BillDetailsComponent } from './bill-details/bill-details.component';
 import { ExpenseEditComponent } from './expense-edit/expense-edit.component';
 import { BillEditComponent } from './bill-edit/bill-edit.component';
 import { UserUpdateUsernameComponent } from './user-update-username/user-update-username.component';
+import { UserUpdateNameComponent } from './user-update-name/user-update-name.component';
+import { UserUpdatePasswordComponent } from './user-update-password/user-update-password.component';
+import { UserUpdateEmailComponent } from './user-update-email/user-update-email.component';
+import { UserUpdateCurrencyComponent } from './user-update-currency/user-update-currency.component';
 
 
 const appRoutes: Routes = [
@@ -86,7 +90,11 @@ const appRoutes: Routes = [
     BillDetailsComponent,
     ExpenseEditComponent,
     BillEditComponent,
-    UserUpdateUsernameComponent
+    UserUpdateUsernameComponent,
+    UserUpdateNameComponent,
+    UserUpdatePasswordComponent,
+    UserUpdateEmailComponent,
+    UserUpdateCurrencyComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
