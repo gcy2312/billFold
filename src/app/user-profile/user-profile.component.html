@@ -7,18 +7,30 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>First Name: <span>{{userData.FirstName}}</span></p>
+    <p>Name: <span>{{userData.FirstName}}</span> <span> {{userData.LastName}}</span> <button mat-raised-button
+              (click)="openUpdateNameDialog(user)">Edit</button></p>
+
+
     <mat-divider></mat-divider>
-    <p>Last Name: <span>{{userData.LastName}}</span></p>
+    <p>Username:
+      <span>{{userData.Username}}</span>
+      <button mat-raised-button (click)="openUpdateUsernameDialog(user)">Edit</button>
+    </p>
     <mat-divider></mat-divider>
-    <p>Username: <span>{{userData.Username}}</span><button mat-raised-button
-              (click)="openUpdateUsernameDialog(user)">Edit</button> </p>
+    <p>Email:
+      <span>{{userData.Email}}</span>
+      <button mat-raised-button (click)="openUpdateEmailDialog(user)">Edit</button>
+    </p>
     <mat-divider></mat-divider>
-    <p>Email: <span>{{userData.Email}}</span></p>
+    <p>Password:
+      <input type="password" [(ngModel)]="userData.Password">
+      <button mat-raised-button (click)="openUpdatePasswordDialog(user)">Edit</button>
+    </p>
     <mat-divider></mat-divider>
-    <p>Password: <input type="password" [(ngModel)]="userData.Password"></p>
-    <mat-divider></mat-divider>
-    <p>Currency: <span>{{userData.CurrencyPref}}</span></p>
+    <p>Currency:
+      <span>{{userData.CurrencyPref}}</span>
+      <button mat-raised-button (click)="openUpdateCurrencyDialog(user)">Edit</button>
+    </p>
     <mat-divider></mat-divider>
 
     <mat-card-actions>

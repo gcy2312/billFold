@@ -7,6 +7,10 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { UserProfileUpdateComponent } from '../user-profile-update/user-profile-update.component';
 import { UserProfileDeleteComponent } from '../user-profile-delete/user-profile-delete.component';
 import { UserUpdateUsernameComponent } from '../user-update-username/user-update-username.component';
+import { UserUpdateNameComponent } from '../user-update-name/user-update-name.component';
+import { UserUpdateEmailComponent } from '../user-update-email/user-update-email.component';
+import { UserUpdatePasswordComponent } from '../user-update-password/user-update-password.component';
+import { UserUpdateCurrencyComponent } from '../user-update-currency/user-update-currency.component';
 import { User } from '../types';
 
 @Component({
@@ -43,7 +47,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   openUpdateDialog(user: Partial<User>) {
-
     const dialogRef = this.dialog.open(UserProfileUpdateComponent, {
       data: {
         FirstName: user.FirstName,
@@ -63,12 +66,76 @@ export class UserProfileComponent implements OnInit {
   openUpdateUsernameDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateUsernameComponent, {
       data: {
+        // FirstName: user.FirstName,
+        // LastName: user.LastName,
+        Username: user.Username,
+        // Email: user.Email,
+        // Currency: user.CurrencyPref,
+        // Password: user.Password
+      }
+      // width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openUpdateNameDialog(user: any) {
+    const dialogRef = this.dialog.open(UserUpdateNameComponent, {
+      data: {
         FirstName: user.FirstName,
         LastName: user.LastName,
-        Username: user.Username,
+        // Username: user.Username,
+        // Email: user.Email,
+        // Currency: user.CurrencyPref,
+        // Password: user.Password
+      }
+      // width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openUpdateEmailDialog(user: any) {
+    const dialogRef = this.dialog.open(UserUpdateEmailComponent, {
+      data: {
+        // FirstName: user.FirstName,
+        // LastName: user.LastName,
+        // Username: user.Username,
         Email: user.Email,
-        Currency: user.CurrencyPref,
+        // Currency: user.CurrencyPref,
+        // Password: user.Password
+      }
+      // width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openUpdatePasswordDialog(user: any) {
+    const dialogRef = this.dialog.open(UserUpdatePasswordComponent, {
+      data: {
+        // FirstName: user.FirstName,
+        // LastName: user.LastName,
+        // Username: user.Username,
+        // Email: user.Email,
+        // Currency: user.CurrencyPref,
         Password: user.Password
+      }
+      // width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openUpdateCurrencyDialog(user: any) {
+    const dialogRef = this.dialog.open(UserUpdateCurrencyComponent, {
+      data: {
+        // FirstName: user.FirstName,
+        // LastName: user.LastName,
+        // Username: user.Username,
+        // Email: user.Email,
+        Currency: user.CurrencyPref,
+        // Password: user.Password
       }
       // width: '500px'
     });
