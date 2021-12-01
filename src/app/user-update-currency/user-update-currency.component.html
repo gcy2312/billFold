@@ -1,0 +1,19 @@
+<p>user-update-currency works!</p>
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Currency Preference</mat-label>
+  <mat-select matNativeControl [(ngModel)]="userData.CurrencyPref" type="text" placeholder={{data.CurrencyPref}}
+              name="CurrencyPref">
+
+    <mat-option value="CAD">CAD</mat-option>
+    <mat-option value="USD">USD</mat-option>
+    <mat-option value="GBP">GBP</mat-option>
+    <mat-option value="EUR">EUR</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-card-actions>
+  <button mat-raised-button (click)="updateUser(token, userId)" color="primary">
+    Edit Currency Preference
+  </button>
+</mat-card-actions>
