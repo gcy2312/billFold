@@ -134,7 +134,7 @@ export class UserProfileComponent implements OnInit {
         // LastName: user.LastName,
         // Username: user.Username,
         // Email: user.Email,
-        Currency: user.CurrencyPref,
+        CurrencyPref: user.CurrencyPref,
         // Password: user.Password
       }
       // width: '500px'
