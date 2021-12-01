@@ -39,7 +39,7 @@ export class UserUpdateUsernameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('username ' + this.token);
+    console.log('username ' + this.data.Username);
     // this.userDetails = this.data;
 
 
