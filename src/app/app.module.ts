@@ -40,6 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
@@ -114,6 +116,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatCheckboxModule,
     FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
