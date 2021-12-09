@@ -33,6 +33,9 @@ export class UserUpdatePasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // password = new FormGroup({
+  //   firstName: new FormControl()
+  // });
   newPassword: FormGroup = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.min(3)])
   });
