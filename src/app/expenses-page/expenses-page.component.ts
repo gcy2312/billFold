@@ -61,7 +61,7 @@ export class ExpensesPageComponent implements OnInit {
     var arrDays = [];
 
     while (daysInMonth) {
-      var current = moment().date(daysInMonth).format('YYYY-MM-DD');
+      var current = moment().date(daysInMonth).format('ll');
       arrDays.push(current);
       daysInMonth--;
     }
@@ -101,38 +101,41 @@ export class ExpensesPageComponent implements OnInit {
       this.userData = {
         labels: this.chartDates,
         datasets: [{
+          label: 'Monthly Expenses',
           data: this.chartDates.map((date: number) => { return this.expensesAmounts[date] || 0 }),
           borderColor: '#3cba9f',
-          fill: false
-        }]
+          fill: false,
+        }],
       }
-      // this.basicOptions = {
-      //   plugins: {
-      //     legend: {
-      //       labels: {
-      //         color: '#495057'
-      //       }
-      //     }
-      //   },
-      //   scales: {
-      //     yAxes: [{
-      //       scaleLabel: {
-      //         display: true,
-      //         // labelString: "ms"
-      //       },
-      //       ticks: {
-      //         beginAtZero: true,
-      //         suggestedMax: 100,
-      //       }
-      //     }],
-      //     xAxes: [{
-      //       type: 'time',
-      //       time: {
-      //         unit: 'day'
-      //       }
-      //     }],
-      //   }
-      // }
+      this.basicOptions = {
+        stacked: false,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#495057'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: '#495057',
+              suggestedMax: 100,
+            },
+            grid: {
+              drawOnChartArea: true,
+              color: '#ebedef'
+            }
+          },
+          x: {
+            grid: {
+              drawOnChartArea: true,
+            }
+          }
+        }
+
+      }
 
     });
   }
