@@ -31,12 +31,11 @@ export class ExpenseEditComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<ExpenseEditComponent>,
     public snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA)
-    public data: Expense
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
-    console.log('expense id: ' + this.data._id);
+    console.log(this.data.Date);
     console.log('userId: ' + this.userId);
     console.log('token: ' + this.token);
   }
