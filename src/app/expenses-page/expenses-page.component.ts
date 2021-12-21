@@ -34,23 +34,27 @@ export class ExpensesPageComponent implements OnInit {
     Index: false
   };
 
-  expensesDates: any = [];
-  expensesAmounts: any = [];
+  // expensesDates: any = [];
+  // expensesAmounts: any = [];
+
+  todayDate: string = '';
+
+  cmExpenses: any = [];
   formattedDates: any = [];
   currentMonth: string = '';
   userData: any = {};
   basicOptions: any;
 
-  groceryAmounts: any = [];
-  activitiesAmounts: any = [];
+  foodAmounts: any = [];
+  housingExpenses: any = [];
   billsAmounts: any = [];
-  businessAmounts: any = [];
+  savingsAmounts: any = [];
   entertainmentAmounts: any = [];
-  giftAmounts: any = [];
-  homeAmounts: any = [];
+  personalAmounts: any = [];
+  micelAmounts: any = [];
   medicalAmounts: any = [];
   restaurantAmounts: any = [];
-  travelAmounts: any = [];
+  transportAmounts: any = [];
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
@@ -69,6 +73,7 @@ export class ExpensesPageComponent implements OnInit {
     this.getUser(this.userId, this.token);
     this.getExpenses(this.userId, this.token);
     this.getDaysArrayByMonth();
+    this.todayDate = moment().format('YYYY-MM-DD');
   }
 
   getDaysArrayByMonth() {
@@ -93,30 +98,24 @@ export class ExpensesPageComponent implements OnInit {
     return this.chartDates
   }
 
-  // getExpenses(userId: string, token: string): void {
-  //   this.fetchApiData.getExpenses(userId).subscribe((resp: any) => {
-  //     this.expenses = resp;
-  //     console.log(this.expenses);
-  //     return this.expenses;
-  //   });
-  // }
-
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
 
-      const actExp = resp.filter((x: { Category: string; }) => x.Category === 'Activities');
-      const billExp = resp.filter((x: { Category: string; }) => x.Category === 'Bills');
-      const busExp = resp.filter((x: { Category: string; }) => x.Category === 'Business');
-      const entExp = resp.filter((x: { Category: string; }) => x.Category === 'Entertainment');
-      const gifExp = resp.filter((x: { Category: string; }) => x.Category === 'Gifts');
-      const grocExp = resp.filter((x: { Category: string; }) => x.Category === 'Groceries');
-      const homExp = resp.filter((x: { Category: string; }) => x.Category === 'Home');
-      const medExp = resp.filter((x: { Category: string; }) => x.Category === 'Medical');
-      const restExp = resp.filter((x: { Category: string; }) => x.Category === 'Restaurant');
-      const traExp = resp.filter((x: { Category: string; }) => x.Category === 'Travel');
+      this.cmExpenses = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
+      console.log(this.cmExpenses);
 
-      this.groceryAmounts = grocExp.reduce(
+      const housExp = resp.filter((x: { Category: string; }) => x.Category === 'Housing');
+      const transExp = resp.filter((x: { Category: string; }) => x.Category === 'Transportation');
+      const billExp = resp.filter((x: { Category: string; }) => x.Category === 'Bills');
+      const foodExp = resp.filter((x: { Category: string; }) => x.Category === 'Food');
+      const medExp = resp.filter((x: { Category: string; }) => x.Category === 'Medical');
+      const savExp = resp.filter((x: { Category: string; }) => x.Category === 'Savings');
+      const entExp = resp.filter((x: { Category: string; }) => x.Category === 'Entertainment');
+      const persExp = resp.filter((x: { Category: string; }) => x.Category === 'Personal');
+      const micExp = resp.filter((x: { Category: string; }) => x.Category === 'Micellaneous');
+
+      this.foodAmounts = foodExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -127,7 +126,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      this.activitiesAmounts = actExp.reduce(
+      this.housingExpenses = housExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -149,7 +148,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      this.businessAmounts = busExp.reduce(
+      this.savingsAmounts = savExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -171,7 +170,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      this.giftAmounts = gifExp.reduce(
+      this.personalAmounts = persExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -182,7 +181,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      this.homeAmounts = homExp.reduce(
+      this.micelAmounts = micExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -204,18 +203,8 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      this.restaurantAmounts = restExp.reduce(
-        (accumulator: Record<string, number>,
-          resp: { Amount: string; Date: string }) => {
-          if (accumulator[resp.Date]) {
-            accumulator[resp.Date] = accumulator[resp.Date] + Number(resp.Amount);
-          } else {
-            accumulator[resp.Date] = Number(resp.Amount)
-          }
-          return accumulator;
-        }, {}
-      );
-      this.travelAmounts = traExp.reduce(
+
+      this.transportAmounts = transExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -227,15 +216,17 @@ export class ExpensesPageComponent implements OnInit {
         }, {}
       );
       console.log('chart dates' + this.chartDates);
-      console.log(this.groceryAmounts);
+      console.log(this.foodAmounts);
+
+      // const filteredExp = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
 
       this.userData = {
         labels: this.formattedDates,
         datasets: [
 
           {
-            label: 'Activities',
-            data: this.chartDates.map((date: number) => { return this.activitiesAmounts[date] || 0 }),
+            label: 'Housing',
+            data: this.chartDates.map((date: number) => { return this.housingExpenses[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
@@ -248,8 +239,8 @@ export class ExpensesPageComponent implements OnInit {
             tension: .4,
           },
           {
-            label: 'Business',
-            data: this.chartDates.map((date: number) => { return this.businessAmounts[date] || 0 }),
+            label: 'Savings',
+            data: this.chartDates.map((date: number) => { return this.savingsAmounts[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
@@ -262,22 +253,22 @@ export class ExpensesPageComponent implements OnInit {
             tension: .4,
           },
           {
-            label: 'Gifts',
-            data: this.chartDates.map((date: number) => { return this.giftAmounts[date] || 0 }),
+            label: 'Personal Spending',
+            data: this.chartDates.map((date: number) => { return this.personalAmounts[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
           },
           {
-            label: 'Groceries',
-            data: this.chartDates.map((date: number) => { return this.groceryAmounts[date] || 0 }),
+            label: 'Food',
+            data: this.chartDates.map((date: number) => { return this.foodAmounts[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
           },
           {
-            label: 'Home',
-            data: this.chartDates.map((date: number) => { return this.homeAmounts[date] || 0 }),
+            label: 'Micellaneous',
+            data: this.chartDates.map((date: number) => { return this.micelAmounts[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
@@ -290,15 +281,8 @@ export class ExpensesPageComponent implements OnInit {
             tension: .4,
           },
           {
-            label: 'Restaurant',
-            data: this.chartDates.map((date: number) => { return this.restaurantAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
-            fill: false,
-            tension: .4,
-          },
-          {
-            label: 'Travel',
-            data: this.chartDates.map((date: number) => { return this.travelAmounts[date] || 0 }),
+            label: 'Transportation',
+            data: this.chartDates.map((date: number) => { return this.transportAmounts[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
@@ -348,19 +332,27 @@ export class ExpensesPageComponent implements OnInit {
     });
   }
 
-  openEditExpenseDialog(expense: Partial<Expense>): void {
+  openEditExpenseDialog(expense: any): void {
     this.dialog.open(ExpenseEditComponent, {
-      data: expense,
+      data: {
+        Date: expense.Date,
+      },
       width: '500px'
     });
-    console.log('data Date: ' + expense.Date);
-    console.log('data object' + expense.Amount);
+    console.log(expense.Date);
   }
 
   openCreateExpenseDialog(): void {
-    this.dialog.open(ExpenseCreateComponent, {
-      data: this.user,
+    const dialogRef = this.dialog.open(ExpenseCreateComponent, {
+      data: {
+        user: this.user,
+        date: this.todayDate,
+      },
       width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getExpenses(this.userId, this.token);
     });
   }
 }
