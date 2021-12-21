@@ -6,7 +6,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 const PartialUser = {
   FirstName: '',
-  // LastName: '',
+  LastName: '',
 }
 
 @Component({
@@ -30,7 +30,7 @@ export class UserUpdateNameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.FirstName);
+    console.log(this.data.FirstName + '' + this.data.LastName);
   }
 
   updateUser(token: string, userId: string): void {
