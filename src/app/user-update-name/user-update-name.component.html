@@ -3,9 +3,9 @@
 <mat-form-field>
   <input matInput [(ngModel)]="userData.FirstName" placeholder={{data.FirstName}} type="text" name="FirstName" required>
 </mat-form-field>
-<!-- <mat-form-field>
+<mat-form-field>
   <input matInput [(ngModel)]="userData.LastName" placeholder={{data.LastName}} type="text" name="LastName" required>
-</mat-form-field> -->
+</mat-form-field>
 <mat-card-actions>
   <button mat-raised-button (click)="updateUser(token, userId)" color="primary">
     Edit Name
