@@ -46,23 +46,23 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  openUpdateDialog(user: Partial<User>) {
-    const dialogRef = this.dialog.open(UserProfileUpdateComponent, {
-      data: {
-        FirstName: user.FirstName,
-        LastName: user.LastName,
-        Username: user.Username,
-        Email: user.Email,
-        Currency: user.CurrencyPref,
-        Password: user.Password
-      }
-      // width: '500px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-    this.getUser(this.userId, this.token);
-  }
+  // openUpdateDialog(user: Partial<User>) {
+  //   const dialogRef = this.dialog.open(UserProfileUpdateComponent, {
+  //     data: {
+  //       FirstName: user.FirstName,
+  //       LastName: user.LastName,
+  //       Username: user.Username,
+  //       Email: user.Email,
+  //       Currency: user.CurrencyPref,
+  //       Password: user.Password
+  //     }
+  //     // width: '500px'
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //   });
+  //   this.getUser(this.userId, this.token);
+  // }
   openUpdateUsernameDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateUsernameComponent, {
       data: {
