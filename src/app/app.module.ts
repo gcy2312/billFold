@@ -40,6 +40,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -59,7 +60,7 @@ import { BillPageComponent } from './bill-page/bill-page.component';
 import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
 import { BillDetailsComponent } from './bill-details/bill-details.component';
 import { ExpenseEditComponent } from './expense-edit/expense-edit.component';
-import { BillEditComponent } from './bill-edit/bill-edit.component';
+import { BillDeleteComponent } from './bill-delete/bill-delete.component';
 import { UserUpdateUsernameComponent } from './user-update-username/user-update-username.component';
 import { UserUpdateNameComponent } from './user-update-name/user-update-name.component';
 import { UserUpdatePasswordComponent } from './user-update-password/user-update-password.component';
@@ -91,7 +92,7 @@ const appRoutes: Routes = [
     ExpenseDetailsComponent,
     BillDetailsComponent,
     ExpenseEditComponent,
-    BillEditComponent,
+    BillDeleteComponent,
     UserUpdateUsernameComponent,
     UserUpdateNameComponent,
     UserUpdatePasswordComponent,
