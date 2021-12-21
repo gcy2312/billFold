@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg } from '@fullcalendar/angular'; // useful for typechecking
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { BillDetailsComponent } from '../bill-details/bill-details.component';
 
 import { Bill } from '../types';
-import { BillEditComponent } from '../bill-edit/bill-edit.component';
+import { BillDeleteComponent } from '../bill-delete/bill-delete.component';
 import { BillCreateComponent } from '../bill-create/bill-create.component';
 import { DateClickArg } from '@fullcalendar/interaction';
 
@@ -41,6 +41,7 @@ export class BillPageComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
+    // public billDialogRef: MatDialogRef<BillDetailsComponent>,
   ) { }
 
   ngOnInit(): void {
@@ -56,6 +57,8 @@ export class BillPageComponent implements OnInit {
       console.log(this.calendarBills);
 
       this.calendarOptions = {
+
+
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
@@ -64,28 +67,29 @@ export class BillPageComponent implements OnInit {
         initialView: 'dayGridMonth',
         events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
         weekends: true,
-        editable: true,
+        editable: false,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
-        // dateClick: this.handleDateClick.bind(this),
         // select: this.handleDateSelect.bind(this),
-        // eventClick: this.handleBillChange.bind(this),
         // eventsSet: this.handleEvents.bind(this),
         ///you can update a remote database when these fire:
         // eventAdd:
         // eventChange: this.handleBillChange.bind(this),
         // eventRemove:
+
         dateClick: (bill) => {
           // alert('Date: ' + bill.dateStr);
           this.openBillCreateDialog.bind(this)(bill);
         },
         eventClick: (bill) => {
           this.openBillViewDialog.bind(this)(bill);
-        }
+        },
       };
     })
   }
+
+
 
   openBillViewDialog(bill: any) {
     const dialogRef = this.dialog.open(BillDetailsComponent, {
@@ -103,8 +107,16 @@ export class BillPageComponent implements OnInit {
       console.log('The dialog was closed');
       this.getBills(this.userId, this.token);
     });
-    //need to refresh calendar here!!!
   }
+
+  openBillDeleteDialog(bill: any) {
+    const dialogRef = this.dialog.open(BillDeleteComponent, {
+      data: {
+
+      }
+    })
+  }
+
 
   openBillCreateDialog(bill: any) {
     const dialogRef = this.dialog.open(BillCreateComponent, {
@@ -114,6 +126,7 @@ export class BillPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.getBills(this.userId, this.token);
     });
   }
 
