@@ -117,7 +117,6 @@ export class BillPageComponent implements OnInit {
     })
   }
 
-
   openBillCreateDialog(bill: any) {
     const dialogRef = this.dialog.open(BillCreateComponent, {
       data: {
