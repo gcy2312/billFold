@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BillDeleteComponent } from './bill-delete.component';
 
-describe('BillEditComponent', () => {
+describe('BillDeleteComponent', () => {
   let component: BillDeleteComponent;
   let fixture: ComponentFixture<BillDeleteComponent>;
 
