@@ -58,7 +58,7 @@ export class ExpensesPageComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
-  user: any = {};
+  user = JSON.parse(localStorage.getItem('user') || '');
 
   chartDates: any = [];
 
@@ -70,10 +70,11 @@ export class ExpensesPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser(this.userId, this.token);
+
     this.getExpenses(this.userId, this.token);
     this.getDaysArrayByMonth();
     this.todayDate = moment().format('YYYY-MM-DD');
+    console.log(this.user);
   }
 
   getDaysArrayByMonth() {
@@ -320,15 +321,6 @@ export class ExpensesPageComponent implements OnInit {
 
       }
 
-    });
-  }
-
-  getUser(userId: string, token: string): void {
-    this.fetchApiData.getUser(userId, token).subscribe((resp: any) => {
-      this.userData = resp;
-      this.user = resp;
-      console.log('user: ' + this.user.CurrencyPref);
-      console.log('name' + this.user.FirstName + this.user.LastName);
     });
   }
 
