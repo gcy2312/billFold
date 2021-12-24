@@ -77,7 +77,7 @@ export class FetchApiDataService {
         (bills: Bill[]): Bill[] =>
           bills.map(
             (e) => ({ ...e, Date: e.Date.substr(0, 10) })
-          )
+          ).sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime())
       ),
       catchError(this.handleError)
     );
@@ -169,15 +169,27 @@ export class FetchApiDataService {
   }
 
   //delete user
-  deleteUser(token: string, userId: string): Observable<User> {
-    return this.http.delete<User>(`${apiUrl}/users/${userId}`, {
+  deleteUser(token: string, userId: string): Observable<any> {
+    return this.http.delete(`${apiUrl}/users/${userId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
     }).pipe(
-      catchError(this.handleError)
+      catchError(this.handleDeleteError)
     );
   }
+  // deleteUser(): Observable<any> {
+  //   const token = localStorage.getItem('token');
+  //   const userId = localStorage.getItem('userId');
+  //   return this.http
+  //     .delete(`${apiUrl}/users/${userId}`, {
+  //       headers: new HttpHeaders({
+  //         Authorization: `Bearer ${token}`,
+  //       }),
+  //     }).pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
 
   //delete expense doc
   deleteExpense(expenseId: string, token: string): Observable<Expense> {
@@ -208,6 +220,18 @@ export class FetchApiDataService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
+    if (error.error instanceof ErrorEvent) {
+      console.error('Some error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Error Status code ${error.status}, ` +
+        `Error body is: ${error.error}`);
+    }
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
+
+  private handleDeleteError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
