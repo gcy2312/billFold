@@ -41,9 +41,9 @@ export class UserProfileDeleteComponent implements OnInit {
       this.snackBar.open(result, 'OK', {
         duration: 2000,
       });
-      // this.router.navigate(['/welcome']).then(() => {
-      //   window.location.reload();
-      // });
+      this.router.navigate(['/welcome']).then(() => {
+        window.location.reload();
+      });
     }
     );
   }
