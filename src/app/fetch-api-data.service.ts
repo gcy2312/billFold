@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User, Bill, Expense, ExpenseAPI, BillAPI } from './types';
+import { options } from 'preact';
 
 const apiUrl = 'https://expenses-api-2312.herokuapp.com';
 @Injectable({
@@ -169,27 +170,23 @@ export class FetchApiDataService {
   }
 
   //delete user
+
+
   deleteUser(token: string, userId: string): Observable<any> {
     return this.http.delete(`${apiUrl}/users/${userId}`, {
+      ...options,
+      responseType: 'text',
+
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
-    }).pipe(
-      catchError(this.handleDeleteError)
-    );
+    })
+      .pipe(
+        map(this.extractResponseData),
+        catchError(this.handleDeleteError)
+      );
   }
-  // deleteUser(): Observable<any> {
-  //   const token = localStorage.getItem('token');
-  //   const userId = localStorage.getItem('userId');
-  //   return this.http
-  //     .delete(`${apiUrl}/users/${userId}`, {
-  //       headers: new HttpHeaders({
-  //         Authorization: `Bearer ${token}`,
-  //       }),
-  //     }).pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
+
 
   //delete expense doc
   deleteExpense(expenseId: string, token: string): Observable<Expense> {
@@ -231,13 +228,13 @@ export class FetchApiDataService {
       'Something bad happened; please try again later.');
   }
 
-  private handleDeleteError(error: HttpErrorResponse): any {
+  private handleDeleteError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
-      console.error(
+      console.warn(
         `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
+        `Error body is: ${error.message}`);
     }
     return throwError(
       'Something bad happened; please try again later.');
