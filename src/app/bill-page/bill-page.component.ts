@@ -21,9 +21,10 @@ export class BillPageComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  user = JSON.parse(localStorage.getItem('user') || '');
 
   bills: Bill[] = [];
-  calendarBills: [] = [];
+  calendarBills: any = [];
   bill: Bill = {
     _id: '',
     Description: '',
@@ -57,8 +58,6 @@ export class BillPageComponent implements OnInit {
       console.log(this.calendarBills);
 
       this.calendarOptions = {
-
-
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
@@ -88,8 +87,6 @@ export class BillPageComponent implements OnInit {
       };
     })
   }
-
-
 
   openBillViewDialog(bill: any) {
     const dialogRef = this.dialog.open(BillDetailsComponent, {
@@ -121,6 +118,7 @@ export class BillPageComponent implements OnInit {
     const dialogRef = this.dialog.open(BillCreateComponent, {
       data: {
         date: bill.dateStr,
+        user: this.user,
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -128,15 +126,6 @@ export class BillPageComponent implements OnInit {
       this.getBills(this.userId, this.token);
     });
   }
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -17,16 +17,8 @@
 
       <mat-form-field>
         <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="$$" name="Amount" required>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Currency Preference</mat-label>
-        <mat-select matNativeControl [(ngModel)]="billInfo.Currency" type="text" placeholder="CAD" name="Currency">
-          <mat-option value="CAD">CAD</mat-option>
-          <mat-option value="USD">USD</mat-option>
-          <mat-option value="GBP">GBP</mat-option>
-          <mat-option value="EUR">EUR</mat-option>
-        </mat-select>
-      </mat-form-field>
+      </mat-form-field><span>({{data.user.CurrencyPref}})</span>
+
       <mat-checkbox [checked]="isChkChecked" (change)="onChkChange($event)"> Paid </mat-checkbox>
     </form>
   </mat-card-content>

@@ -43,8 +43,10 @@ export class BillCreateComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getUser(this.token, this.userId);
+
     this.billInfo.Date = this.data.date;
+    console.log(this.data.user);
+    console.log(this.token);
 
     console.log(this.billInfo.Date);
   }
@@ -52,6 +54,7 @@ export class BillCreateComponent implements OnInit {
 
 
   createBill(userId: string, token: string): void {
+    this.billInfo.Currency = this.data.user.CurrencyPref;
     this.fetchApiData.createBill(this.billInfo, userId, token).subscribe((result) => {
       this.dialogRef.close(); // This will close the modal on success!
       this.snackBar.open('Bill document successfully added', 'OK', {
@@ -70,11 +73,6 @@ export class BillCreateComponent implements OnInit {
     } else {
       this.billInfo.Paid = false;
     }
-  }
-
-  getUser(token: string, userId: string): void {
-    console.log('User Id: ' + this.userId);
-    console.log('User token: ' + this.token);
   }
 
 }
