@@ -27,8 +27,13 @@
       <h2>All Events ({{bills.length}})</h2>
       <ul>
         <li *ngFor='let bill of bills'>
-          <b>{{bill.Date}}</b>
-          <i>{{bill.Description}}</i>
+          <div (click)="openBillDeleteDialog(bill)">
+            <b>{{bill.Date}}</b>
+            <i>{{bill.Description}}</i>
+            <i>{{bill.Amount}}</i>
+          </div>
+          <button (click)="openBillEditDialog(bill)">Edit Bill</button>
+
         </li>
       </ul>
     </div>
