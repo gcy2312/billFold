@@ -11,7 +11,7 @@ const PartialExpense = {
   Category: '',
   Description: '',
   Date: '',
-  Amount: { $numberDecimal: '' },
+  Amount: '',
   Currency: '',
 };
 
@@ -26,6 +26,7 @@ export class ExpenseEditComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  expenseId: string = '';
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -35,12 +36,14 @@ export class ExpenseEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.Date);
+    console.log(this.data.expense);
     console.log('userId: ' + this.userId);
     console.log('token: ' + this.token);
+    this.expenseInfo = this.data.expense;
+    this.expenseId = this.data.expense._id;
   }
 
-  expenseId = this.data._id;
+  // expenseId = this.data._id;
 
   editExpense(userId: string, token: string, expenseId: string): void {
     // this.expenseInfo.Amount = this.data.Amount.$numberDecimal.toString().substring(0, 10);
