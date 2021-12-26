@@ -14,6 +14,7 @@ import { ExpenseCreateComponent } from '../expense-create/expense-create.compone
 
 import { Expense, User } from '../types';
 import * as moment from 'moment';
+import { ExpenseDeleteComponent } from '../expense-delete/expense-delete.component';
 
 @Component({
   selector: 'app-expenses-page',
@@ -28,7 +29,7 @@ export class ExpensesPageComponent implements OnInit {
     Category: '',
     Description: '',
     Date: '',
-    Amount: { $numberDecimal: '' },
+    Amount: '',
     Currency: '',
     UserId: '',
     Index: false
@@ -102,6 +103,7 @@ export class ExpensesPageComponent implements OnInit {
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
+      console.log(this.expenses);
 
       this.cmExpenses = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
       console.log(this.cmExpenses);
@@ -325,13 +327,16 @@ export class ExpensesPageComponent implements OnInit {
   }
 
   openEditExpenseDialog(expense: any): void {
-    this.dialog.open(ExpenseEditComponent, {
+    const dialogRef = this.dialog.open(ExpenseEditComponent, {
       data: {
-        Date: expense.Date,
+        expense: expense,
       },
       width: '500px'
     });
-    console.log(expense.Date);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getExpenses(this.userId, this.token);
+    });
   }
 
   openCreateExpenseDialog(): void {
@@ -339,6 +344,20 @@ export class ExpensesPageComponent implements OnInit {
       data: {
         user: this.user,
         date: this.todayDate,
+      },
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getExpenses(this.userId, this.token);
+    });
+  }
+
+  openDeleteExpenseDialog(expense: any): void {
+    const dialogRef = this.dialog.open(ExpenseDeleteComponent, {
+      data: {
+        user: this.user,
+        expense: expense
       },
       width: '500px'
     });
