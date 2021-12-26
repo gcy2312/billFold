@@ -66,6 +66,8 @@ import { UserUpdateNameComponent } from './user-update-name/user-update-name.com
 import { UserUpdatePasswordComponent } from './user-update-password/user-update-password.component';
 import { UserUpdateEmailComponent } from './user-update-email/user-update-email.component';
 import { UserUpdateCurrencyComponent } from './user-update-currency/user-update-currency.component';
+import { ExpenseDeleteComponent } from './expense-delete/expense-delete.component';
+import { BillEditComponent } from './bill-edit/bill-edit.component';
 
 
 const appRoutes: Routes = [
@@ -97,7 +99,9 @@ const appRoutes: Routes = [
     UserUpdateNameComponent,
     UserUpdatePasswordComponent,
     UserUpdateEmailComponent,
-    UserUpdateCurrencyComponent
+    UserUpdateCurrencyComponent,
+    ExpenseDeleteComponent,
+    BillEditComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
