@@ -44,8 +44,8 @@ export interface Bill {
 export interface BillAPI {
   _id: string,
   Description: string,
-  Date: Date,  //need to parse before Date
-  Amount: string,  //Decimal128 takes string value
+  Date: string,  //need to parse before Date
+  Amount: any,  //Decimal128 takes string value
   Currency: string,
   UserId: string,
   Paid: boolean,

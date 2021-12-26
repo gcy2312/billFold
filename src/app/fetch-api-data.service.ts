@@ -69,15 +69,15 @@ export class FetchApiDataService {
 
   //user's list of bills GET
   getBills(userId: string, token: string): Observable<Bill[]> {
-    return this.http.get<Bill[]>(`${apiUrl}/users/${userId}/bills`, {
+    return this.http.get<BillAPI[]>(`${apiUrl}/users/${userId}/bills`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
     }).pipe(
       map(
-        (bills: Bill[]): Bill[] =>
+        (bills: BillAPI[]): Bill[] =>
           bills.map(
-            (e) => ({ ...e, Date: e.Date.substr(0, 10) })
+            (e: BillAPI) => ({ ...e, Amount: e.Amount.$numberDecimal, Date: e.Date.substr(0, 10) })
           ).sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime())
       ),
       catchError(this.handleError)
@@ -146,8 +146,8 @@ export class FetchApiDataService {
   }
 
   //edit expense doc PUT
-  editExpense(expenseInfo: Partial<Expense>, expenseId: string, token: string, userId: string): Observable<Expense> {
-    return this.http.put<Expense>(`${apiUrl}/users/${userId}/expenses/${expenseId}`, expenseInfo, {
+  editExpense(expenseInfo: Partial<ExpenseAPI>, expenseId: string, token: string, userId: string): Observable<ExpenseAPI> {
+    return this.http.put<ExpenseAPI>(`${apiUrl}/users/${userId}/expenses/${expenseId}`, expenseInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -158,8 +158,8 @@ export class FetchApiDataService {
   }
 
   //edit bill doc PUT
-  editBill(billInfo: Partial<Bill>, billId: string, token: string, userId: string): Observable<Bill> {
-    return this.http.put<Bill>(`${apiUrl}/users/${userId}/bills/${billId}`, billInfo, {
+  editBill(billInfo: Partial<BillAPI>, billId: string, token: string, userId: string): Observable<BillAPI> {
+    return this.http.put<BillAPI>(`${apiUrl}/users/${userId}/bills/${billId}`, billInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -187,10 +187,11 @@ export class FetchApiDataService {
       );
   }
 
-
   //delete expense doc
-  deleteExpense(expenseId: string, token: string): Observable<Expense> {
-    return this.http.delete<Expense>(`${apiUrl}/expenses/${expenseId}`, {
+  deleteExpense(expenseId: string, token: string): Observable<any> {
+    return this.http.delete(`${apiUrl}/expenses/${expenseId}`, {
+      ...options,
+      responseType: 'text',
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -200,8 +201,10 @@ export class FetchApiDataService {
   }
 
   //delete bill doc
-  deleteBill(billId: string, token: string): Observable<Bill> {
-    return this.http.delete<Bill>(`${apiUrl}/bills/${billId}`, {
+  deleteBill(billId: string, token: string): Observable<any> {
+    return this.http.delete(`${apiUrl}/bills/${billId}`, {
+      ...options,
+      responseType: 'text',
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
@@ -222,7 +225,7 @@ export class FetchApiDataService {
     } else {
       console.error(
         `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
+        `Error body is: ${error.message}`);
     }
     return throwError(
       'Something bad happened; please try again later.');
