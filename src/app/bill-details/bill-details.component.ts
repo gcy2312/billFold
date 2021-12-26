@@ -6,7 +6,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 
 const transferBillData = {
   title: '',
-  Amount: { $numberDecimal: '' },
+  Amount: '',
   date: '',
   Paid: false,
   Currency: '',
@@ -41,6 +41,7 @@ export class BillDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.billDetails = this.data;
+    console.log(this.billDetails.Amount);
 
     this.billInfo.Paid = this.data.Paid;
     this.isChkChecked = this.billInfo.Paid;
