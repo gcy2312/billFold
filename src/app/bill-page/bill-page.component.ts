@@ -10,6 +10,7 @@ import { Bill } from '../types';
 import { BillDeleteComponent } from '../bill-delete/bill-delete.component';
 import { BillCreateComponent } from '../bill-create/bill-create.component';
 import { DateClickArg } from '@fullcalendar/interaction';
+import { BillEditComponent } from '../bill-edit/bill-edit.component';
 
 @Component({
   selector: 'app-bill-page',
@@ -25,11 +26,11 @@ export class BillPageComponent implements OnInit {
 
   bills: Bill[] = [];
   calendarBills: any = [];
-  bill: Bill = {
+  bill = {
     _id: '',
     Description: '',
     Date: '',
-    Amount: { $numberDecimal: '' },
+    Amount: '',
     Currency: '',
     UserId: '',
     Paid: false,
@@ -53,7 +54,7 @@ export class BillPageComponent implements OnInit {
   getBills(userId: string, token: string): void {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
-      this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount.$numberDecimal, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
+      this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
       console.log(this.bills);
       console.log(this.calendarBills);
 
@@ -109,8 +110,24 @@ export class BillPageComponent implements OnInit {
   openBillDeleteDialog(bill: any) {
     const dialogRef = this.dialog.open(BillDeleteComponent, {
       data: {
-
+        bill: bill
       }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getBills(this.userId, this.token);
+    })
+  }
+
+  openBillEditDialog(bill: any) {
+    const dialogRef = this.dialog.open(BillEditComponent, {
+      data: {
+        bill: bill
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getBills(this.userId, this.token);
     })
   }
 
