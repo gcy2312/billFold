@@ -57,6 +57,7 @@ export class FetchApiDataService {
     }).pipe(
       map(
         (expenses: ExpenseAPI[]): Expense[] => {
+          console.log(expenses);
           return expenses.map(
             (e: ExpenseAPI) => ({ ...e, Amount: e.Amount.$numberDecimal, Date: e.Date.substr(0, 10) })
           ).sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
@@ -75,11 +76,12 @@ export class FetchApiDataService {
       })
     }).pipe(
       map(
-        (bills: BillAPI[]): Bill[] =>
-          bills.map(
+        (bills: BillAPI[]): Bill[] => {
+          console.log(bills);
+          return bills.map(
             (e: BillAPI) => ({ ...e, Amount: e.Amount.$numberDecimal, Date: e.Date.substr(0, 10) })
           ).sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime())
-      ),
+        }),
       catchError(this.handleError)
     );
   }
@@ -109,10 +111,10 @@ export class FetchApiDataService {
   }
 
   //create expense doc POST
-  createExpense(expenseInfo: Partial<Expense>, token: string, userId: string): Observable<Expense> {
+  createExpense(expenseInfo: Partial<ExpenseAPI>, token: string, userId: string): Observable<ExpenseAPI> {
     console.log(expenseInfo);
 
-    return this.http.post<Expense>(`${apiUrl}/users/${userId}/expenses`, expenseInfo, {
+    return this.http.post<ExpenseAPI>(`${apiUrl}/users/${userId}/expenses`, expenseInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })
@@ -122,9 +124,9 @@ export class FetchApiDataService {
   }
 
   //create bill doc POST
-  createBill(billInfo: Partial<Bill>, token: string, userId: string): Observable<Bill> {
+  createBill(billInfo: Partial<BillAPI>, token: string, userId: string): Observable<BillAPI> {
     console.log(billInfo);
-    return this.http.post<Bill>(`${apiUrl}/users/${userId}/bills`, billInfo, {
+    return this.http.post<BillAPI>(`${apiUrl}/users/${userId}/bills`, billInfo, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       })

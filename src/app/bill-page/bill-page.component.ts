@@ -54,6 +54,7 @@ export class BillPageComponent implements OnInit {
   getBills(userId: string, token: string): void {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
+      console.log(this.bills);
       this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
       console.log(this.bills);
       console.log(this.calendarBills);
