@@ -6,7 +6,7 @@
     <div class='demo-app-sidebar-section'>
       <li *ngFor="let expense of cmExpenses">
         <div (click)="openDeleteExpenseDialog(expense)">
-          <p>{{expense.Date}}</p>
+          <p>{{expense.Category}} {{expense.Date}}</p>
           <p>{{expense.Amount}}</p>
         </div>
         <button mat-raised-button color="primary" (click)="openEditExpenseDialog(expense)" style="margin-right: 10px;">
