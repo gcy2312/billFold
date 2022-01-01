@@ -1,15 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg } from '@fullcalendar/angular'; // useful for typechecking
+import { DateClickArg } from '@fullcalendar/interaction';
+// import bootstrapPlugin from '@fullcalendar/bootstrap';
+
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
-import { BillDetailsComponent } from '../bill-details/bill-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Bill } from '../types';
+
+import { BillDetailsComponent } from '../bill-details/bill-details.component';
 import { BillDeleteComponent } from '../bill-delete/bill-delete.component';
 import { BillCreateComponent } from '../bill-create/bill-create.component';
-import { DateClickArg } from '@fullcalendar/interaction';
 import { BillEditComponent } from '../bill-edit/bill-edit.component';
 
 @Component({
@@ -72,6 +74,8 @@ export class BillPageComponent implements OnInit {
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
+        // plugins: [bootstrapPlugin],
+        // themeSystem: 'bootstrap',
         // select: this.handleDateSelect.bind(this),
         // eventsSet: this.handleEvents.bind(this),
         ///you can update a remote database when these fire:
