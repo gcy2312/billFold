@@ -1,11 +1,16 @@
 <div class="main-page">
-  <h1>
-    Welcome to billFold!
-  </h1>
-  <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
-    Sign Up
-  </button>
-  <button mat-raised-button color="primary" (click)="openUserLoginDialog()" style="margin-right: 10px;">
-    Login
-  </button>
+  <div class="imglogo">
+    <img src='assets/icons/icon-736x471.png' class="logo" alt="app logo billFold" width=300, height=auto />
+  </div>
+
+  <div class="loginbtn">
+    <button mat-raised-button (click)="openUserLoginDialog()" style="margin-right: 10px;">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">login</mat-icon> Login
+    </button><br>
+    <span class="memberText">Not yet a member? </span>
+    <button mat-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;">
+      Sign Up
+    </button>
+  </div>
+
 </div>
