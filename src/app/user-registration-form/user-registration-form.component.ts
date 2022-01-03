@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UserRegistrationFormComponent implements OnInit {
 
   @Input() userDetails = { FirstName: '', LastName: '', Username: '', Password: '', Email: '', CurrencyPref: '' };
+  hide = true;
 
   constructor(
     public fetchApiData: FetchApiDataService,
