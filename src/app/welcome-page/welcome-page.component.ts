@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FetchApiDataService } from '../fetch-api-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,17 +13,50 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent implements OnInit {
-  constructor(public dialog: MatDialog) { }
+
+  @Input() userCred = { Username: '', Password: '' };
+
+  hide = true;
+
+  constructor(
+    public dialog: MatDialog,
+    public fetchApiData: FetchApiDataService,
+    // public dialogRef: MatDialogRef<UserLoginFormComponent>,
+    public snackBar: MatSnackBar,
+    public router: Router
+  ) { }
   ngOnInit(): void {
   }
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
-      width: '280px'
+      width: '580px',
     });
   }
-  openUserLoginDialog(): void {
-    this.dialog.open(UserLoginFormComponent, {
-      width: '280px'
+
+  loginUser(): void {
+    this.fetchApiData.userLogin(this.userCred).subscribe((result) => {
+      // this.dialogRef.close();
+      //store user & token to local storage
+      localStorage.setItem('userId', result.user._id);
+      localStorage.setItem('user', JSON.stringify(result.user));
+      localStorage.setItem('token', result.token);
+      console.log(result.token);
+      console.log(result.user._id);
+      console.log(result.user);
+
+      this.snackBar.open('User successfull logged in', 'OK', {
+        duration: 2000
+      });
+      this.router.navigate(['expenses']);
+    }, (result) => {
+      this.snackBar.open(result, 'OK', {
+        duration: 2000
+      });
     });
   }
+  // openUserLoginDialog(): void {
+  //   this.dialog.open(UserLoginFormComponent, {
+  //     width: '280px'
+  //   });
+  // }
 }
