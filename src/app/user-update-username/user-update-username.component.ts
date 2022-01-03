@@ -49,7 +49,7 @@ export class UserUpdateUsernameComponent implements OnInit {
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
       console.log(resp);
-      localStorage.setItem('user', resp.Username);
+      localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', resp._id);
       this.snackBar.open('Your username has been successfully updated!', 'OK', {
         duration: 2000,
