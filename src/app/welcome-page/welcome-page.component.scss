@@ -1,17 +1,59 @@
+// @use '~@angular/material' as mat;
+// @import '~@angular/material/theming';
+
+$font:'Raleway', sans-serif;
+$textSize: 15px;
+$headerSize: 20px;
+
+$blue:#007ad9;
+$white: #fff;
+$bgGrey: #ebecef;
 
 .main-page{
-  background-color: #007ad9;
-  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color:$blue;
+  margin-top: 70px;
   padding-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   padding-bottom:50px;
-  font-family: 'Raleway', sans-serif;
+  font-family: $font;
   text-align: center;
 }
 .imglogo{
   padding-bottom: 40px;
+  margin-top: 30px;
+  margin-inline-end: 20px;
 }
-h1{
-  color: #fff;
-  font-family: 'Raleway';
+#loginCard{
+  width:350px;
+  align-content: center;
+  margin-inline-start: 20px;
+}
+#loginbtn{
+  margin-bottom: 30px;
+  margin-top:-20px;
+  background-color:$blue;
+  color:$white;
+  font-family: $font;
+  font-size: $textSize;
+}
+#cardHeader{
+  font-family: $font;
+  margin-left: 60px;
+  margin-bottom: 20px;
+}
+#formField{
+  font-family: $font;
+}
+.memberText{
+  font-family: $font;
+  font-size: $textSize;
+  margin-left: 20px;
+}
+#regbtn{
+  font-family: $font;
+  font-size: $textSize;
+  color:$blue;
 }
