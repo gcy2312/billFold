@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
+@import '~@angular/material/theming';
 @import '~bootstrap/dist/css/bootstrap.css';
 // Plus imports for other components in your app.
 
@@ -13,28 +14,60 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$billFold-client-primary: mat.define-palette(mat.$indigo-palette);
-$billFold-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$billFold-client-warn: mat.define-palette(mat.$red-palette);
+////old here
+// $billFold-client-primary: mat.define-palette(mat.$indigo-palette);
+// $billFold-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// $billFold-client-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$billFold-client-theme: mat.define-light-theme((
-  color: (
-    primary: $billFold-client-primary,
-    accent: $billFold-client-accent,
-    warn: $billFold-client-warn,
-  )
+///old here
+// $billFold-client-theme: mat.define-light-theme((
+//   color: (
+//     primary: $billFold-client-primary,
+//     accent: $billFold-client-accent,
+//     warn: $billFold-client-warn,
+//   )
+// ));
+
+$light-app-theme: mat-light-theme((
+        color: (
+                primary: mat-palette($mat-indigo),
+                accent: mat-palette($mat-pink, A200, A100, A400),
+                warn: mat-palette($mat-red),
+        )
 ));
+
+$dark-app-theme:   mat-dark-theme((
+        color: (
+                primary: mat-palette($mat-cyan),
+                accent: mat-palette($mat-blue-gray, A200, A100, A400),
+                warn: mat-palette($mat-amber),
+        )
+));
+
+@mixin body-theme($theme) {
+  $_background: map-get($theme, background);
+  $app-background-color: mat-color($_background, background);
+
+  body {
+    background-color: $app-background-color;
+  }
+}
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($billFold-client-theme);
+
+//old here
+// @include mat.all-component-themes($billFold-client-theme);
+.dark-theme {
+  @include angular-material-color($dark-app-theme);
+   @include body-theme($dark-app-theme);
+}
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body {  background-color: #ebecef ; height: 100%; }
+html, body { height: 100%; }
 body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
