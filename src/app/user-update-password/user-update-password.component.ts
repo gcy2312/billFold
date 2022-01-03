@@ -18,10 +18,12 @@ const PartialUser = {
 export class UserUpdatePasswordComponent implements OnInit {
   @Input()
   userData = PartialUser;
+  hide = true;
 
-  user: any = {};
+  // user: any = {};
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  user = JSON.parse(localStorage.getItem('user') || '');
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -36,17 +38,17 @@ export class UserUpdatePasswordComponent implements OnInit {
   // password = new FormGroup({
   //   firstName: new FormControl()
   // });
-  newPassword: FormGroup = new FormGroup({
-    password: new FormControl('', [Validators.required, Validators.min(3)])
-  });
-  hide = true;
-  get passwordInput() { return this.newPassword.get('password'); }
+  // newPassword: FormGroup = new FormGroup({
+  //   password: new FormControl('', [Validators.required, Validators.min(3)])
+  // });
+  // hide = true;
+  // get passwordInput() { return this.newPassword.get('password'); }
 
   updateUser(token: string, userId: string): void {
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
       console.log(resp);
-      localStorage.setItem('user', resp.Username);
+      localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', resp._id);
       this.snackBar.open('Your password has been successfully updated!', 'OK', {
         duration: 2000,
