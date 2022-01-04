@@ -242,11 +242,11 @@ body.mat-typography{
 
 .p-component{
         font-family: $font;
-        font-size: large;
+        // font-size: large;
 }
 
 .p-panel .p-panel-header{
-        background-color: darken($headerbg,10);
+        background-color: darken($primary,10);
         font-family: $font;
         font-size: $headerSize;
 }
