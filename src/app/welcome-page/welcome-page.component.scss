@@ -1,10 +1,15 @@
-// @use '~@angular/material' as mat;
-// @import '~@angular/material/theming';
+@use '@angular/material' as mat;
+
+$my-primary-palette: mat.define-palette(mat.$cyan-palette);
+$my-bg-palette: mat.define-palette(mat.$blue-gray-palette);
+$my-warn-palette: mat.define-palette(mat.$amber-palette);
 
 $font:'Raleway', sans-serif;
 $textSize: 15px;
 $headerSize: 20px;
-
+$headerbg: mat.get-color-from-palette($my-primary-palette, 700);
+$primary: mat.get-color-from-palette($my-primary-palette,500);
+$warn: mat.get-color-from-palette($my-warn-palette,500);
 $blue:#007ad9;
 $white: #fff;
 $bgGrey: #ebecef;
@@ -13,7 +18,7 @@ $bgGrey: #ebecef;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color:$blue;
+  background-color:$headerbg;
   margin-top: 70px;
   padding-top: 50px;
   margin-bottom: 50px;
@@ -34,7 +39,7 @@ $bgGrey: #ebecef;
 #loginbtn{
   margin-bottom: 30px;
   margin-top:-20px;
-  background-color:$blue;
+  background-color:darken($primary, 10);
   color:$white;
   font-family: $font;
   font-size: $textSize;
@@ -55,5 +60,5 @@ $bgGrey: #ebecef;
 #regbtn{
   font-family: $font;
   font-size: $textSize;
-  color:$blue;
+  color:$primary;
 }
