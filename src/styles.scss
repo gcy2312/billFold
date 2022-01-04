@@ -4,6 +4,10 @@
 @use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 @import '~bootstrap/dist/css/bootstrap.css';
+
+@import "primeicons/primeicons.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeng/resources/themes/arya-purple/theme.css";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -69,5 +73,168 @@ $dark-app-theme:   mat-dark-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body {  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {  margin: 0; font-family: 'Raleway', sans-serif; }
 
+
+//calendar styles
+$my-primary-palette: mat.define-palette(mat.$cyan-palette);
+$my-bg-palette: mat.define-palette(mat.$blue-gray-palette);
+$my-warn-palette: mat.define-palette(mat.$amber-palette);
+
+$font:'Raleway', sans-serif;
+$textSize: 15px;
+$headerSize: 20px;
+$bg:mat.get-color-from-palette($my-bg-palette,800);
+$headerbg: mat.get-color-from-palette($my-primary-palette, 700);
+$primary: mat.get-color-from-palette($my-primary-palette,500);
+$warn: mat.get-color-from-palette($my-warn-palette,700);
+$blue:#007ad9;
+$white: #fff;
+$bgGrey: #ebecef;
+//header bg
+.fc{
+        background-color: darken($primary, 10);
+        font-family: $font; 
+        border-radius: 5px;  
+}
+
+//arrows + inactive month/week
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button{
+        background-color:$primary;
+        color:$white;
+        border:none;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:hover{
+        background-color:darken($primary,10);
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:focus{
+        background-color:darken($primary,10);
+        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:not(:disabled):focus{
+        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        border-radius:3px;
+}
+
+//focus box shadow (week and day)
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button:not(:disabled):focus, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button:not(:disabled):focus, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button:not(:disabled):focus{
+        // box-shadow: 0 0 0 0.2rem lighten($primary,10);
+        color:$white;
+        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        border-radius: 3px;
+}
+//active btn on hover
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active:hover{
+        background-color:darken($primary,10);
+        // box-shadow: 0 0 0 0.2rem lighten($primary,10);
+        // box-shadow:none;
+}
+//week and day btn (inactive on hover)
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button:hover{
+        background-color: darken($primary,10);
+        color:$white;
+        // box-shadow: 0 0 0 0.2rem lighten($primary,10);
+        box-shadow: none;
+}
+//active btn on hover
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active{
+        background-color:darken($primary,10);
+        border-color: darken($primary,10);
+}
+//month/week active
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active{
+        background-color: darken($primary,10);
+        border-color: darken($primary,10);
+}
+//today btn when not on month
+ .fc.fc-theme-standard .fc-toolbar .fc-today-button:not(:disabled):hover{
+         background-color: $primary;
+        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        border-radius: 3px;
+ }
+// .fc.fc-theme-standard .fc-toolbar .fc-today-button-active{
+//         box-shadow: 0 0 0 0.2rem lighten($primary,30);    
+// }
+  .fc.fc-theme-standard .fc-toolbar .fc-today-button:disabled{
+         background-color: darken($primary,10);
+         border:none;
+ }
+
+ //today btn only
+  .fc.fc-theme-standard .fc-toolbar .fc-today-button{
+          background-color:darken($primary,10);
+          border:none;
+          transition:none
+        //   box-shadow: none;
+  }
+// .fc.fc-theme-standard .fc-toolbar .fc-today-button
+// .fc.fc-theme-standard .fc-toolbar .fc-today-button.fc-button-active{
+//           box-shadow: 0 0 0 0.2rem yellow;
+         
+//   }
+.fc.fc-theme-standard .fc-toolbar .fc-today-button:not(:disabled):focus{
+       box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        // transform:box-shadow(none);
+        // transform:border(none);
+}
+//month title
+.fc .fc-toolbar-title{
+        color:$white;
+        font-family: $font;
+        font-weight: 500;
+}
+//grid bg
+.fc .fc-scroller{
+        background-color:$bg;   
+}
+//weekdays bg
+.fc.fc-theme-standard .fc-view-harness th{   
+        background-color: darken($primary, 20);
+}
+//text
+.fc.fc-theme-standard a{
+        color:#fff;
+}
+//list view header
+.fc.fc-theme-standard .fc-view-harness .fc-cell-shaded{
+        background-color: darken($primary,20);
+}
+//today color
+.fc-daygrid-day.fc-day.fc-day-mon.fc-day-today {
+        background-color:darken($primary,10);
+}
+//text list views
+.fc.fc-theme-standard .fc-view-harness td{
+        color:$white;
+}
+//hover days
+.fc.fc-theme-standard .fc-view-harness td:hover{
+        background-color:lighten($bg, 10);
+}
+
+//remove all-day fgrom list view
+.fc .fc-list-event-graphic, .fc .fc-list-event-time{
+        display:none
+}
+
+//now container for week
+.fc .fc-timegrid-now-indicator-container{
+        background-color:lighten($bg,15);
+}
+
+//event container
+.fc.fc-theme-standard .fc-view-harness td, .fc.fc-theme-standard .fc-view-harness .fc-scrollgrid, .fc.fc-theme-standard .fc-view-harness th{
+            border-color:lighten($bg,10);
+}
+
+.fc.fc-theme-standard .fc-view-harness .fc-view{
+        background-color: $bg;
+}
+
+
+.p-component{
+        opacity:1.2;
+        font-family: $font;
+        font-size: larger;
+
+}
