@@ -52,7 +52,7 @@ export class ExpensesPageComponent implements OnInit {
   savingsAmounts: any = [];
   entertainmentAmounts: any = [];
   personalAmounts: any = [];
-  micelAmounts: any = [];
+  miscelAmounts: any = [];
   medicalAmounts: any = [];
   restaurantAmounts: any = [];
   transportAmounts: any = [];
@@ -116,7 +116,7 @@ export class ExpensesPageComponent implements OnInit {
       const savExp = resp.filter((x: { Category: string; }) => x.Category === 'Savings');
       const entExp = resp.filter((x: { Category: string; }) => x.Category === 'Entertainment');
       const persExp = resp.filter((x: { Category: string; }) => x.Category === 'Personal');
-      const micExp = resp.filter((x: { Category: string; }) => x.Category === 'Micellaneous');
+      const micExp = resp.filter((x: { Category: string; }) => x.Category === 'Miscellaneous ');
 
       this.foodAmounts = foodExp.reduce(
         (accumulator: Record<string, number>,
@@ -184,7 +184,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      this.micelAmounts = micExp.reduce(
+      this.miscelAmounts = micExp.reduce(
         (accumulator: Record<string, number>,
           resp: { Amount: string; Date: string }) => {
           if (accumulator[resp.Date]) {
@@ -270,8 +270,8 @@ export class ExpensesPageComponent implements OnInit {
             tension: .4,
           },
           {
-            label: 'Micellaneous',
-            data: this.chartDates.map((date: number) => { return this.micelAmounts[date] || 0 }),
+            label: 'Miscellaneous ',
+            data: this.chartDates.map((date: number) => { return this.miscelAmounts[date] || 0 }),
             borderColor: '#3cba9f',
             fill: false,
             tension: .4,
