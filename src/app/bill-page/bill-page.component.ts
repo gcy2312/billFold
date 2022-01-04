@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg } from '@fullcalendar/angular'; // useful for typechecking
+import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg, buildEntryKey } from '@fullcalendar/angular'; // useful for typechecking
 import { DateClickArg } from '@fullcalendar/interaction';
 // import bootstrapPlugin from '@fullcalendar/bootstrap';
 
@@ -40,6 +40,7 @@ export class BillPageComponent implements OnInit {
   };
 
   calendarOptions: CalendarOptions | undefined;
+  deepChangeDetection = true;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -57,25 +58,31 @@ export class BillPageComponent implements OnInit {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
       console.log(this.bills);
+
       this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
       console.log(this.bills);
       console.log(this.calendarBills);
+      // if (this.bills.map((a: any) => a.Paid === true)) {
+      //   this.calendarBills.map((e: any) => ({ ...e, color: 'red' }));
+      // }
 
       this.calendarOptions = {
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+
         },
         initialView: 'dayGridMonth',
         events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
+        eventColor: '#378006',
         weekends: true,
         editable: false,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
         // plugins: [bootstrapPlugin],
-        // themeSystem: 'bootstrap',
+        themeSystem: 'bootstrap',
         // select: this.handleDateSelect.bind(this),
         // eventsSet: this.handleEvents.bind(this),
         ///you can update a remote database when these fire:
