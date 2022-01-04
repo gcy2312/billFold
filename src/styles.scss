@@ -7,7 +7,7 @@
 
 @import "primeicons/primeicons.css";
 @import "primeng/resources/primeng.min.css";
-@import "primeng/resources/themes/arya-purple/theme.css";
+@import "primeng/resources/themes/luna-blue/theme.css";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -91,6 +91,10 @@ $warn: mat.get-color-from-palette($my-warn-palette,700);
 $blue:#007ad9;
 $white: #fff;
 $bgGrey: #ebecef;
+
+body.mat-typography{
+        font-family: $font;
+}
 //header bg
 .fc{
         background-color: darken($primary, 10);
@@ -106,13 +110,14 @@ $bgGrey: #ebecef;
 }
 .fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:hover{
         background-color:darken($primary,10);
+        color:$white;
 }
 .fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:focus{
         background-color:darken($primary,10);
-        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        box-shadow: 0 0 0 0.1rem $white;
 }
 .fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:not(:disabled):focus{
-        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        // box-shadow: 0 0 0 0.1rem $white;
         border-radius:3px;
 }
 
@@ -120,12 +125,13 @@ $bgGrey: #ebecef;
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button:not(:disabled):focus, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button:not(:disabled):focus, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button:not(:disabled):focus{
         // box-shadow: 0 0 0 0.2rem lighten($primary,10);
         color:$white;
-        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        box-shadow: 0 0 0 0.1rem $white;
         border-radius: 3px;
 }
 //active btn on hover
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active:hover{
         background-color:darken($primary,10);
+        color:$white;
         // box-shadow: 0 0 0 0.2rem lighten($primary,10);
         // box-shadow:none;
 }
@@ -140,17 +146,20 @@ $bgGrey: #ebecef;
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active{
         background-color:darken($primary,10);
         border-color: darken($primary,10);
+        color:$white;
 }
 //month/week active
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active{
         background-color: darken($primary,10);
         border-color: darken($primary,10);
+        color:$white;
 }
 //today btn when not on month
  .fc.fc-theme-standard .fc-toolbar .fc-today-button:not(:disabled):hover{
          background-color: $primary;
-        box-shadow: 0 0 0 0.2rem lighten($primary,30);
+        // box-shadow: 0 0 0 0.2rem lighten($primary,30);
         border-radius: 3px;
+        color:$white;
  }
 // .fc.fc-theme-standard .fc-toolbar .fc-today-button-active{
 //         box-shadow: 0 0 0 0.2rem lighten($primary,30);    
@@ -158,22 +167,21 @@ $bgGrey: #ebecef;
   .fc.fc-theme-standard .fc-toolbar .fc-today-button:disabled{
          background-color: darken($primary,10);
          border:none;
+         color:$white;
  }
 
  //today btn only
   .fc.fc-theme-standard .fc-toolbar .fc-today-button{
           background-color:darken($primary,10);
           border:none;
-          transition:none
+          transition:none;
+          color:$white;
         //   box-shadow: none;
   }
-// .fc.fc-theme-standard .fc-toolbar .fc-today-button
-// .fc.fc-theme-standard .fc-toolbar .fc-today-button.fc-button-active{
-//           box-shadow: 0 0 0 0.2rem yellow;
-         
-//   }
 .fc.fc-theme-standard .fc-toolbar .fc-today-button:not(:disabled):focus{
-       box-shadow: 0 0 0 0.2rem lighten($primary,30);
+       box-shadow: 0 0 0 0.2rem lighten($primary,10);
+       border:none;
+//        color:$white;
         // transform:box-shadow(none);
         // transform:border(none);
 }
@@ -200,9 +208,9 @@ $bgGrey: #ebecef;
         background-color: darken($primary,20);
 }
 //today color
-.fc-daygrid-day.fc-day.fc-day-mon.fc-day-today {
-        background-color:darken($primary,10);
-}
+// .fc-daygrid-day.fc-day.fc-day-mon.fc-day-today {
+//         background-color:darken($primary,10);
+// }
 //text list views
 .fc.fc-theme-standard .fc-view-harness td{
         color:$white;
@@ -233,8 +241,12 @@ $bgGrey: #ebecef;
 
 
 .p-component{
-        opacity:1.2;
         font-family: $font;
-        font-size: larger;
+        font-size: large;
+}
 
+.p-panel .p-panel-header{
+        background-color: darken($headerbg,10);
+        font-family: $font;
+        font-size: $headerSize;
 }
