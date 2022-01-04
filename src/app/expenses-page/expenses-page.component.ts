@@ -294,7 +294,7 @@ export class ExpensesPageComponent implements OnInit {
         ],
       }
       this.basicOptions = {
-        color: '#fff',
+        responsive: true,
         stacked: false,
         plugins: {
           legend: {
@@ -307,18 +307,22 @@ export class ExpensesPageComponent implements OnInit {
           y: {
             beginAtZero: true,
             ticks: {
-              color: '#37474F',
+              color: '#fff',
               suggestedMax: 100,
             },
             grid: {
               drawOnChartArea: true,
-              color: '#37474F'
+              color: '#37474F',
+              font: 'Raleway'
             }
           },
           x: {
+            ticks: {
+              color: '#fff'
+            },
             grid: {
               drawOnChartArea: true,
-              // color: '#37474F'
+              color: '#37474F'
             }
           }
         }
