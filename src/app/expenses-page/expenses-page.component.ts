@@ -6,7 +6,7 @@ import { ExpenseDetailsComponent } from '../expense-details/expense-details.comp
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { Chart } from 'chart.js';
+// import { Chart } from 'chart.js';
 
 
 import { ExpenseEditComponent } from '../expense-edit/expense-edit.component';
@@ -294,11 +294,12 @@ export class ExpensesPageComponent implements OnInit {
         ],
       }
       this.basicOptions = {
+        color: '#fff',
         stacked: false,
         plugins: {
           legend: {
             labels: {
-              color: '#495057'
+              color: '#fff'
             }
           }
         },
@@ -306,17 +307,18 @@ export class ExpensesPageComponent implements OnInit {
           y: {
             beginAtZero: true,
             ticks: {
-              color: '#495057',
+              color: '#37474F',
               suggestedMax: 100,
             },
             grid: {
               drawOnChartArea: true,
-              color: '#ebedef'
+              color: '#37474F'
             }
           },
           x: {
             grid: {
               drawOnChartArea: true,
+              // color: '#37474F'
             }
           }
         }
