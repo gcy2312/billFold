@@ -208,9 +208,9 @@ body.mat-typography{
         background-color: darken($primary,20);
 }
 //today color
-// .fc-daygrid-day.fc-day.fc-day-mon.fc-day-today {
-//         background-color:darken($primary,10);
-// }
+.fc-daygrid-day.fc-day.fc-day-mon.fc-day-today, .fc-daygrid-day.fc-day.fc-day-fri.fc-day-today, .fc-daygrid-day.fc-day.fc-day-tue.fc-day-today, .fc-daygrid-day.fc-day.fc-day-wed.fc-day-today, .fc-daygrid-day.fc-day.fc-day-thu.fc-day-today, .fc-daygrid-day.fc-day.fc-day-sat.fc-day-today, .fc-daygrid-day.fc-day.fc-day-sun.fc-day-today {
+        background-color:darken($primary,20);
+}
 //text list views
 .fc.fc-theme-standard .fc-view-harness td{
         color:$white;
@@ -230,14 +230,38 @@ body.mat-typography{
         background-color:lighten($bg,15);
 }
 
-//event container
-.fc.fc-theme-standard .fc-view-harness td, .fc.fc-theme-standard .fc-view-harness .fc-scrollgrid, .fc.fc-theme-standard .fc-view-harness th{
-            border-color:lighten($bg,10);
+//event colors
+.fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event.PaidNo{
+        background-color: $warn;
+        font-weight: bolder;
+        border-color: darken($warn,10);
+        text-transform: uppercase;
+        text-align: center;
+}
+.fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event.PaidYes{
+        background-color: darken($primary,5);
+        font-weight: bolder;
+        border-color: darken($primary,20);
+        text-transform: uppercase;
+        text-align: center;
 }
 
+
+
+//event container
+.fc.fc-theme-standard .fc-view-harness td, .fc.fc-theme-standard .fc-view-harness .fc-scrollgrid, .fc.fc-theme-standard .fc-view-harness th{
+        //     border-color:lighten($bg,10);
+}
+
+//outside cal bottom border
 .fc.fc-theme-standard .fc-view-harness .fc-view{
         background-color: $bg;
 }
+
+
+
+
+
 
 
 .p-component{
@@ -249,4 +273,5 @@ body.mat-typography{
         background-color: darken($primary,10);
         font-family: $font;
         font-size: $headerSize;
+        color:$white;
 }
