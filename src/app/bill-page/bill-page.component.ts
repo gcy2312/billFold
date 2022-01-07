@@ -13,6 +13,7 @@ import { BillDetailsComponent } from '../bill-details/bill-details.component';
 import { BillDeleteComponent } from '../bill-delete/bill-delete.component';
 import { BillCreateComponent } from '../bill-create/bill-create.component';
 import { BillEditComponent } from '../bill-edit/bill-edit.component';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
   selector: 'app-bill-page',
@@ -75,7 +76,8 @@ export class BillPageComponent implements OnInit {
         },
         initialView: 'dayGridMonth',
         events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
-        eventColor: '#378006',
+        eventTextColor: '#fff',
+
         weekends: true,
         editable: false,
         selectable: true,
@@ -90,6 +92,14 @@ export class BillPageComponent implements OnInit {
         // eventChange: this.handleBillChange.bind(this),
         // eventRemove:
 
+        eventClassNames: function (arg) {
+          if (arg.event.extendedProps.Paid) {
+            return ['PaidYes']
+          } else {
+            return ['PaidNo']
+          }
+        },
+
         dateClick: (bill) => {
           // alert('Date: ' + bill.dateStr);
           this.openBillCreateDialog.bind(this)(bill);
@@ -99,6 +109,14 @@ export class BillPageComponent implements OnInit {
         },
       };
     })
+  }
+
+  changeBillColor(bill: any) {
+    if (bill.Paid == true) {
+      eventColor: '#000'
+    } else {
+      eventColor: '#fff'
+    }
   }
 
   openBillViewDialog(bill: any) {
