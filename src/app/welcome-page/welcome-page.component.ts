@@ -29,7 +29,7 @@ export class WelcomePageComponent implements OnInit {
   }
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
-      width: '580px',
+      width: '590px',
     });
   }
 
