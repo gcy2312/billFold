@@ -16,7 +16,7 @@ $bgGrey: #ebecef;
 
 #cardHeader{
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 #addBillHeader{
   font-family: $font;
@@ -26,7 +26,7 @@ $bgGrey: #ebecef;
 #formField{
   font-family: $font;
   font-size: $textSize;
-  margin-inline: 10px;
+  // margin-inline: 20px;
 }
 #checkbox{
   font-family: $font;
