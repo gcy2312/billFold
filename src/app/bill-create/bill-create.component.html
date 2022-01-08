@@ -17,6 +17,7 @@
 
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Enter Amount</mat-label>
+        <mat-icon id="currency" aria-hidden="true" aria-label="CAD icon" matPrefix>attach_money</mat-icon>
         <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="ex: $48.77" name="Amount" required>
       </mat-form-field><span>({{data.user.CurrencyPref}})</span>
 
