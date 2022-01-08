@@ -351,7 +351,7 @@ export class ExpensesPageComponent implements OnInit {
         user: this.user,
         date: this.todayDate,
       },
-      width: '500px'
+      width: '620px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
