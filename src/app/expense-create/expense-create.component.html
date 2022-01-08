@@ -1,15 +1,15 @@
-<p>expense-create works!</p>
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Add Expense</mat-card-title>
+<mat-card id="addExpenseCard">
+  <mat-card-header id="cardHeader">
+    <mat-card-title id="addExpenseHeader">Add Expense</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
-      <mat-form-field>
-        <mat-label>Category</mat-label>
-        <mat-select matNativeControl [(ngModel)]="expenseInfo.Category" type="text" placeholder="Food" required
+    <form id="expenseForm">
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Enter Category</mat-label>
+        <mat-icon aria-hidden="true" aria-label="category icon" matPrefix>category</mat-icon>
+        <mat-select matNativeControl [(ngModel)]="expenseInfo.Category" type="text" placeholder="ex: Food" required
                     name="Category">
+
 
           <mat-option value="Housing">Housing</mat-option>
           <mat-option value="Bills">Bills</mat-option>
@@ -25,21 +25,31 @@
         </mat-select>
 
       </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="expenseInfo.Description" placeholder="Description" type="text" name="Description"
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Choose a date</mat-label>
+        <input matInput name="Date" [(ngModel)]="expenseInfo.Date" [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" classname="description" id="formField">
+        <mat-label>Enter Description</mat-label>
+        <mat-icon aria-hidden="true" aria-label="description icon" matPrefix>description</mat-icon>
+        <input matInput [(ngModel)]="expenseInfo.Description" placeholder="ex: Groceries" type="text" name="Description"
                required>
       </mat-form-field>
-      <mat-form-field>
-        <!-- <input matInput [(ngModel)]="expenseInfo.Date" type="Date" name="Date" placeholder={{todayDate}} required> -->
-        <input matInput [(ngModel)]="expenseInfo.Date" name="Date" placeholder="" type="Date">
-      </mat-form-field>
-      <mat-form-field>
+
+
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Enter Amount</mat-label>
+        <mat-icon aria-hidden="true" aria-label="money icon" matPrefix>attach_money</mat-icon>
         <input matInput [(ngModel)]="expenseInfo.Amount" type="number" placeholder="00.00" name="Amount" required>
       </mat-form-field><span>({{data.user.CurrencyPref}})</span>
     </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="createExpense(token, userId)" color="primary">
+  <mat-card-actions id="divBtns">
+    <button mat-raised-button id="addbtn" (click)="createExpense(token, userId)">
+      <mat-icon aria-hidden="false" aria-label="add icon">add_task</mat-icon>
       Create Expense
     </button>
   </mat-card-actions>
