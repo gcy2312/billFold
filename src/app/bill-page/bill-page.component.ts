@@ -76,7 +76,7 @@ export class BillPageComponent implements OnInit {
         },
         initialView: 'dayGridMonth',
         events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
-        eventTextColor: '#fff',
+        eventTextColor: '#37474F',
 
         weekends: true,
         editable: false,
