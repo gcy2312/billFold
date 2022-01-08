@@ -1,0 +1,12 @@
+//chart styling
+.p-component{
+        font-family: $font;
+        // font-size: large;
+}
+
+.p-panel .p-panel-header{
+        background-color: darken($primary,10);
+        font-family: $font;
+        font-size: $headerSize;
+        color:$white;
+}
