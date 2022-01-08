@@ -33,8 +33,7 @@ $bgGrey: #ebecef;
 #cancelbtn{
   font-family: $font;
   font-size: $textSize;
-  background-color: #424242;
-  color:$primary;
+  background-color: darken($primary,10);
 }
 #deletebtn{
   font-family: $font;
