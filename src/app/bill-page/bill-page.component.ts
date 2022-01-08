@@ -111,25 +111,20 @@ export class BillPageComponent implements OnInit {
     })
   }
 
-  changeBillColor(bill: any) {
-    if (bill.Paid == true) {
-      eventColor: '#000'
-    } else {
-      eventColor: '#fff'
-    }
-  }
+
 
   openBillViewDialog(bill: any) {
     const dialogRef = this.dialog.open(BillDetailsComponent, {
       data: {
         title: bill.event.title,
         Amount: bill.event.extendedProps.Amount,
-        date: bill.event.date,
+        date: bill.event.start,
         Paid: bill.event.extendedProps.Paid,
         Currency: bill.event.extendedProps.Currency,
         UserId: bill.event.extendedProps.userId,
         _id: bill.event.extendedProps._id,
-      }
+      },
+      width: '270px',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -153,7 +148,8 @@ export class BillPageComponent implements OnInit {
     const dialogRef = this.dialog.open(BillEditComponent, {
       data: {
         bill: bill
-      }
+      },
+      width: '530px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -166,7 +162,8 @@ export class BillPageComponent implements OnInit {
       data: {
         date: bill.dateStr,
         user: this.user,
-      }
+      },
+      width: '525px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
