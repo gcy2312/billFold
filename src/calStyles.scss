@@ -138,7 +138,6 @@
         background-color: $warn;
         font-weight: bolder;
         border-color: darken($warn,10);
-        text-transform: uppercase;
         text-align: center;
         cursor:pointer;
 }
@@ -147,19 +146,16 @@
         color:$bg;
         font-weight: bolder;
         border-color: darken($primary,20);
-        text-transform: uppercase;
         text-align: center;
         cursor:pointer;
 }
 .fc .fc-event.PaidNo{
         background-color:$warn;
-        text-transform: uppercase;
         cursor:pointer;
         font-weight: bolder;
 }
 .fc .fc-event.PaidYes{
         background-color: $primary;
-        text-transform: uppercase;
         cursor:pointer;
         font-weight: bolder;
         
@@ -168,6 +164,5 @@
 //outside cal bottom border
 .fc.fc-theme-standard .fc-view-harness .fc-view{
         background-color: $bg;
-        text-transform: uppercase;
         cursor:pointer;
 }
