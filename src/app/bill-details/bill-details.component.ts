@@ -24,7 +24,11 @@ const PartialBill = {
 })
 
 export class BillDetailsComponent implements OnInit {
-  @Input() billDetails = transferBillData; billInfo = PartialBill;
+  @Input()
+  billDetails = transferBillData;
+  billInfo = PartialBill;
+  billDate: any = '';
+
 
   isChkChecked = false;
 
@@ -41,6 +45,7 @@ export class BillDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.billDetails = this.data;
+
     console.log(this.billDetails.Amount);
 
     this.billInfo.Paid = this.data.Paid;
@@ -48,6 +53,10 @@ export class BillDetailsComponent implements OnInit {
 
     console.log('title: ' + this.billDetails.title);
     console.log('billId: ' + this.billDetails._id);
+
+    let text = (this.billDetails.date).toString();
+    this.billDate = text.slice(0, 16);
+    console.log('date' + this.billDate);
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -60,6 +69,8 @@ export class BillDetailsComponent implements OnInit {
       this.billInfo.Paid = false;
     }
   }
+
+
 
   billId = this.data._id;
 

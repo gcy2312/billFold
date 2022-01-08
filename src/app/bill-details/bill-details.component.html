@@ -1,12 +1,22 @@
-<p>bill-details works!</p>
-<mat-card>
-  <p>Desc: {{data.Paid}}</p>
+<mat-card id="billDetailsCard">
+  <mat-card-header [ngClass]="data.Paid == true ? 'paidclass' : 'unpaidclass'" id="billDetailsHeader">
+    <mat-card-title id="billDetailsTitle">{{data.title}} Bill</mat-card-title>
 
-  <mat-checkbox [checked]="isChkChecked" (change)="onChkChange($event)"> Paid </mat-checkbox>
+  </mat-card-header>
 
-  <mat-card-actions>
-    <button mat-raised-button (click)="editBill(userId, token)" color="primary">
-      Save Changes
-    </button>
-  </mat-card-actions>
+  <mat-card-content id="text">
+    <p>Amount: ${{data.Amount}} {{data.Currency}}</p>
+    <p>Date: {{billDate}}</p>
+
+
+    <mat-checkbox [checked]="isChkChecked" (change)="onChkChange($event)"> Paid </mat-checkbox>
+
+    <mat-card-actions id="divBtns">
+      <button mat-raised-button [ngClass]="data.Paid == true ? 'paidBtn' : 'unpaidBtn'" id="editBtn"
+              (click)="editBill(userId, token)">
+        <mat-icon aria-hidden="false" aria-label="save icon">save_alt</mat-icon>
+        Save Changes
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
 </mat-card>
