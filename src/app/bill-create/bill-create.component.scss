@@ -1,0 +1,49 @@
+@use '@angular/material' as mat;
+
+$my-primary-palette: mat.define-palette(mat.$cyan-palette);
+$my-bg-palette: mat.define-palette(mat.$blue-gray-palette);
+$my-warn-palette: mat.define-palette(mat.$amber-palette);
+
+$font:'Raleway', sans-serif;
+$textSize: 15px;
+$headerSize: 20px;
+$headerbg: mat.get-color-from-palette($my-primary-palette, 700);
+$primary: mat.get-color-from-palette($my-primary-palette,500);
+$warn: mat.get-color-from-palette($my-warn-palette,500);
+$blue:#007ad9;
+$white: #fff;
+$bgGrey: #ebecef;
+
+#cardHeader{
+  display: flex;
+  justify-content: start;
+}
+#addBillHeader{
+  font-family: $font;
+  font-size: $headerSize;
+  margin-bottom: 20px;
+}
+#formField{
+  font-family: $font;
+  font-size: $textSize;
+  margin-inline: 10px;
+}
+#checkbox{
+  margin-left: 20px;
+  font-family: $font;
+  font-size: $textSize;
+  margin-left: 115px;
+}
+#divBtns{
+  display: flex;
+  justify-content: end;
+  margin-right:10px;
+}
+#addBtn{
+  background-color:darken($primary,5);
+  font-family: $font;
+  font-size:$textSize;
+}
+#addBtn:hover{
+  text-decoration: underline;
+}

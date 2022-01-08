@@ -1,29 +1,33 @@
-<p>bill-create works!</p>
-
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Add Bill</mat-card-title>
+  <mat-card-header id="cardHeader">
+    <mat-card-title id="addBillHeader">Add Bill</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form>
-      <mat-form-field>
-        <input matInput [(ngModel)]="billInfo.Description" placeholder="Description" type="text" name="Description"
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Enter Description</mat-label>
+        <input matInput [(ngModel)]="billInfo.Description" placeholder="ex: Phone" type="text" name="Description"
                required>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Date</mat-label>
         <input matInput name="Date" placeholder="Date" value={{data.date}} [(ngModel)]="billInfo.Date" readonly>
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="$$" name="Amount" required>
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Enter Amount</mat-label>
+        <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="ex: $48.77" name="Amount" required>
       </mat-form-field><span>({{data.user.CurrencyPref}})</span>
 
-      <mat-checkbox [checked]="isChkChecked" (change)="onChkChange($event)"> Paid </mat-checkbox>
+
+      <mat-checkbox [checked]="isChkChecked" id="checkbox" color="primary" (change)="onChkChange($event)"> Paid
+      </mat-checkbox>
     </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="createBill(token, userId)" color="primary">
+  <mat-card-actions id="divBtns">
+    <button id="addBtn" mat-raised-button (click)="createBill(token, userId)">
+      <mat-icon aria-hidden="false" aria-label="add icon">add_task</mat-icon>
       Add Bill
     </button>
   </mat-card-actions>
