@@ -1,10 +1,16 @@
-<p>user-update-email works!</p>
+<mat-card id="changeEmailCard">
+  <mat-card-header id="cardHeader">
+    <mat-card-title id="emailHeader">Update Email</mat-card-title>
+  </mat-card-header>
 
-<mat-form-field>
-  <input matInput [(ngModel)]="userData.Email" placeholder={{data.Email}} type="email" name="Email" required>
-</mat-form-field>
-<mat-card-actions>
-  <button mat-raised-button (click)="updateUser(token, userId)" color="primary">
-    Edit Email
-  </button>
-</mat-card-actions>
+  <mat-form-field appearance="fill" id="formField">
+    <mat-label>Enter new email</mat-label>
+    <input matInput [(ngModel)]="userData.Email" placeholder={{data.Email}} type="email" name="Email" required>
+  </mat-form-field>
+  <mat-card-actions id="divSaveBtn">
+    <button mat-raised-button id="saveBtn" (click)="updateUser(token, userId)">
+      <mat-icon aria-hidden="false" aria-label="save icon">save_alt</mat-icon>
+      Save Changes
+    </button>
+  </mat-card-actions>
+</mat-card>

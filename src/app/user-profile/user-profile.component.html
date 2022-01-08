@@ -1,42 +1,71 @@
-<p>user-profile works!</p>
+<div id="container">
 
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      {{userData.Username}} Profile
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>Name: <span>{{userData.FirstName}}</span> <span> {{userData.LastName}}</span> <button mat-raised-button
-              (click)="openUpdateNameDialog(user)">Edit</button></p>
+  <mat-card id="profileCard">
+    <mat-card-header id="cardHeader">
+      <mat-card-title>
+        Profile: {{userData.Username}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div id="line">
+        <p>Name: <span>{{userData.FirstName}}</span> <span> {{userData.LastName}}</span>
+        </p>
+        <mat-card-actions id="divBtns">
+          <button id="dialogBtns" mat-raised-button (click)="openUpdateNameDialog(user)">Edit</button>
+        </mat-card-actions>
+      </div>
 
 
-    <mat-divider></mat-divider>
-    <p>Username:
-      <span>{{userData.Username}}</span>
-      <button mat-raised-button (click)="openUpdateUsernameDialog(user)">Edit</button>
-    </p>
-    <mat-divider></mat-divider>
-    <p>Email:
-      <span>{{userData.Email}}</span>
-      <button mat-raised-button (click)="openUpdateEmailDialog(user)">Edit</button>
-    </p>
-    <mat-divider></mat-divider>
-    <p>Password:
-      <input type="password" [(ngModel)]="userData.Password">
-      <button mat-raised-button (click)="openUpdatePasswordDialog(user)">Edit</button>
-    </p>
-    <mat-divider></mat-divider>
-    <p>Currency:
-      <span>{{userData.CurrencyPref}}</span>
-      <button mat-raised-button (click)="openUpdateCurrencyDialog(user)">Edit</button>
-    </p>
-    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <div id="line">
+        <p>Username:
+          <span>{{userData.Username}}</span>
+        </p>
+        <mat-card-actions id="divBtns">
+          <button mat-raised-button id="dialogBtns" (click)="openUpdateUsernameDialog(user)">Edit</button>
+        </mat-card-actions>
+      </div>
 
-    <mat-card-actions>
-      <!-- <button mat-raised-button color="primary" (click)="openUpdateDialog(user)">Edit Profile</button> -->
-      <button mat-raised-button color="warn" (click)="openDeleteDialog()">Delete Profile</button>
-    </mat-card-actions>
 
-  </mat-card-content>
-</mat-card>
+
+      <mat-divider></mat-divider>
+      <div id="line">
+        <p>Email:
+          <span>{{userData.Email}}</span>
+        </p>
+        <mat-card-actions id="divBtns">
+          <button mat-raised-button id="dialogBtns" (click)="openUpdateEmailDialog(user)">Edit</button>
+        </mat-card-actions>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div id="line">
+        <p>Password: <span>**********</span>
+          <!-- <input matInput type="password" [(ngModel)]="userData.Password"> -->
+        </p>
+        <mat-card-actions id="divBtns">
+          <button mat-raised-button id="dialogBtns" (click)="openUpdatePasswordDialog(user)">Edit</button>
+        </mat-card-actions>
+
+      </div>
+      <mat-divider></mat-divider>
+      <div id="line">
+        <p>Currency:
+          <span>{{userData.CurrencyPref}}</span>
+        </p>
+        <mat-card-actions id="divBtns">
+          <button mat-raised-button id="dialogBtns" (click)="openUpdateCurrencyDialog(user)">Edit</button>
+        </mat-card-actions>
+      </div>
+      <mat-divider></mat-divider>
+
+      <mat-card-actions id="divDeleteBtn">
+        <button mat-raised-button id="deleteBtn" (click)="openDeleteDialog()">
+          <mat-icon aria-hidden="false" aria-label="delete icon">delete_sweep</mat-icon> Delete Profile
+        </button>
+      </mat-card-actions>
+
+    </mat-card-content>
+  </mat-card>
+</div>

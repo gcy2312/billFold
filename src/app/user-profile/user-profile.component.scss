@@ -1,0 +1,63 @@
+@use '@angular/material' as mat;
+
+$my-primary-palette: mat.define-palette(mat.$cyan-palette);
+$my-bg-palette: mat.define-palette(mat.$blue-gray-palette);
+$my-warn-palette: mat.define-palette(mat.$amber-palette);
+
+$font:'Raleway', sans-serif;
+$textSize: 15px;
+$headerSize: 20px;
+$headerbg: mat.get-color-from-palette($my-primary-palette, 700);
+$primary: mat.get-color-from-palette($my-primary-palette,500);
+$warn: mat.get-color-from-palette($my-warn-palette,500);
+$blue:#007ad9;
+$white: #fff;
+$bgGrey: #ebecef;
+
+#container{
+  margin:50px;
+}
+#profileCard{
+  border-radius: 10px;
+}
+#cardHeader{
+  font-family: $font;
+  font-size: $headerSize;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+p{
+  margin-top:15px;
+  margin-left: 10px;
+}
+#line{
+  display: flex;
+  justify-content: space-between;
+  font-family: $font;
+  font-size: $textSize;
+  margin-top: -10px;
+  margin-bottom: -15px;
+}
+#dialogBtns{
+  background-color:darken($primary,5);
+  font-family: $font;
+  font-size:$textSize;
+  margin-right: 10px;
+}
+#dialogBtns:hover{
+  // background-color: darken($primary,20);
+  text-decoration: underline;
+}
+#divDeleteBtn{
+margin-top: 40px;
+margin-left: 10px;
+}
+#deleteBtn{
+  font-family: $font;
+  font-size:$textSize;
+  background-color: darken($warn,10);
+}
+#deleteBtn:hover{
+  // background-color: darken($warn,20);
+   text-decoration: underline;
+}
