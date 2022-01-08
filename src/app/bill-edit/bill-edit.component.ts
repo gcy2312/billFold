@@ -26,6 +26,7 @@ export class BillEditComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  user = JSON.parse(localStorage.getItem('user') || '');
   billId: string = '';
 
   constructor(
@@ -38,6 +39,8 @@ export class BillEditComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.bill);
     this.billInfo = this.data.bill;
+    this.billInfo.Currency = this.user.CurrencyPref;
+    console.log(this.billInfo.Currency);
     this.billId = this.data.bill._id;
     console.log(this.billInfo);
   }
