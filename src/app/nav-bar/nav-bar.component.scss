@@ -1,0 +1,74 @@
+@use '@angular/material' as mat;
+
+$my-primary-palette: mat.define-palette(mat.$cyan-palette);
+$my-bg-palette: mat.define-palette(mat.$blue-gray-palette);
+$my-warn-palette: mat.define-palette(mat.$amber-palette);
+
+$font:'Raleway', sans-serif;
+$textSize: 15px;
+$headerSize: 25px;
+$headerbg: mat.get-color-from-palette($my-primary-palette, 700);
+$primary: mat.get-color-from-palette($my-primary-palette,500);
+$warn: mat.get-color-from-palette($my-warn-palette,500);
+$blue:#007ad9;
+$white: #fff;
+$bgGrey: #ebecef;
+
+#nav{
+  position:sticky;
+  top:0;
+  height:60px;
+  width:100%;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // background-color: darken($primary,10);
+}
+#navlogo{
+  margin:5px 0px 0px 20px;
+}
+#icons{
+  margin-right: 5px;
+}
+#links{
+  color:$white;
+  font-family: $font;
+  margin:10px 0px 5px;
+  font-size: 17px;
+  opacity:0.9;
+}
+#links:hover{
+  text-decoration: none;
+  color:$primary;
+}
+#links:active{
+  color:$primary;
+}
+a.mat-tab-link{
+  width:40px;
+}
+
+@media only screen and (min-device-width: 250px) and (max-device-width: 700px) {  
+    /* Change a menu to fit the screen better, etc... */
+    #linkLabel{
+      display:none;
+    }
+    a.mat-tab-link{
+      width:20px;
+    }
+    #navlogo{
+     display:none;
+    }
+    #smallnavlogo{
+      display:block;
+    }
+}
+@media only screen and (min-device-width: 700px){
+  #navlogo{
+    display:block;
+  }
+  #smallnavlogo{
+    display:none;
+    margin: 20px 0px 0px 20px;
+  }
+} 
