@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+$my-primary-palette: mat.define-palette(mat.$cyan-palette);
+$my-bg-palette: mat.define-palette(mat.$blue-gray-palette);
+$my-warn-palette: mat.define-palette(mat.$amber-palette);
+
+$font:'Raleway', sans-serif;
+$textSize: 15px;
+$headerSize: 25px;
+$headerbg: mat.get-color-from-palette($my-primary-palette, 700);
+$primary: mat.get-color-from-palette($my-primary-palette,500);
+$warn: mat.get-color-from-palette($my-warn-palette,500);
+$blue:#007ad9;
+$white: #fff;
+$bgGrey: #ebecef;
+
+.dark-theme .mat-tab-group.mat-primary .mat-ink-bar, .dark-theme .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background-color: white ! important;
+} 
+
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+  display:none !important;
+}
+.mat-tab-label-active{
+  color:$primary !important;
+}
+
+// @media only screen and (min-device-width: 250px) and (max-device-width: 700px) {  
+//     /* Change a menu to fit the screen better, etc... */
+//    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+//      display:flex !important;
+//     }
+// }
