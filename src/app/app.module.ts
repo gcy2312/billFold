@@ -42,6 +42,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -67,6 +68,7 @@ import { UserUpdateEmailComponent } from './user-update-email/user-update-email.
 import { UserUpdateCurrencyComponent } from './user-update-currency/user-update-currency.component';
 import { ExpenseDeleteComponent } from './expense-delete/expense-delete.component';
 import { BillEditComponent } from './bill-edit/bill-edit.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 const appRoutes: Routes = [
@@ -100,7 +102,8 @@ const appRoutes: Routes = [
     UserUpdateEmailComponent,
     UserUpdateCurrencyComponent,
     ExpenseDeleteComponent,
-    BillEditComponent
+    BillEditComponent,
+    NavBarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -121,6 +124,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
