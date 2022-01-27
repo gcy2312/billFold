@@ -1,41 +1,51 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="demo-app">
 
-  <div class='demo-app-sidebar'>
-    <div class='demo-app-sidebar-section'>
+<mat-sidenav-container class="expenses-container" (backdropClick)="close()">
+
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
+    <button id="closeSideNav" mat-icon-button (click)="close()">
+      <mat-icon>close_rounded</mat-icon>
+    </button>
+    <div class='sidebar'>
+
       <li *ngFor="let expense of cmExpenses">
-        <div (click)="openDeleteExpenseDialog(expense)">
-          <p>{{expense.Category}} {{expense.Date}}</p>
-          <p>{{expense.Amount}}</p>
+        <div id="expenseList">
+          <p id="expenseItem" (click)="openEditExpenseDialog(expense)">{{expense.Description.toUpperCase()}}
+            ({{expense.Date.slice(5,10)}}) : ${{expense.Amount}}
+          </p>
+          <button mat-icon-button color="warn" (click)="openDeleteExpenseDialog(expense)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
         </div>
-        <button mat-raised-button color="primary" (click)="openEditExpenseDialog(expense)" style="margin-right: 10px;">
+        <!-- <button mat-raised-button color="primary" (click)="openEditExpenseDialog(expense)" style="margin-right: 10px;">
           Edit
-        </button>
+        </button> -->
 
       </li>
 
     </div>
+  </mat-sidenav>
 
-
-  </div>
-  <div class='demo-app-main'>
-    <button mat-raised-button color="primary" (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
-      +
+  <mat-sidenav-content id="mainContent">
+    <button id="menuBtn" mat-icon-button (click)="sidenav.open()">
+      <i id="menuIcon" class="material-icons large">menu</i>
     </button>
 
 
-    <p-panel header="{{currentMonth}} Expenses" class=ui-g-6 ui-md-6>
-      <p-chart type="line" [data]="userData" [options]="basicOptions"></p-chart>
+    <p-panel id="mainChart">
+
+      <p-header>
+        <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
+          <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
+        </button>
+        {{currentMonth}} Expenses
+      </p-header>
+
+
+      <p-chart height="400px" type="line" [data]="userData" [options]="basicOptions"></p-chart>
     </p-panel>
 
-  </div>
+  </mat-sidenav-content>
 
-
-  <!-- <canvas></canvas> -->
-
-
-
-
-
-</div>
+</mat-sidenav-container>

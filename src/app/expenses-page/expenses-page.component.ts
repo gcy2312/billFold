@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { DatePipe } from '@angular/common';
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -23,6 +24,17 @@ import { ExpenseDeleteComponent } from '../expense-delete/expense-delete.compone
 })
 
 export class ExpensesPageComponent implements OnInit {
+
+  @ViewChild('sidenav')
+  sidenav!: MatSidenav;
+
+  reason = '';
+
+  close() {
+
+    this.sidenav.close();
+  }
+
   expenses: Expense[] = [];
   expense = {
     _id: '',
@@ -77,6 +89,7 @@ export class ExpensesPageComponent implements OnInit {
     this.todayDate = moment().format('YYYY-MM-DD');
     console.log(this.user);
   }
+
 
   getDaysArrayByMonth() {
     var now = moment();
@@ -295,6 +308,7 @@ export class ExpensesPageComponent implements OnInit {
       }
       this.basicOptions = {
         responsive: true,
+        maintainAspectRatio: false,
         stacked: false,
         plugins: {
           legend: {
