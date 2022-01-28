@@ -26,9 +26,17 @@ ul {
 }
 
 li {
-  margin: 1.5em 0;
+  margin: 0.2em 0;
   padding: 0;
   list-style: none;
+}
+li:last-child{
+  margin-bottom: 2em;
+}
+h4{
+  font-family: $font;
+  font-size: $headerSize;
+  padding-bottom: 0;
 }
 
 b { /* used for event dates/times */
@@ -63,15 +71,11 @@ b { /* used for event dates/times */
 }
 
 #mainChart {
-  flex-grow: 0.2;
+  flex-grow: 1;
   padding: 1em 3em 1em 1em;
   height:auto;
 }
 
-.fc { /* the calendar root */
-  max-width: 1100px;
-  margin: 0 auto;
-}
 #addexpBtn{
   margin-bottom: 3px;
 }
@@ -81,7 +85,6 @@ b { /* used for event dates/times */
 }
 #menuBtn{
   margin:1em;
-  margin-left:20px;
 }
 #menuIcon{
   font-size: 30px;
