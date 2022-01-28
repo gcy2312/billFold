@@ -13,7 +13,7 @@ export class NavBarComponent implements OnInit {
 
   navLinks = [
     { path: '/expenses', label: 'Expenses', icon: 'insert_chart_outlined_two_tone' },
-    { path: '/calendar', label: 'Calendar', icon: 'calendar_today_outlined' },
+    { path: '/calendar', label: 'Calendar', icon: 'event_outlined' },
     { path: '/profile', label: 'Profile', icon: 'account_circle_outlined' },
   ];
 
