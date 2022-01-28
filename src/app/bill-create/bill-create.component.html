@@ -8,18 +8,25 @@
         <mat-label>Enter Description</mat-label>
         <input matInput [(ngModel)]="billInfo.Description" placeholder="ex: Phone" type="text" name="Description"
                required>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" id="formField">
-        <mat-label>Date</mat-label>
-        <input matInput name="Date" placeholder="Date" value={{data.date}} [(ngModel)]="billInfo.Date" readonly>
+        <mat-icon aria-hidden="true" aria-label="description icon" matPrefix>description</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Enter Amount</mat-label>
         <mat-icon id="currency" aria-hidden="true" aria-label="CAD icon" matPrefix>attach_money</mat-icon>
         <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="ex: $48.77" name="Amount" required>
-      </mat-form-field><span>({{data.user.CurrencyPref}})</span>
+      </mat-form-field>
+      <!-- <span>({{data.user.CurrencyPref}})</span> -->
+
+      <mat-form-field appearance="fill" id="formField">
+        <mat-label>Date</mat-label>
+        <input matInput name="Date" placeholder="Date" value={{data.date}} [(ngModel)]="billInfo.Date"
+               [matDatepicker]="picker" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
 
 
       <mat-checkbox [checked]="isChkChecked" id="checkbox" color="primary" (change)="onChkChange($event)"> Paid
