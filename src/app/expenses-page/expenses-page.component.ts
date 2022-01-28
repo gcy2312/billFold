@@ -243,63 +243,63 @@ export class ExpensesPageComponent implements OnInit {
           {
             label: 'Housing',
             data: this.chartDates.map((date: number) => { return this.housingExpenses[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#26c6da',
             fill: false,
             tension: .4,
           },
           {
             label: 'Bills',
             data: this.chartDates.map((date: number) => { return this.billsAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#00838f',
             fill: false,
             tension: .4,
           },
           {
             label: 'Savings',
             data: this.chartDates.map((date: number) => { return this.savingsAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#66bb6a',
             fill: false,
             tension: .4,
           },
           {
             label: 'Entertainment',
             data: this.chartDates.map((date: number) => { return this.entertainmentAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#2e7d32',
             fill: false,
             tension: .4,
           },
           {
             label: 'Personal Spending',
             data: this.chartDates.map((date: number) => { return this.personalAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#ffca28',
             fill: false,
             tension: .4,
           },
           {
             label: 'Food',
             data: this.chartDates.map((date: number) => { return this.foodAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#ff8f00',
             fill: false,
             tension: .4,
           },
           {
             label: 'Miscellaneous ',
             data: this.chartDates.map((date: number) => { return this.miscelAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#f44336',
             fill: false,
             tension: .4,
           },
           {
             label: 'Medical',
             data: this.chartDates.map((date: number) => { return this.medicalAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#ec407a',
             fill: false,
             tension: .4,
           },
           {
             label: 'Transportation',
             data: this.chartDates.map((date: number) => { return this.transportAmounts[date] || 0 }),
-            borderColor: '#3cba9f',
+            borderColor: '#ad1457',
             fill: false,
             tension: .4,
           },
@@ -365,7 +365,7 @@ export class ExpensesPageComponent implements OnInit {
         user: this.user,
         date: this.todayDate,
       },
-      width: '620px'
+      width: '590px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
