@@ -1,46 +1,51 @@
 <app-nav-bar></app-nav-bar>
 
-<div class='demo-app'>
-
-  <div class='demo-app-sidebar'>
-    <div class='demo-app-sidebar-section'>
-      <h2>Instructions</h2>
+<mat-sidenav-container class="bills-container" (backdropClick)="close()">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
+    <button id="closeSideNav" mat-icon-button (click)="close()">
+      <mat-icon>close_rounded</mat-icon>
+    </button>
+    <div class='sidebar'>
+      <h4>Instructions</h4>
       <ul>
-        <li>Select dates and you will be prompted to create a new event</li>
-        <li>Drag, drop, and resize events</li>
-        <li>Click an event to delete it</li>
+        <li>
+          <mat-icon>check_outline</mat-icon>Select a bill from the list and you will be prompted to edit the entry
+        </li>
+        <li>
+          <mat-icon>check_outline</mat-icon>Click the delete button to delete the bill entry
+        </li>
+        <li>
+          <mat-icon>check_outline</mat-icon>Click an event in the calendar to mark as Paid
+        </li>
       </ul>
-    </div>
-    <!-- <div class='demo-app-sidebar-section'>
-      <label>
-        <input type='checkbox' [checked]='calendarVisible' (change)='handleCalendarToggle()' />
-        toggle whole calendar
-      </label>
-    </div>
-    <div class='demo-app-sidebar-section'>
-      <label>
-        <input type='checkbox' [checked]='calendarOptions.weekends' (change)='handleWeekendsToggle()' />
-        toggle weekends
-      </label>
-    </div> -->
-    <div class='demo-app-sidebar-section'>
-      <h2>All Events ({{bills.length}})</h2>
+      <mat-divider></mat-divider>
+      <!-- <h4>All Bills ({{bills.length}})</h4> -->
       <ul>
         <li *ngFor='let bill of bills'>
-          <div (click)="openBillDeleteDialog(bill)">
-            <b>{{bill.Date}}</b>
+          <div id="billsList">
+            <p id="billItem" (click)="openBillEditDialog(bill)">{{bill.Description.toUpperCase()}}
+              ({{bill.Date.slice(5,10)}}) : ${{bill.Amount}}</p>
+            <button mat-icon-button color="warn" (click)="openBillDeleteDialog(bill)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+            <!-- <b>{{bill.Date}}</b>
             <i>{{bill.Description}}</i>
-            <i>{{bill.Amount}}</i>
+            <i>{{bill.Amount}}</i> -->
           </div>
-          <button (click)="openBillEditDialog(bill)">Edit Bill</button>
+          <!-- <button (click)="openBillEditDialog(bill)">Edit Bill</button> -->
 
         </li>
       </ul>
+
     </div>
-  </div>
+  </mat-sidenav>
+  <mat-sidenav-content id="mainContent">
+    <button id="menuBtn" mat-icon-button (click)="sidenav.open()">
+      <i id="menuIcon" class="material-icons large">menu</i>
+    </button>
+    <div id="calendarMain">
+      <full-calendar [options]='calendarOptions'></full-calendar>
+    </div>
+  </mat-sidenav-content>
 
-  <div class='demo-app-main'>
-    <full-calendar [options]='calendarOptions'></full-calendar>
-  </div>
-
-</div>
+</mat-sidenav-container>
