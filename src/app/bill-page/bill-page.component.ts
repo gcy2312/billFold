@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg, buildEntryKey } from '@fullcalendar/angular'; // useful for typechecking
 import { DateClickArg } from '@fullcalendar/interaction';
 // import bootstrapPlugin from '@fullcalendar/bootstrap';
@@ -6,6 +6,7 @@ import { DateClickArg } from '@fullcalendar/interaction';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { Bill } from '../types';
 
@@ -22,6 +23,16 @@ import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_c
 })
 
 export class BillPageComponent implements OnInit {
+
+  @ViewChild('sidenav')
+  sidenav!: MatSidenav;
+
+  reason = '';
+
+  close() {
+
+    this.sidenav.close();
+  }
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
@@ -74,6 +85,8 @@ export class BillPageComponent implements OnInit {
           right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
 
         },
+        height: 600,
+
         initialView: 'dayGridMonth',
         events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
         eventTextColor: '#37474F',
@@ -163,7 +176,7 @@ export class BillPageComponent implements OnInit {
         date: bill.dateStr,
         user: this.user,
       },
-      width: '525px'
+      width: '575px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
