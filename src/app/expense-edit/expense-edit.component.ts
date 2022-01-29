@@ -26,6 +26,7 @@ export class ExpenseEditComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  user = JSON.parse(localStorage.getItem('user') || '');
   expenseId: string = '';
 
   constructor(
@@ -40,6 +41,8 @@ export class ExpenseEditComponent implements OnInit {
     console.log('userId: ' + this.userId);
     console.log('token: ' + this.token);
     this.expenseInfo = this.data.expense;
+    this.expenseInfo.Currency = this.user.CurrencyPref;
+    console.log(this.expenseInfo.Currency);
     this.expenseId = this.data.expense._id;
   }
 
