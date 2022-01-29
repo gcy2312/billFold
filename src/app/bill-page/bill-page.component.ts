@@ -162,7 +162,7 @@ export class BillPageComponent implements OnInit {
       data: {
         bill: bill
       },
-      width: '530px'
+      width: '590px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

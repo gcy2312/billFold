@@ -351,7 +351,7 @@ export class ExpensesPageComponent implements OnInit {
       data: {
         expense: expense,
       },
-      width: '500px'
+      width: '630px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -379,7 +379,7 @@ export class ExpensesPageComponent implements OnInit {
         user: this.user,
         expense: expense
       },
-      width: '500px'
+      width: '510px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
