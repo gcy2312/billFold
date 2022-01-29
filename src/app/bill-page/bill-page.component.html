@@ -24,7 +24,7 @@
         <li *ngFor='let bill of bills'>
           <div id="billsList">
             <p id="billItem" (click)="openBillEditDialog(bill)">{{bill.Description.toUpperCase()}}
-              ({{bill.Date.slice(5,10)}}) : ${{bill.Amount}}</p>
+              ({{bill.Date}}) : ${{bill.Amount}}</p>
             <button mat-icon-button color="warn" (click)="openBillDeleteDialog(bill)">
               <mat-icon>delete_forever</mat-icon>
             </button>
