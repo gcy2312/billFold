@@ -21,9 +21,9 @@
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Date</mat-label>
         <input matInput name="Date" placeholder="Date" value={{data.date}} [(ngModel)]="billInfo.Date"
-               [matDatepicker]="picker" readonly>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+               [matDatepicker]="dp" readonly>
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
       </mat-form-field>
 
 
