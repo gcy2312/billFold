@@ -39,9 +39,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+// import { MatNativeDateModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -126,7 +128,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatTabsModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -145,7 +147,11 @@ const appRoutes: Routes = [
     }),
     BrowserAnimationsModule
   ],
-  providers: [DatePipe, FetchApiDataService],
+  providers: [
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    DatePipe, FetchApiDataService
+  ],
+  // providers: [DatePipe, FetchApiDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
