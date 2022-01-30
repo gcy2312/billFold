@@ -41,19 +41,60 @@
       <i id="menuIcon" class="material-icons large">menu</i>
     </button>
 
+    <mat-tab-group headerPosition="above" selectedIndex="2" id="mainChart">
+      <mat-tab id="monthLabel" label={{twoPreviousMonth}}>
+        <ng-template matTabContent>
+          <p-panel id="chart">
 
-    <p-panel id="mainChart">
-
-      <p-header>
-        <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
-          <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
-        </button>
-        {{currentMonth}} Expenses
-      </p-header>
+            <p-header id="chartHeaderPrevious">
+              <!-- <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
+              <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
+            </button> -->
+              {{twoPreviousMonth}} Expenses
+            </p-header>
 
 
-      <p-chart height="430px" type="line" [data]="userData" [options]="basicOptions"></p-chart>
-    </p-panel>
+            <p-chart height="350px" type="line" [data]="twoPrevUserData" [options]="basicOptions"></p-chart>
+          </p-panel>
+        </ng-template>
+
+      </mat-tab>
+      <mat-tab label={{previousMonth}}>
+        <ng-template matTabContent>
+          <p-panel id="chart">
+
+            <p-header id="chartHeaderPrevious">
+              <!-- <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;"> -->
+              <!-- <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
+    </button> -->
+              {{previousMonth}} Expenses
+            </p-header>
+
+
+            <p-chart height="350px" type="line" [data]="prevUserData" [options]="basicOptions"></p-chart>
+          </p-panel>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label={{currentMonth}}>
+        <ng-template matTabContent>
+          <p-panel id="chart">
+
+            <p-header>
+              <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
+                <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
+              </button>
+              {{currentMonth}} Expenses
+            </p-header>
+
+
+            <p-chart height="350px" type="line" [data]="userData" [options]="basicOptions"></p-chart>
+          </p-panel>
+        </ng-template>
+      </mat-tab>
+
+    </mat-tab-group>
+
 
   </mat-sidenav-content>
 

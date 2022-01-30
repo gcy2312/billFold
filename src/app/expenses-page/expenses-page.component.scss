@@ -15,10 +15,6 @@ $blue:#007ad9;
 $white: #fff;
 $bgGrey: #ebecef;
 
-h2 {
-  margin: 0;
-  font-size: 16px;
-}
 
 ul {
   margin: 0;
@@ -71,9 +67,8 @@ b { /* used for event dates/times */
 }
 
 #mainChart {
-  flex-grow: 1;
-  padding: 1em 3em 1em 1em;
-  height:auto;
+  flex-grow: 1;  
+  padding: 1em 3em 0px 1em;
 }
 
 #addexpBtn{
@@ -89,6 +84,11 @@ b { /* used for event dates/times */
 #menuIcon{
   font-size: 30px;
 }
+#chartHeaderPrevious{
+  font-family: $font;
+  padding: 0.2em;
+}
+
 
 
 

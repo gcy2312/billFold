@@ -60,7 +60,7 @@ export class FetchApiDataService {
           console.log(expenses);
           return expenses.map(
             (e: ExpenseAPI) => ({ ...e, Amount: e.Amount.$numberDecimal, Date: e.Date.substr(0, 10) })
-          ).sort((a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime());
+          ).sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()).slice(0, 100);
         }
       ),
       catchError(this.handleError)
@@ -80,7 +80,7 @@ export class FetchApiDataService {
           console.log(bills);
           return bills.map(
             (e: BillAPI) => ({ ...e, Amount: e.Amount.$numberDecimal, Date: e.Date.substr(0, 10) })
-          ).sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime())
+          ).sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()).slice(0, 100)
         }),
       catchError(this.handleError)
     );

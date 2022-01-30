@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, InjectionToken, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { DatePipe } from '@angular/common';
@@ -28,12 +28,11 @@ export class ExpensesPageComponent implements OnInit {
   @ViewChild('sidenav')
   sidenav!: MatSidenav;
 
-  reason = '';
-
   close() {
 
     this.sidenav.close();
   }
+
 
   expenses: Expense[] = [];
   expense = {
@@ -47,15 +46,27 @@ export class ExpensesPageComponent implements OnInit {
     Index: false
   };
 
-  // expensesDates: any = [];
-  // expensesAmounts: any = [];
-
   todayDate: string = '';
 
   cmExpenses: any = [];
+  // prevExpense: any = [];
+  // twoPrevExpenses: any = [];
+
   formattedDates: any = [];
+  prevFormattedDates: any = [];
+  twoPrevFormattedDates: any = [];
+
+  chartDates: any = [];
+  prevChartDates: any = [];
+  twoPrevChartDates: any = [];
+
   currentMonth: string = '';
+  previousMonth: string = '';
+  twoPreviousMonth: string = '';
+
   userData: any = {};
+  prevUserData: any = {};
+  twoPrevUserData: any = {};
   basicOptions: any;
 
   foodAmounts: any = [];
@@ -73,7 +84,7 @@ export class ExpensesPageComponent implements OnInit {
   token = localStorage.getItem('token') || '';
   user = JSON.parse(localStorage.getItem('user') || '');
 
-  chartDates: any = [];
+
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -85,13 +96,54 @@ export class ExpensesPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.getExpenses(this.userId, this.token);
-    this.getDaysArrayByMonth();
+    this.getDaysArrayByCurrentMonth();
+    this.getDaysArrayByPreviousMonth();
+    this.getDaysArrayByTwoPreviousMonth();
     this.todayDate = moment().format('YYYY-MM-DD');
     console.log(this.user);
   }
 
+  getDaysArrayByTwoPreviousMonth() {
+    var now = moment();
+    this.twoPreviousMonth = moment(now).subtract(2, "month").startOf("month").format('MMMM');
+    var daysInMonth = moment().daysInMonth();
+    var twoPrevArrDays = [];
 
-  getDaysArrayByMonth() {
+    while (daysInMonth) {
+      var twoPrevious = moment().subtract(2, "month").date(daysInMonth).format('YYYY-MM-DD');
+      twoPrevArrDays.push(twoPrevious);
+      daysInMonth--;
+    }
+    this.twoPrevChartDates = twoPrevArrDays.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+    this.twoPrevFormattedDates = this.twoPrevChartDates.map((x: any) => {
+      const y = moment(x).format('ll').slice(0, 6).replace(',', '');
+      return y
+    });
+    return this.twoPrevChartDates
+  }
+
+  getDaysArrayByPreviousMonth() {
+    var now = moment();
+    this.previousMonth = moment(now).subtract(1, "month").startOf("month").format('MMMM');
+    var daysInMonth = moment().daysInMonth();
+    var prevArrDays = [];
+
+    while (daysInMonth) {
+      var previous = moment().subtract(1, "month").date(daysInMonth).format('YYYY-MM-DD');
+      prevArrDays.push(previous);
+      daysInMonth--;
+    }
+    this.prevChartDates = prevArrDays.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+    this.prevFormattedDates = this.prevChartDates.map((x: any) => {
+      const y = moment(x).format('ll').slice(0, 6).replace(',', '');
+      return y
+    });
+    return this.prevChartDates
+  }
+
+  getDaysArrayByCurrentMonth() {
     var now = moment();
     this.currentMonth = now.format('MMMM');
     console.log(this.currentMonth);
@@ -104,7 +156,6 @@ export class ExpensesPageComponent implements OnInit {
       daysInMonth--;
     }
     this.chartDates = arrDays.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-    console.log(this.chartDates);
 
     this.formattedDates = this.chartDates.map((x: any) => {
       const y = moment(x).format('ll').slice(0, 6).replace(',', '');
@@ -117,6 +168,8 @@ export class ExpensesPageComponent implements OnInit {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
       console.log(this.expenses);
+
+      // const filteredExp = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
 
       this.cmExpenses = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
       console.log(this.cmExpenses);
@@ -234,8 +287,6 @@ export class ExpensesPageComponent implements OnInit {
       console.log('chart dates' + this.chartDates);
       console.log(this.foodAmounts);
 
-      // const filteredExp = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
-
       this.userData = {
         labels: this.formattedDates,
         datasets: [
@@ -306,6 +357,146 @@ export class ExpensesPageComponent implements OnInit {
 
         ],
       }
+      this.prevUserData = {
+        labels: this.prevFormattedDates,
+        datasets: [
+
+          {
+            label: 'Housing',
+            data: this.prevChartDates.map((date: number) => { return this.housingExpenses[date] || 0 }),
+            borderColor: '#26c6da',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Bills',
+            data: this.prevChartDates.map((date: number) => { return this.billsAmounts[date] || 0 }),
+            borderColor: '#00838f',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Savings',
+            data: this.prevChartDates.map((date: number) => { return this.savingsAmounts[date] || 0 }),
+            borderColor: '#66bb6a',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Entertainment',
+            data: this.prevChartDates.map((date: number) => { return this.entertainmentAmounts[date] || 0 }),
+            borderColor: '#2e7d32',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Personal Spending',
+            data: this.prevChartDates.map((date: number) => { return this.personalAmounts[date] || 0 }),
+            borderColor: '#ffca28',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Food',
+            data: this.prevChartDates.map((date: number) => { return this.foodAmounts[date] || 0 }),
+            borderColor: '#ff8f00',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Miscellaneous ',
+            data: this.prevChartDates.map((date: number) => { return this.miscelAmounts[date] || 0 }),
+            borderColor: '#f44336',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Medical',
+            data: this.prevChartDates.map((date: number) => { return this.medicalAmounts[date] || 0 }),
+            borderColor: '#ec407a',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Transportation',
+            data: this.prevChartDates.map((date: number) => { return this.transportAmounts[date] || 0 }),
+            borderColor: '#ad1457',
+            fill: false,
+            tension: .4,
+          },
+
+        ],
+      }
+      this.twoPrevUserData = {
+        labels: this.twoPrevFormattedDates,
+        datasets: [
+
+          {
+            label: 'Housing',
+            data: this.twoPrevChartDates.map((date: number) => { return this.housingExpenses[date] || 0 }),
+            borderColor: '#26c6da',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Bills',
+            data: this.twoPrevChartDates.map((date: number) => { return this.billsAmounts[date] || 0 }),
+            borderColor: '#00838f',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Savings',
+            data: this.twoPrevChartDates.map((date: number) => { return this.savingsAmounts[date] || 0 }),
+            borderColor: '#66bb6a',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Entertainment',
+            data: this.twoPrevChartDates.map((date: number) => { return this.entertainmentAmounts[date] || 0 }),
+            borderColor: '#2e7d32',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Personal Spending',
+            data: this.twoPrevChartDates.map((date: number) => { return this.personalAmounts[date] || 0 }),
+            borderColor: '#ffca28',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Food',
+            data: this.twoPrevChartDates.map((date: number) => { return this.foodAmounts[date] || 0 }),
+            borderColor: '#ff8f00',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Miscellaneous ',
+            data: this.twoPrevChartDates.map((date: number) => { return this.miscelAmounts[date] || 0 }),
+            borderColor: '#f44336',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Medical',
+            data: this.twoPrevChartDates.map((date: number) => { return this.medicalAmounts[date] || 0 }),
+            borderColor: '#ec407a',
+            fill: false,
+            tension: .4,
+          },
+          {
+            label: 'Transportation',
+            data: this.twoPrevChartDates.map((date: number) => { return this.transportAmounts[date] || 0 }),
+            borderColor: '#ad1457',
+            fill: false,
+            tension: .4,
+          },
+
+        ],
+      }
       this.basicOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -342,7 +533,6 @@ export class ExpensesPageComponent implements OnInit {
         }
 
       }
-
     });
   }
 
