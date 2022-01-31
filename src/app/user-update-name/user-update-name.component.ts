@@ -7,6 +7,10 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 const PartialUser = {
   FirstName: '',
   LastName: '',
+  Username: '',
+  Password: '',
+  Email: '',
+  CurrencyPref: ''
 }
 
 @Component({
@@ -31,6 +35,8 @@ export class UserUpdateNameComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data.FirstName + '' + this.data.LastName);
+    this.userData = this.data;
+    console.log(this.userData.Password);
   }
 
   updateUser(token: string, userId: string): void {
@@ -39,6 +45,7 @@ export class UserUpdateNameComponent implements OnInit {
       console.log(resp);
       localStorage.setItem('user', resp.Username);
       localStorage.setItem('userId', resp._id);
+      localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your name has been successfully updated!', 'OK', {
         duration: 2000,
       });

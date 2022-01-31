@@ -5,7 +5,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 const PartialUser = {
-  Email: ''
+  FirstName: '',
+  LastName: '',
+  Username: '',
+  Password: '',
+  Email: '',
+  CurrencyPref: ''
 }
 
 @Component({
@@ -29,6 +34,8 @@ export class UserUpdateEmailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userData = this.data;
+    console.log(this.userData.Email);
   }
 
   updateUser(token: string, userId: string): void {
@@ -37,6 +44,7 @@ export class UserUpdateEmailComponent implements OnInit {
       console.log(resp);
       localStorage.setItem('user', resp.Username);
       localStorage.setItem('userId', resp._id);
+      localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your email has been successfully updated!', 'OK', {
         duration: 2000,
       });

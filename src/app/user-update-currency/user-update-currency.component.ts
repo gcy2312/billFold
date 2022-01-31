@@ -5,6 +5,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 const PartialUser = {
+  FirstName: '',
+  LastName: '',
+  Username: '',
+  Password: '',
+  Email: '',
   CurrencyPref: ''
 }
 
@@ -29,7 +34,8 @@ export class UserUpdateCurrencyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.CurrencyPref);
+    this.userData = this.data;
+    console.log(this.userData.CurrencyPref);
   }
 
   updateUser(token: string, userId: string): void {
@@ -38,6 +44,7 @@ export class UserUpdateCurrencyComponent implements OnInit {
       console.log(resp);
       localStorage.setItem('user', resp.Username);
       localStorage.setItem('userId', resp._id);
+      localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your currency preference has been successfully updated!', 'OK', {
         duration: 2000,
       });

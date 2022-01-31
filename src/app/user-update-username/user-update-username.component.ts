@@ -6,16 +6,21 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { User } from '../types';
 
 const PartialUser = {
-  Username: ''
-}
-const transferUserData = {
   FirstName: '',
   LastName: '',
   Username: '',
-  Email: '',
   Password: '',
+  Email: '',
   CurrencyPref: ''
 }
+// const transferUserData = {
+//   FirstName: '',
+//   LastName: '',
+//   Username: '',
+//   Email: '',
+//   Password: '',
+//   CurrencyPref: ''
+// }
 
 @Component({
   selector: 'app-user-update-username',
@@ -39,6 +44,8 @@ export class UserUpdateUsernameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userData = this.data;
+    console.log(this.userData.Username);
     console.log('username ' + this.data.Username);
     // this.userDetails = this.data;
 

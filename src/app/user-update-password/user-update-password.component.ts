@@ -7,7 +7,12 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 const PartialUser = {
-  Password: ''
+  FirstName: '',
+  LastName: '',
+  Username: '',
+  Password: '',
+  Email: '',
+  CurrencyPref: ''
 }
 
 @Component({
@@ -33,6 +38,8 @@ export class UserUpdatePasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userData = this.data;
+    console.log(this.userData.Password);
   }
 
   // password = new FormGroup({
@@ -50,6 +57,7 @@ export class UserUpdatePasswordComponent implements OnInit {
       console.log(resp);
       localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', resp._id);
+      localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your password has been successfully updated!', 'OK', {
         duration: 2000,
       });
