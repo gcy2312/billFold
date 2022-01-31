@@ -239,7 +239,7 @@ export class FetchApiDataService {
     } else {
       console.warn(
         `Error Status code ${error.status}, ` +
-        `Error body is: ${error.message}`);
+        `Error body is: ${error.error.message}`);
     }
     return throwError(
       'Something bad happened; please try again later.');
