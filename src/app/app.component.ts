@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'billFold-client';
+  constructor(private swupdate: SwUpdate) {
+    // checks if update available
+    this.swupdate.available.subscribe((event: any) => {
+      // reload / refresh the browser
+      this.swupdate.activateUpdate().then(() => document.location.reload());
+    });
+  }
 }
