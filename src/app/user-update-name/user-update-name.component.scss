@@ -37,7 +37,7 @@ $bgGrey: #ebecef;
 }
 #divSaveBtn{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 #saveBtn:hover{
   text-decoration: underline;
