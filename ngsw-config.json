@@ -26,19 +26,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "restapi",
-      "urls": [
-        "https://expenses-api-2312.herokuapp.com"
-      ],
-      "cacheConfig": {
-        "strategy": "freshness",
-        "maxSize": 100,
-        "maxAge": "3d",
-        "timeout": "20s"
-      }
-    }
   ]
 }
