@@ -66,12 +66,12 @@ export class UserProfileComponent implements OnInit {
   openUpdateUsernameDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateUsernameComponent, {
       data: {
-        // FirstName: user.FirstName,
-        // LastName: user.LastName,
+        FirstName: user.FirstName,
+        LastName: user.LastName,
         Username: user.Username,
-        // Email: user.Email,
-        // Currency: user.CurrencyPref,
-        // Password: user.Password
+        Email: user.Email,
+        Currency: user.CurrencyPref,
+        Password: user.Password
       }
       // width: '500px'
     });
@@ -84,10 +84,10 @@ export class UserProfileComponent implements OnInit {
       data: {
         FirstName: user.FirstName,
         LastName: user.LastName,
-        // Username: user.Username,
-        // Email: user.Email,
-        // Currency: user.CurrencyPref,
-        // Password: user.Password
+        Username: user.Username,
+        Email: user.Email,
+        Currency: user.CurrencyPref,
+        Password: user.Password
       }
       // width: '500px'
     });
@@ -98,12 +98,12 @@ export class UserProfileComponent implements OnInit {
   openUpdateEmailDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateEmailComponent, {
       data: {
-        // FirstName: user.FirstName,
-        // LastName: user.LastName,
-        // Username: user.Username,
+        FirstName: user.FirstName,
+        LastName: user.LastName,
+        Username: user.Username,
         Email: user.Email,
-        // Currency: user.CurrencyPref,
-        // Password: user.Password
+        Currency: user.CurrencyPref,
+        Password: user.Password
       }
       // width: '500px'
     });
@@ -114,11 +114,11 @@ export class UserProfileComponent implements OnInit {
   openUpdatePasswordDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdatePasswordComponent, {
       data: {
-        // FirstName: user.FirstName,
-        // LastName: user.LastName,
-        // Username: user.Username,
-        // Email: user.Email,
-        // Currency: user.CurrencyPref,
+        FirstName: user.FirstName,
+        LastName: user.LastName,
+        Username: user.Username,
+        Email: user.Email,
+        Currency: user.CurrencyPref,
         Password: user.Password
       }
       // width: '500px'
@@ -130,12 +130,12 @@ export class UserProfileComponent implements OnInit {
   openUpdateCurrencyDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateCurrencyComponent, {
       data: {
-        // FirstName: user.FirstName,
-        // LastName: user.LastName,
-        // Username: user.Username,
-        // Email: user.Email,
+        FirstName: user.FirstName,
+        LastName: user.LastName,
+        Username: user.Username,
+        Email: user.Email,
         CurrencyPref: user.CurrencyPref,
-        // Password: user.Password
+        Password: user.Password
       }
       // width: '500px'
     });
