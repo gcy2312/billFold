@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { UserProfileUpdateComponent } from '../user-profile-update/user-profile-update.component';
+
 import { UserProfileDeleteComponent } from '../user-profile-delete/user-profile-delete.component';
 import { UserUpdateUsernameComponent } from '../user-update-username/user-update-username.component';
 import { UserUpdateNameComponent } from '../user-update-name/user-update-name.component';
