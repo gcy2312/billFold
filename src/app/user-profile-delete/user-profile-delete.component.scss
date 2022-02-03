@@ -8,13 +8,11 @@ $font:'Raleway', sans-serif;
 $textSize: 15px;
 $headerSize: 20px;
 $bg:#424242;
-// $bg:mat.get-color-from-palette($my-bg-palette,800);
 $headerbg: mat.get-color-from-palette($my-primary-palette, 700);
 $primary: mat.get-color-from-palette($my-primary-palette,500);
 $warn: mat.get-color-from-palette($my-warn-palette,500);
-$blue:#007ad9;
 $white: #fff;
-$bgGrey: #ebecef;
+
 
 #cardHeader{
   display: flex;

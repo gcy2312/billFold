@@ -11,9 +11,8 @@ $bg:mat.get-color-from-palette($my-bg-palette,800);
 $headerbg: mat.get-color-from-palette($my-primary-palette, 700);
 $primary: mat.get-color-from-palette($my-primary-palette,500);
 $warn: mat.get-color-from-palette($my-warn-palette,500);
-$blue:#007ad9;
 $white: #fff;
-$bgGrey: #ebecef;
+
 
 
 ul {
@@ -35,7 +34,7 @@ h4{
   padding-bottom: 0;
 }
 
-b { /* used for event dates/times */
+b { 
   margin-right: 3px;
 }
 

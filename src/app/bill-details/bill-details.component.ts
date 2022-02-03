@@ -29,12 +29,18 @@ export class BillDetailsComponent implements OnInit {
   billInfo = PartialBill;
   billDate: any = '';
 
-
   isChkChecked = false;
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
+  /**
+   * constructor for billDetails (data from billPage)
+   * @param dialogRef 
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param data 
+   */
   constructor(
     public dialogRef: MatDialogRef<BillDetailsComponent>,
     public fetchApiData: FetchApiDataService,
@@ -46,22 +52,24 @@ export class BillDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.billDetails = this.data;
 
-    console.log(this.billDetails.Amount);
-
     this.billInfo.Paid = this.data.Paid;
     this.isChkChecked = this.billInfo.Paid;
 
-    console.log('title: ' + this.billDetails.title);
-    console.log('billId: ' + this.billDetails._id);
-
     let text = (this.billDetails.date).toString();
     this.billDate = text.slice(0, 16);
-    console.log('date' + this.billDate);
   }
+
+  /**
+   * function to close details dialog when outside click
+   */
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  /**
+   * function to switch state of bill to paid/unpaid
+   * @param ob 
+   */
   onChkChange(ob: MatCheckboxChange) {
     if (ob.checked) {
       this.billInfo.Paid = true;
@@ -74,6 +82,11 @@ export class BillDetailsComponent implements OnInit {
 
   billId = this.data._id;
 
+  /**
+   * call API to edit bill entry only paid/unpaid state
+   * @param userId 
+   * @param token 
+   */
   editBill(userId: string, token: string): void {
     this.fetchApiData.editBill(this.billInfo, this.billId, token, userId).subscribe((result) => {
       this.dialogRef.close(); // This will close the modal on success!

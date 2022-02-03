@@ -10,9 +10,8 @@ $headerSize: 25px;
 $headerbg: mat.get-color-from-palette($my-primary-palette, 700);
 $primary: mat.get-color-from-palette($my-primary-palette,500);
 $warn: mat.get-color-from-palette($my-warn-palette,500);
-$blue:#007ad9;
 $white: #fff;
-$bgGrey: #ebecef;
+
 
 #container{
  display: flex;
@@ -51,7 +50,6 @@ p{
   margin-right: 10px;
 }
 #dialogBtns:hover{
-  // background-color: darken($primary,20);
   text-decoration: underline;
 }
 #divDeleteBtn{
@@ -64,30 +62,29 @@ margin-left: 10px;
   background-color: darken($warn,10);
 }
 #deleteBtn:hover{
-  // background-color: darken($warn,20);
    text-decoration: underline;
 }
 
 @media only screen and (min-device-width: 250px) and (max-device-width: 320px) {  
-    /* Change a menu to fit the screen better, etc... */
+ 
     #profileCard{
       max-width: 250px;
     }
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {  
-    /* Change a menu to fit the screen better, etc... */
+   
     #profileCard{
       max-width: 320px;
     }
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 600px) {  
-    /* Change a menu to fit the screen better, etc... */
+
     #profileCard{
       max-width: 480px;
     }
 }
 @media only screen and (min-device-width: 600px) and (max-device-width: 800px) {  
-    /* Change a menu to fit the screen better, etc... */
+ 
     #profileCard{
       max-width: 600px;
     }

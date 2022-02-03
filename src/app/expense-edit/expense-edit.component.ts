@@ -4,7 +4,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Expense } from '../types';
+
 
 const PartialExpense = {
   _id: '',
@@ -29,6 +29,14 @@ export class ExpenseEditComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user') || '');
   expenseId: string = '';
 
+  /**
+   * constructor for expenseEdit
+   * data from expensePage
+   * @param fetchApiData 
+   * @param dialogRef 
+   * @param snackBar 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<ExpenseEditComponent>,
@@ -37,19 +45,21 @@ export class ExpenseEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.expense);
-    console.log('userId: ' + this.userId);
-    console.log('token: ' + this.token);
+
     this.expenseInfo = this.data.expense;
     this.expenseInfo.Currency = this.user.CurrencyPref;
-    console.log(this.expenseInfo.Currency);
     this.expenseId = this.data.expense._id;
   }
 
-  // expenseId = this.data._id;
-
+  /**
+   * call API to edit expense entry 
+   * expenseId from expensePage data
+   * @param userId 
+   * @param token 
+   * @param expenseId 
+   */
   editExpense(userId: string, token: string, expenseId: string): void {
-    // this.expenseInfo.Amount = this.data.Amount.$numberDecimal.toString().substring(0, 10);
+
     this.fetchApiData.editExpense(this.expenseInfo, expenseId, token, userId).subscribe((result) => {
       this.dialogRef.close();
       this.snackBar.open('Expense document successfully updated', 'OK', {

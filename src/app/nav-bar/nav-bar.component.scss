@@ -10,9 +10,8 @@ $headerSize: 25px;
 $headerbg: mat.get-color-from-palette($my-primary-palette, 700);
 $primary: mat.get-color-from-palette($my-primary-palette,500);
 $warn: mat.get-color-from-palette($my-warn-palette,500);
-$blue:#007ad9;
 $white: #fff;
-$bgGrey: #ebecef;
+
 
 #nav{
   position:sticky;
@@ -22,7 +21,6 @@ $bgGrey: #ebecef;
   display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
-  // background-color: darken($primary,10);
 }
 #navlogo{
   margin:5px 0px 0px 20px;
@@ -49,7 +47,6 @@ a.mat-tab-link{
 }
 
 @media only screen and (min-device-width: 250px) and (max-device-width: 700px) {  
-    /* Change a menu to fit the screen better, etc... */
     #linkLabel{
       display:none;
     }

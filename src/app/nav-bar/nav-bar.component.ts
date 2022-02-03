@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NavBarComponent implements OnInit {
   @Input()
-  // disablePagination: boolean;
+
 
   navLinks = [
     { path: '/expenses', label: 'Expenses', icon: 'insert_chart_outlined_two_tone' },
@@ -17,7 +17,12 @@ export class NavBarComponent implements OnInit {
     { path: '/profile', label: 'Profile', icon: 'account_circle_outlined' },
   ];
 
-
+  /**
+   * constructor for navigation
+   * @param router 
+   * @param snackBar 
+   * @param route 
+   */
   constructor(
     public router: Router,
     public snackBar: MatSnackBar,
@@ -27,6 +32,10 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * function to logout user 
+   * clear localStorage
+   */
   logOut(): void {
     localStorage.clear();
     this.router.navigate(['/welcome']);

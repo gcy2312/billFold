@@ -4,10 +4,6 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
-import { User } from '../types';
-import * as moment from 'moment';
-import { DefaultValueAccessor } from '@angular/forms';
 
 
 const PartialExpense = {
@@ -32,7 +28,14 @@ export class ExpenseCreateComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
-
+  /**
+   * constructor for expense create page
+   * data from expense page
+   * @param fetchApiData 
+   * @param dialogRef 
+   * @param snackBar 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<ExpenseCreateComponent>,
@@ -43,12 +46,16 @@ export class ExpenseCreateComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data.date);
-    console.log(this.data.user.CurrencyPref);
+
   }
 
 
-
+  /**
+   * call API to create bill 
+   * currency from user currencyPref
+   * @param userId 
+   * @param token 
+   */
   createExpense(userId: string, token: string): void {
     this.expenseInfo.Currency = this.data.user.CurrencyPref;
     this.fetchApiData.createExpense(this.expenseInfo, userId, token).subscribe((result) => {

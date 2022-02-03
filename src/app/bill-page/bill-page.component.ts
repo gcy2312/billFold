@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CalendarOptions, EventClickArg, EventChangeArg, DateSelectArg, buildEntryKey } from '@fullcalendar/angular'; // useful for typechecking
-import { DateClickArg } from '@fullcalendar/interaction';
-// import bootstrapPlugin from '@fullcalendar/bootstrap';
+import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,7 +12,7 @@ import { BillDetailsComponent } from '../bill-details/bill-details.component';
 import { BillDeleteComponent } from '../bill-delete/bill-delete.component';
 import { BillCreateComponent } from '../bill-create/bill-create.component';
 import { BillEditComponent } from '../bill-edit/bill-edit.component';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+
 
 @Component({
   selector: 'app-bill-page',
@@ -30,7 +28,6 @@ export class BillPageComponent implements OnInit {
   reason = '';
 
   close() {
-
     this.sidenav.close();
   }
 
@@ -54,11 +51,16 @@ export class BillPageComponent implements OnInit {
   calendarOptions: CalendarOptions | undefined;
   deepChangeDetection = true;
 
+  /**
+   * constructor for billPage
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialog 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
-    // public billDialogRef: MatDialogRef<BillDetailsComponent>,
   ) { }
 
   ngOnInit(): void {
@@ -66,17 +68,16 @@ export class BillPageComponent implements OnInit {
   }
 
 
+  /**
+   * call API to fetch bills that match userId
+   * @param userId 
+   * @param token 
+   */
   getBills(userId: string, token: string): void {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
-      console.log(this.bills);
 
       this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
-      console.log(this.bills);
-      console.log(this.calendarBills);
-      // if (this.bills.map((a: any) => a.Paid === true)) {
-      //   this.calendarBills.map((e: any) => ({ ...e, color: 'red' }));
-      // }
 
       this.calendarOptions = {
         headerToolbar: {
@@ -88,7 +89,7 @@ export class BillPageComponent implements OnInit {
         height: 600,
 
         initialView: 'dayGridMonth',
-        events: this.calendarBills, // alternatively, use the `events` setting to fetch from a feed
+        events: this.calendarBills,
         eventTextColor: '#37474F',
 
         weekends: true,
@@ -96,15 +97,13 @@ export class BillPageComponent implements OnInit {
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
-        // plugins: [bootstrapPlugin],
         themeSystem: 'bootstrap',
-        // select: this.handleDateSelect.bind(this),
-        // eventsSet: this.handleEvents.bind(this),
-        ///you can update a remote database when these fire:
-        // eventAdd:
-        // eventChange: this.handleBillChange.bind(this),
-        // eventRemove:
 
+        /**
+         * function to change className of event(bill) for styling
+         * @param arg 
+         * @returns 
+         */
         eventClassNames: function (arg) {
           if (arg.event.extendedProps.Paid) {
             return ['PaidYes']
@@ -113,10 +112,17 @@ export class BillPageComponent implements OnInit {
           }
         },
 
+        /**
+         * function to open create bill dialog on dateClick
+         * @param bill 
+         */
         dateClick: (bill) => {
-          // alert('Date: ' + bill.dateStr);
           this.openBillCreateDialog.bind(this)(bill);
         },
+        /**
+         * function to open bill details dialog on eventClick
+         * @param bill 
+         */
         eventClick: (bill) => {
           this.openBillViewDialog.bind(this)(bill);
         },
@@ -125,7 +131,11 @@ export class BillPageComponent implements OnInit {
   }
 
 
-
+  /**
+   * function to open billDetails dialog with data passed 
+   * data according to fullCalendar event formatting
+   * @param bill 
+   */
   openBillViewDialog(bill: any) {
     const dialogRef = this.dialog.open(BillDetailsComponent, {
       data: {
@@ -145,6 +155,11 @@ export class BillPageComponent implements OnInit {
     });
   }
 
+  /**
+   * function to open billDelete dialog with data passed
+   * data -- bill
+   * @param bill 
+   */
   openBillDeleteDialog(bill: any) {
     const dialogRef = this.dialog.open(BillDeleteComponent, {
       data: {
@@ -157,6 +172,11 @@ export class BillPageComponent implements OnInit {
     })
   }
 
+  /**
+   * function to open billEdit dialog with data passed
+   * data --bill
+   * @param bill 
+   */
   openBillEditDialog(bill: any) {
     const dialogRef = this.dialog.open(BillEditComponent, {
       data: {
@@ -170,6 +190,11 @@ export class BillPageComponent implements OnInit {
     })
   }
 
+  /**
+   * function to open billCreate dialog 
+   * data (user & bill.dateStr from fullCalendar) 
+   * @param bill 
+   */
   openBillCreateDialog(bill: any) {
     const dialogRef = this.dialog.open(BillCreateComponent, {
       data: {

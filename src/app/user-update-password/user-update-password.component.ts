@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 const PartialUser = {
   FirstName: '',
@@ -25,11 +24,18 @@ export class UserUpdatePasswordComponent implements OnInit {
   userData = PartialUser;
   hide = true;
 
-  // user: any = {};
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
   user = JSON.parse(localStorage.getItem('user') || '');
 
+  /**
+   * constructor for updatePassword
+   * data from profile page
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialogRef 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -39,22 +45,19 @@ export class UserUpdatePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = this.data;
-    console.log(this.userData.Password);
   }
 
-  // password = new FormGroup({
-  //   firstName: new FormControl()
-  // });
-  // newPassword: FormGroup = new FormGroup({
-  //   password: new FormControl('', [Validators.required, Validators.min(3)])
-  // });
-  // hide = true;
-  // get passwordInput() { return this.newPassword.get('password'); }
-
+  /**
+   * call API to update user password
+   * set user to localStoage
+   * reload page upon completion
+   * @param token 
+   * @param userId 
+   */
   updateUser(token: string, userId: string): void {
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
-      console.log(resp);
+
       localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', resp._id);
       localStorage.setItem('user', JSON.stringify(resp));
@@ -62,7 +65,7 @@ export class UserUpdatePasswordComponent implements OnInit {
         duration: 2000,
       });
     }, (resp) => {
-      console.log(resp);
+
       this.snackBar.open(resp, 'OK', {
         duration: 2000,
       });

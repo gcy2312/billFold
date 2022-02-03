@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { User } from '../types';
+
 
 const PartialUser = {
   FirstName: '',
@@ -13,14 +13,7 @@ const PartialUser = {
   Email: '',
   CurrencyPref: ''
 }
-// const transferUserData = {
-//   FirstName: '',
-//   LastName: '',
-//   Username: '',
-//   Email: '',
-//   Password: '',
-//   CurrencyPref: ''
-// }
+
 
 @Component({
   selector: 'app-user-update-username',
@@ -29,13 +22,21 @@ const PartialUser = {
 })
 export class UserUpdateUsernameComponent implements OnInit {
   @Input()
-  // userDetails = PartialUser;
+
   userData = PartialUser;
 
   user: any = {};
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
+  /**
+   * constructor for updateUsername
+   * data from profile page
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialogRef 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -45,24 +46,26 @@ export class UserUpdateUsernameComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = this.data;
-    console.log(this.userData.Username);
-    console.log('username ' + this.data.Username);
-    // this.userDetails = this.data;
-
-
   }
 
+  /**
+   * call API to update user data
+   * set user to localStorage
+   * reload page upon completion
+   * @param token 
+   * @param userId 
+   */
   updateUser(token: string, userId: string): void {
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
-      console.log(resp);
+
       localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', resp._id);
       this.snackBar.open('Your username has been successfully updated!', 'OK', {
         duration: 2000,
       });
     }, (resp) => {
-      console.log(resp);
+
       this.snackBar.open(resp, 'OK', {
         duration: 2000,
       });

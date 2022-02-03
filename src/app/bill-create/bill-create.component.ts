@@ -28,9 +28,15 @@ export class BillCreateComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
-
   isChkChecked = false;
 
+  /**
+   * constructor for create bill (data from billPage)
+   * @param fetchApiData 
+   * @param dialogRef 
+   * @param snackBar 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<BillCreateComponent>,
@@ -45,14 +51,15 @@ export class BillCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.billInfo.Date = this.data.date;
-    console.log(this.data.user);
-    console.log(this.token);
 
-    console.log(this.billInfo.Date);
   }
 
 
-
+  /**
+   * call API function to create a bill (currency taken from this.user)
+   * @param userId 
+   * @param token 
+   */
   createBill(userId: string, token: string): void {
     this.billInfo.Currency = this.data.user.CurrencyPref;
     this.fetchApiData.createBill(this.billInfo, userId, token).subscribe((result) => {
@@ -67,6 +74,10 @@ export class BillCreateComponent implements OnInit {
     });
   }
 
+  /**
+   * checkbox for setting bill to paid/unpaid
+   * @param ob 
+   */
   onChkChange(ob: MatCheckboxChange) {
     if (ob.checked) {
       this.billInfo.Paid = true;

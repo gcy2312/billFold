@@ -26,6 +26,14 @@ export class UserUpdateNameComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
+  /**
+   * constructor for updateName 
+   * data from profile page
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialogRef 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -34,15 +42,20 @@ export class UserUpdateNameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.FirstName + '' + this.data.LastName);
     this.userData = this.data;
-    console.log(this.userData.Password);
   }
 
+  /**
+   * call API to update user details
+   * set user in localStorage
+   * reload page upon completion
+   * @param token 
+   * @param userId 
+   */
   updateUser(token: string, userId: string): void {
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
-      console.log(resp);
+
       localStorage.setItem('user', resp.Username);
       localStorage.setItem('userId', resp._id);
       localStorage.setItem('user', JSON.stringify(resp));
@@ -50,7 +63,7 @@ export class UserUpdateNameComponent implements OnInit {
         duration: 2000,
       });
     }, (resp) => {
-      console.log(resp);
+
       this.snackBar.open(resp, 'OK', {
         duration: 2000,
       });

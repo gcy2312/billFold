@@ -19,7 +19,7 @@
         </li>
       </ul>
       <mat-divider></mat-divider>
-      <!-- <h4>All Bills ({{bills.length}})</h4> -->
+
       <ul>
         <li *ngFor='let bill of bills'>
           <div id="billsList">
@@ -28,11 +28,9 @@
             <button mat-icon-button color="warn" (click)="openBillDeleteDialog(bill)">
               <mat-icon>delete_forever</mat-icon>
             </button>
-            <!-- <b>{{bill.Date}}</b>
-            <i>{{bill.Description}}</i>
-            <i>{{bill.Amount}}</i> -->
+
           </div>
-          <!-- <button (click)="openBillEditDialog(bill)">Edit Bill</button> -->
+
 
         </li>
       </ul>

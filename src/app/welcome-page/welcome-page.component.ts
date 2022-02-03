@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDialogRef } from '@angular/material/dialog';
-import { FetchApiDataService } from '../fetch-api-data.service';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -18,31 +18,42 @@ export class WelcomePageComponent implements OnInit {
 
   hide = true;
 
+  /**
+   * constructor for welcome page
+   * @param dialog 
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param router 
+   */
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
-    // public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     public router: Router
   ) { }
+
   ngOnInit(): void {
   }
+
+  /**
+   * function to open user registration dialog
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '590px',
     });
   }
 
+  /**
+   * call API to login user
+   * set user to localStorage
+   * navigate to expensePage upon completion
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userCred).subscribe((result) => {
-      // this.dialogRef.close();
-      //store user & token to local storage
       localStorage.setItem('userId', result.user._id);
       localStorage.setItem('user', JSON.stringify(result.user));
       localStorage.setItem('token', result.token);
-      console.log(result.token);
-      console.log(result.user._id);
-      console.log(result.user);
 
       this.snackBar.open('User successfull logged in', 'OK', {
         duration: 2000
@@ -54,9 +65,4 @@ export class WelcomePageComponent implements OnInit {
       });
     });
   }
-  // openUserLoginDialog(): void {
-  //   this.dialog.open(UserLoginFormComponent, {
-  //     width: '280px'
-  //   });
-  // }
 }

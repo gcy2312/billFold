@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 
-
 import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -8,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Bill } from '../types';
 
 const PartialBill = {
   Description: '',
@@ -25,6 +23,7 @@ const PartialBill = {
   templateUrl: './bill-delete.component.html',
   styleUrls: ['./bill-delete.component.scss']
 })
+
 export class BillDeleteComponent implements OnInit {
   @Input() billInfo = PartialBill;
 
@@ -32,6 +31,15 @@ export class BillDeleteComponent implements OnInit {
   token = localStorage.getItem('token') || '';
   billId: string = '';
 
+  /**
+   * constructor for bill delete (data from billPage)
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialog 
+   * @param dialogRef 
+   * @param router 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -43,13 +51,16 @@ export class BillDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.bill);
     this.billInfo = this.data.bill;
     this.billId = this.data.bill._id;
   }
 
+  /**
+   * call API to delete bill entry
+   * @param billId 
+   * @param token 
+   */
   deleteBill(billId: string, token: string): void {
-
     this.fetchApiData.deleteBill(billId, token).subscribe((resp: any) => {
       this.dialogRef.close();
       this.snackBar.open(
@@ -68,6 +79,9 @@ export class BillDeleteComponent implements OnInit {
     );
   }
 
+  /**
+   * function to cancel bill delete and navigate back to calendar
+   */
   cancel(): void {
     this.router.navigate(['/calendar']).then(() => {
       window.location.reload();

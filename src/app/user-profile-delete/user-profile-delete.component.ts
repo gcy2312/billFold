@@ -15,9 +15,14 @@ export class UserProfileDeleteComponent implements OnInit {
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
-  // User = localStorage.getItem('user') || {};
   User: User = { _id: '', FirstName: '', LastName: '', Username: '', Password: '', Email: '', CurrencyPref: '' };
 
+  /**
+   * constructor for profile delete
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param router 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -25,10 +30,15 @@ export class UserProfileDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.userId);
-    console.log(this.token);
   }
 
+  /**
+   * call API to delete user account
+   * clear local storage
+   * reroute to /welcome
+   * @param token 
+   * @param userId 
+   */
   deleteUserAccount(token: string, userId: string): void {
     this.fetchApiData.deleteUser(token, userId).subscribe((resp: any) => {
       this.snackBar.open(
@@ -48,6 +58,9 @@ export class UserProfileDeleteComponent implements OnInit {
     );
   }
 
+  /**
+   * function to cancel and navigate back to profile page
+   */
   cancel(): void {
     this.router.navigate(['/profile']).then(() => {
       window.location.reload();

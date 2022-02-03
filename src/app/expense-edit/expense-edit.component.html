@@ -7,7 +7,6 @@
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Category</mat-label>
         <mat-icon aria-hidden="true" aria-label="category icon" matPrefix>category</mat-icon>
-        <!-- <input matInput [(ngModel)]="expenseInfo.Category" placeholder="Category" type="text" name="Category" required> -->
         <mat-select matNativeControl [(ngModel)]="expenseInfo.Category" type="text" placeholder="Category" required
                     name="Category">
 
@@ -44,15 +43,7 @@
         <input matInput [(ngModel)]="expenseInfo.Amount" type="number" placeholder={{data.Amount}} name="Amount"
                required>
       </mat-form-field><span id="currency">({{expenseInfo.Currency}})</span>
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Currency Preference</mat-label>
-        <mat-select matNativeControl [(ngModel)]="expenseInfo.Currency" type="text" placeholder="CAD" name="Currency">
-          <mat-option value="CAD">CAD</mat-option>
-          <mat-option value="USD">USD</mat-option>
-          <mat-option value="GBP">GBP</mat-option>
-          <mat-option value="EUR">EUR</mat-option>
-        </mat-select>
-      </mat-form-field> -->
+
     </form>
   </mat-card-content>
   <mat-card-actions id="divBtns">

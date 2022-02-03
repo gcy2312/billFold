@@ -31,6 +31,16 @@ export class ExpenseDeleteComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
 
+  /**
+   * constructor for expenseDelete 
+   * data from expensePage
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialog 
+   * @param dialogRef 
+   * @param router 
+   * @param data 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -41,17 +51,16 @@ export class ExpenseDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data.user);
-    console.log(this.data.expense);
-
     this.expense = this.data.expense;
-    console.log(this.expense);
     this.expenseId = this.expense._id;
-    console.log(this.expenseId);
   }
 
 
-
+  /**
+   * call API to delete expense entry
+   * @param expenseId 
+   * @param token 
+   */
   deleteExpense(expenseId: string, token: string): void {
 
     this.fetchApiData.deleteExpense(expenseId, token).subscribe((resp: any) => {
@@ -72,6 +81,9 @@ export class ExpenseDeleteComponent implements OnInit {
     );
   }
 
+  /**
+   * function cancel to navigate back to expenses page
+   */
   cancel(): void {
     this.router.navigate(['/expenses']).then(() => {
       window.location.reload();

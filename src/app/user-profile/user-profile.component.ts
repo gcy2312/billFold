@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef } from '@angular/material/dialog';
+
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -11,7 +11,7 @@ import { UserUpdateNameComponent } from '../user-update-name/user-update-name.co
 import { UserUpdateEmailComponent } from '../user-update-email/user-update-email.component';
 import { UserUpdatePasswordComponent } from '../user-update-password/user-update-password.component';
 import { UserUpdateCurrencyComponent } from '../user-update-currency/user-update-currency.component';
-import { User } from '../types';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +25,12 @@ export class UserProfileComponent implements OnInit {
   token = localStorage.getItem('token') || '';
   user: any = {};
 
+  /**
+   * constructor for userProfile page
+   * @param dialog 
+   * @param snackBar 
+   * @param fetchApiData 
+   */
   constructor(
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
@@ -37,32 +43,23 @@ export class UserProfileComponent implements OnInit {
 
   }
 
+  /**
+   * call API to get user details
+   * @param userId 
+   * @param token 
+   */
   getUser(userId: string, token: string): void {
     this.fetchApiData.getUser(userId, token).subscribe((resp: any) => {
       this.userData = resp;
       this.user = resp;
-      console.log('user: ' + this.user._id);
-      console.log('name' + this.user.FirstName + this.user.LastName);
     });
   }
 
-  // openUpdateDialog(user: Partial<User>) {
-  //   const dialogRef = this.dialog.open(UserProfileUpdateComponent, {
-  //     data: {
-  //       FirstName: user.FirstName,
-  //       LastName: user.LastName,
-  //       Username: user.Username,
-  //       Email: user.Email,
-  //       Currency: user.CurrencyPref,
-  //       Password: user.Password
-  //     }
-  //     // width: '500px'
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
-  //   this.getUser(this.userId, this.token);
-  // }
+  /**
+   * function to open edit username dialog
+   * data passed: user
+   * @param user 
+   */
   openUpdateUsernameDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateUsernameComponent, {
       data: {
@@ -73,12 +70,17 @@ export class UserProfileComponent implements OnInit {
         Currency: user.CurrencyPref,
         Password: user.Password
       }
-      // width: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
+
+  /**
+   * function to open edit name dialog
+   * data passed: user
+   * @param user 
+   */
   openUpdateNameDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateNameComponent, {
       data: {
@@ -89,12 +91,17 @@ export class UserProfileComponent implements OnInit {
         Currency: user.CurrencyPref,
         Password: user.Password
       }
-      // width: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
+
+  /**
+   * function to open edit email dialog
+   * data passed: user
+   * @param user 
+   */
   openUpdateEmailDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateEmailComponent, {
       data: {
@@ -105,12 +112,17 @@ export class UserProfileComponent implements OnInit {
         Currency: user.CurrencyPref,
         Password: user.Password
       }
-      // width: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
+
+  /**
+   * function to open edit password dialog
+   * data passed: user
+   * @param user 
+   */
   openUpdatePasswordDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdatePasswordComponent, {
       data: {
@@ -121,12 +133,17 @@ export class UserProfileComponent implements OnInit {
         Currency: user.CurrencyPref,
         Password: user.Password
       }
-      // width: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
+
+  /**
+   * function to open edit currency pref dialog
+   * data passed: user
+   * @param user 
+   */
   openUpdateCurrencyDialog(user: any) {
     const dialogRef = this.dialog.open(UserUpdateCurrencyComponent, {
       data: {
@@ -137,13 +154,15 @@ export class UserProfileComponent implements OnInit {
         CurrencyPref: user.CurrencyPref,
         Password: user.Password
       }
-      // width: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
 
+  /**
+   * function to open delete user profile dialog
+   */
   openDeleteDialog(): void {
     this.dialog.open(UserProfileDeleteComponent, {
       width: '500px'

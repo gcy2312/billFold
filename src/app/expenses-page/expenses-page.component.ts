@@ -1,21 +1,19 @@
-import { Component, InjectionToken, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { DatePipe } from '@angular/common';
 import { FetchApiDataService } from '../fetch-api-data.service';
-// import { ExpenseDetailsComponent } from '../expense-details/expense-details.component';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-// import { Chart } from 'chart.js';
-
 
 import { ExpenseEditComponent } from '../expense-edit/expense-edit.component';
 import { ExpenseCreateComponent } from '../expense-create/expense-create.component';
-
-import { Expense, User } from '../types';
-import * as moment from 'moment';
 import { ExpenseDeleteComponent } from '../expense-delete/expense-delete.component';
+
+import { Expense } from '../types';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-expenses-page',
@@ -29,7 +27,6 @@ export class ExpensesPageComponent implements OnInit {
   sidenav!: MatSidenav;
 
   close() {
-
     this.sidenav.close();
   }
 
@@ -49,8 +46,6 @@ export class ExpensesPageComponent implements OnInit {
   todayDate: string = '';
 
   cmExpenses: any = [];
-  // prevExpense: any = [];
-  // twoPrevExpenses: any = [];
 
   formattedDates: any = [];
   prevFormattedDates: any = [];
@@ -85,7 +80,13 @@ export class ExpensesPageComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user') || '');
 
 
-
+  /**
+   * constructor for expensePage
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialog 
+   * @param datepipe 
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -100,9 +101,14 @@ export class ExpensesPageComponent implements OnInit {
     this.getDaysArrayByPreviousMonth();
     this.getDaysArrayByTwoPreviousMonth();
     this.todayDate = moment().format('YYYY-MM-DD');
-    console.log(this.user);
   }
 
+  /**
+   * function to get array of dates for 2 months previous
+   * returns array of chart dates to map expenses
+   * set state formatted dates for chart display
+   * @returns 
+   */
   getDaysArrayByTwoPreviousMonth() {
     var now = moment();
     this.twoPreviousMonth = moment(now).subtract(2, "month").startOf("month").format('MMMM');
@@ -123,6 +129,12 @@ export class ExpensesPageComponent implements OnInit {
     return this.twoPrevChartDates
   }
 
+  /**
+   * function to get array of dates for previous month
+   * returns array of dates to map expenses
+   * set state formatted dates for chart display
+   * @returns 
+   */
   getDaysArrayByPreviousMonth() {
     var now = moment();
     this.previousMonth = moment(now).subtract(1, "month").startOf("month").format('MMMM');
@@ -143,10 +155,15 @@ export class ExpensesPageComponent implements OnInit {
     return this.prevChartDates
   }
 
+  /**
+   * function to get array of dates for current month
+   * returns array of dates to map expenses
+   * set state of formatted dates for chart display
+   * @returns 
+   */
   getDaysArrayByCurrentMonth() {
     var now = moment();
     this.currentMonth = now.format('MMMM');
-    console.log(this.currentMonth);
     var daysInMonth = moment().daysInMonth();
     var arrDays = [];
 
@@ -164,15 +181,19 @@ export class ExpensesPageComponent implements OnInit {
     return this.chartDates
   }
 
+  /**
+   * call API to get array of all expenses
+   * filter expenses by category
+   * accumulator(reduce) to map if same date and add amounts
+   * set chart data and options
+   * @param userId 
+   * @param token 
+   */
   getExpenses(userId: string, token: string): void {
     this.fetchApiData.getExpenses(userId, token).subscribe((resp: any) => {
       this.expenses = resp;
-      console.log(this.expenses);
-
-      // const filteredExp = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
 
       this.cmExpenses = this.expenses.filter((expense) => this.chartDates.includes(expense.Date));
-      console.log(this.cmExpenses);
 
       const housExp = resp.filter((x: { Category: string; }) => x.Category === 'Housing');
       const transExp = resp.filter((x: { Category: string; }) => x.Category === 'Transportation');
@@ -284,8 +305,7 @@ export class ExpensesPageComponent implements OnInit {
           return accumulator;
         }, {}
       );
-      console.log('chart dates' + this.chartDates);
-      console.log(this.foodAmounts);
+
 
       this.userData = {
         labels: this.formattedDates,
@@ -536,6 +556,11 @@ export class ExpensesPageComponent implements OnInit {
     });
   }
 
+  /**
+   * function to open edit expense dialog
+   * data: expense, type: expense
+   * @param expense 
+   */
   openEditExpenseDialog(expense: any): void {
     const dialogRef = this.dialog.open(ExpenseEditComponent, {
       data: {
@@ -549,6 +574,11 @@ export class ExpensesPageComponent implements OnInit {
     });
   }
 
+  /**
+   * function to open create expense dialog
+   * data: user and todayDate
+   * call getExpenses to refresh after dialog closed
+   */
   openCreateExpenseDialog(): void {
     const dialogRef = this.dialog.open(ExpenseCreateComponent, {
       data: {
@@ -563,6 +593,12 @@ export class ExpensesPageComponent implements OnInit {
     });
   }
 
+  /**
+   * function to open delete expense dialog
+   * data: user, expense
+   * call getExpenses after dialog closed to refresh
+   * @param expense 
+   */
   openDeleteExpenseDialog(expense: any): void {
     const dialogRef = this.dialog.open(ExpenseDeleteComponent, {
       data: {
