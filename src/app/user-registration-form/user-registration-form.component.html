@@ -3,10 +3,10 @@
 
   <mat-card id="card">
     <mat-card-header id="registerHeader">
-      <mat-card-title>Register for BillFold!</mat-card-title>
+      <mat-card-title id="regTitle">Register for BillFold!</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form id="registerForm">
         <mat-form-field appearance="fill" id="formField">
           <mat-label>First Name</mat-label>
           <input matInput [(ngModel)]="userDetails.FirstName" type="text" name="FirstName" required>

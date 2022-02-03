@@ -45,3 +45,33 @@ $bgGrey: #ebecef;
 #addbtn:hover{
   text-decoration: underline;
 }
+
+
+@media only screen and (min-device-width: 380px) and (max-device-width: 600px){
+#formField{
+  width:230px;
+  align-self: center;
+  
+}
+
+#cardHeader{
+  justify-content: center;
+}
+#divBtns{
+  justify-content: center;
+  margin-right:0px;
+}
+}
+@media only screen and (min-device-width: 250px) and (max-device-width: 380px){
+  #formField{
+  width:200px;
+  align-self: center;
+}
+#cardHeader{
+  justify-content: center;
+}
+#divBtns{
+  justify-content: center;
+  margin-right:0px;
+}
+}

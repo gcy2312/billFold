@@ -21,7 +21,7 @@
         <mat-label>Amount</mat-label>
         <mat-icon id="currency" aria-hidden="true" aria-label="CAD icon" matPrefix>attach_money</mat-icon>
         <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder={{data.Amount}} name="Amount" required>
-      </mat-form-field>({{billInfo.Currency}})
+      </mat-form-field><span id="currency">({{billInfo.Currency}})</span>
     </form>
   </mat-card-content>
   <mat-card-actions id="divBtns">

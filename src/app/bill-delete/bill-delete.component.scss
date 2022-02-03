@@ -44,3 +44,16 @@ $bgGrey: #ebecef;
 #deletebtn:hover{
   text-decoration: underline;
 }
+
+@media only screen and (min-device-width: 250px) and (max-device-width: 600px){
+#actionbtns{
+  justify-content: space-between;
+  margin:0px
+}
+#deletebtn{
+  padding:0px 5px 0px 5px;
+}
+#cancelbtn{
+  padding: 0px 5px 0px 5px;
+}
+}

@@ -166,3 +166,28 @@
         background-color: $bg;
         cursor:pointer;
 }
+
+
+@media only screen and (min-device-width: 250px) and (max-device-width: 600px){
+//month title
+.fc .fc-toolbar.fc-header-toolbar{
+        font-size: xx-small;
+}
+.fc .fc-button-group{
+        font-size: xx-small;
+        // padding:0px;
+        // margin:0px;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button{
+        font-size: x-small;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-today-button{
+        font-size: x-small;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button .fc-icon-chevron-left{
+font-size: x-small;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button .fc-icon-chevron-right{
+font-size: x-small;
+}
+}

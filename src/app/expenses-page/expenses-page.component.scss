@@ -89,6 +89,21 @@ b { /* used for event dates/times */
   padding: 0.2em;
 }
 
+@media only screen and (min-device-width: 250px) and (max-device-width: 600px){
+#mainContent{
+  display: flex;
+  flex-direction: column;
+}
+
+#mainChart {
+  flex-grow: 1;  
+  padding: 1em 1em 0px 1em;
+}
+
+#menuBtn{
+  margin-bottom: 0px;
+}
+}
 
 
 

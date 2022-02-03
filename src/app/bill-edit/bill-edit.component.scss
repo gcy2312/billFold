@@ -43,3 +43,38 @@ $bgGrey: #ebecef;
 #editBtn:hover{
   text-decoration: underline;
 }
+
+@media only screen and (min-device-width: 380px) and (max-device-width: 600px){
+#formField{
+  width:230px;
+  align-self: center;
+   margin-inline: 0px;
+}
+#billEditHeader{
+  justify-content: center;
+}
+#divBtns{
+  justify-content: center;
+  margin-right:0px;
+}
+#currency{
+  display: none;
+}
+}
+@media only screen and (min-device-width: 250px) and (max-device-width: 380px){
+  #formField{
+  width:200px;
+  align-self: center;
+   margin-inline: 0px;
+}
+#billEditHeader{
+  justify-content: center;
+}
+#divBtns{
+  justify-content: center;
+  margin-right:0px;
+}
+#currency{
+  display: none;
+}
+}

@@ -85,6 +85,19 @@ b { /* used for event dates/times */
   margin-right:2em;
 }
 
+@media only screen and (min-device-width: 250px) and (max-device-width: 600px){
+#mainContent{
+  display: flex;
+  flex-direction: column;
+}
+#calendarMain{
+   margin-top: 0px;
+  margin-right:0px;
+  padding:1em;
+}
+
+}
+
 
 
 

@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-header>
+  <mat-card-header id="cardHeader">
     <mat-card-title id="expenseEditTitle">Edit Expense</mat-card-title>
   </mat-card-header>
   <mat-card-content>
@@ -43,7 +43,7 @@
         <mat-icon id="currency" aria-hidden="true" aria-label="CAD icon" matPrefix>attach_money</mat-icon>
         <input matInput [(ngModel)]="expenseInfo.Amount" type="number" placeholder={{data.Amount}} name="Amount"
                required>
-      </mat-form-field><span>({{expenseInfo.Currency}})</span>
+      </mat-form-field><span id="currency">({{expenseInfo.Currency}})</span>
       <!-- <mat-form-field appearance="fill">
         <mat-label>Currency Preference</mat-label>
         <mat-select matNativeControl [(ngModel)]="expenseInfo.Currency" type="text" placeholder="CAD" name="Currency">
