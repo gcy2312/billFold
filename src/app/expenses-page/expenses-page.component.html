@@ -5,17 +5,17 @@
 
   <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
     <button id="closeSideNav" mat-icon-button (click)="close()">
-      <mat-icon>close_rounded</mat-icon>
+      <mat-icon aria-hidden="true" aria-label="close icon">close_rounded</mat-icon>
     </button>
     <div class='sidebar'>
       <h4>Instructions</h4>
       <ul>
         <li>
-          <mat-icon>check_outline</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="check icon">check_outline</mat-icon>
           Select an expense and you will be prompted to edit the entry's details
         </li>
         <li>
-          <mat-icon>check_outline</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="check icon">check_outline</mat-icon>
           Click the delete button to delete the expense entry
         </li>
       </ul>
@@ -27,7 +27,7 @@
             ({{expense.Date}}) : ${{expense.Amount}}
           </p>
           <button mat-icon-button color="warn" (click)="openDeleteExpenseDialog(expense)">
-            <mat-icon>delete_forever</mat-icon>
+            <mat-icon aria-hidden="true" aria-label="delete icon">delete_forever</mat-icon>
           </button>
         </div>
 
@@ -38,7 +38,7 @@
 
   <mat-sidenav-content id="mainContent">
     <button id="menuBtn" mat-icon-button (click)="sidenav.open()">
-      <i id="menuIcon" class="material-icons large">menu</i>
+      <i id="menuIcon" aria-hidden="true" aria-label="menu icon" class="material-icons large">menu</i>
     </button>
 
     <mat-tab-group headerPosition="above" selectedIndex="2" id="mainChart">
@@ -47,9 +47,7 @@
           <p-panel id="chart">
 
             <p-header id="chartHeaderPrevious">
-              <!-- <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
-              <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
-            </button> -->
+
               {{twoPreviousMonth}} Expenses
             </p-header>
 
@@ -64,9 +62,7 @@
           <p-panel id="chart">
 
             <p-header id="chartHeaderPrevious">
-              <!-- <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;"> -->
-              <!-- <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
-    </button> -->
+
               {{previousMonth}} Expenses
             </p-header>
 
@@ -82,7 +78,8 @@
 
             <p-header>
               <button id="addexpBtn" mat-icon-button (click)="openCreateExpenseDialog()" style="margin-right: 10px;">
-                <mat-icon fontSize="large">add_circle_outline_rounded</mat-icon>
+                <mat-icon fontSize="large" aria-hidden="true" aria-label="add icon">add_circle_outline_rounded
+                </mat-icon>
               </button>
               {{currentMonth}} Expenses
             </p-header>

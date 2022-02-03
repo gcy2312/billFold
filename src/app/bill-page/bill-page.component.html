@@ -3,19 +3,22 @@
 <mat-sidenav-container class="bills-container" (backdropClick)="close()">
   <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
     <button id="closeSideNav" mat-icon-button (click)="close()">
-      <mat-icon>close_rounded</mat-icon>
+      <mat-icon aria-hidden="true" aria-label="close icon">close_rounded</mat-icon>
     </button>
     <div class='sidebar'>
       <h4>Instructions</h4>
       <ul>
         <li>
-          <mat-icon>check_outline</mat-icon>Select a bill from the list and you will be prompted to edit the entry
+          <mat-icon aria-hidden="true" aria-label="check icon">check_outline</mat-icon>Select a bill from the list and
+          you will be prompted to edit the entry
         </li>
         <li>
-          <mat-icon>check_outline</mat-icon>Click the delete button to delete the bill entry
+          <mat-icon aria-hidden="true" aria-label="check icon">check_outline</mat-icon>Click the delete button to delete
+          the bill entry
         </li>
         <li>
-          <mat-icon>check_outline</mat-icon>Click an event in the calendar to mark as Paid
+          <mat-icon aria-hidden="true" aria-label="check icon">check_outline</mat-icon>Click an event in the calendar to
+          mark as Paid
         </li>
       </ul>
       <mat-divider></mat-divider>
@@ -26,7 +29,7 @@
             <p id="billItem" (click)="openBillEditDialog(bill)">{{bill.Description.toUpperCase()}}
               ({{bill.Date}}) : ${{bill.Amount}}</p>
             <button mat-icon-button color="warn" (click)="openBillDeleteDialog(bill)">
-              <mat-icon>delete_forever</mat-icon>
+              <mat-icon aria-hidden="true" aria-label="delete icon">delete_forever</mat-icon>
             </button>
 
           </div>

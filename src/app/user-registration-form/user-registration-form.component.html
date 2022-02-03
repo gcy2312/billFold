@@ -8,14 +8,14 @@
         <mat-label>First Name</mat-label>
         <input matInput [(ngModel)]="userDetails.FirstName" type="text" name="FirstName" required>
         <button mat-icon-button matPrefix>
-          <mat-icon matPrefix>person_outline</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="user icon" matPrefix>person_outline</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Last Name</mat-label>
         <input matInput [(ngModel)]="userDetails.LastName" type="text" name="LastName" required>
         <button mat-icon-button matPrefix>
-          <mat-icon matPrefix>person_outline</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="user icon" matPrefix>person_outline</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field appearance="fill" id="formField">
@@ -23,7 +23,7 @@
         <input matInput [(ngModel)]="userDetails.Username" type="text" name="Username" required>
 
         <button mat-icon-button matPrefix>
-          <mat-icon matPrefix>account_circle</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="account icon" matPrefix>account_circle</mat-icon>
         </button>
 
       </mat-form-field>
@@ -33,7 +33,8 @@
 
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="visibility icon">{{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
         </button>
 
       </mat-form-field>
@@ -41,13 +42,13 @@
         <mat-label>Email</mat-label>
         <input matInput [(ngModel)]="userDetails.Email" type="email" name="Email" required>
         <button mat-icon-button matPrefix>
-          <mat-icon matPrefix>email</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="email icon" matPrefix>email</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Currency Preference</mat-label>
         <button mat-icon-button matPrefix>
-          <mat-icon matPrefix>currency_exchange</mat-icon>
+          <mat-icon aria-hidden="true" aria-label="currency icon" matPrefix>currency_exchange</mat-icon>
         </button>
         <mat-select matNativeControl [(ngModel)]="userDetails.CurrencyPref" type="text" placeholder="CAD" required
                     name="CurrencyPref">

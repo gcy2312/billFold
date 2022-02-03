@@ -12,7 +12,7 @@
         <mat-form-field appearance="fill" id="formField">
           <mat-label>Enter your Username</mat-label>
           <button mat-icon-button matPrefix>
-            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-icon aria-hidden="true" aria-label="account icon" matPrefix>account_circle</mat-icon>
           </button>
 
           <input matInput name="Username" required [(ngModel)]="userCred.Username" type="text">
@@ -22,7 +22,8 @@
           <input matInput name="Password" required [(ngModel)]="userCred.Password" [type]="hide ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon aria-hidden="true" aria-label="visibility icon">{{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
           </button>
         </mat-form-field>
       </form>
