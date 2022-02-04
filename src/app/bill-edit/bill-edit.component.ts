@@ -45,7 +45,7 @@ export class BillEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.billInfo = this.data.bill;
-    this.billInfo.Currency = this.user.CurrencyPref;
+
     this.billId = this.data.bill._id;
   }
 
