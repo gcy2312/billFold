@@ -47,7 +47,7 @@ export class ExpenseEditComponent implements OnInit {
   ngOnInit(): void {
 
     this.expenseInfo = this.data.expense;
-    this.expenseInfo.Currency = this.user.CurrencyPref;
+
     this.expenseId = this.data.expense._id;
   }
 
