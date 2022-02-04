@@ -51,7 +51,7 @@ export class BillCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.billInfo.Date = this.data.date;
-
+    this.isChkChecked = false;
   }
 
 
