@@ -1,3 +1,4 @@
+{{data.user.CurrencyPref}}
 <mat-card>
   <mat-card-header id="cardHeader">
     <mat-card-title id="addBillHeader">Add Bill</mat-card-title>
@@ -13,8 +14,17 @@
 
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Enter Amount</mat-label>
-        <mat-icon id="currency" aria-hidden="true" aria-label="money icon" matPrefix>attach_money</mat-icon>
-        <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="ex: $48.77" name="Amount" required>
+
+
+
+        <mat-icon id="currency" aria-hidden="true" aria-label="money icon" matPrefix>
+          {{data.user.CurrencyPref === 'EUR'
+          ?
+          'euro_symbol' :data.user.CurrencyPref === 'GBP' ? 'currency_pound' : 'attach_money'}}
+
+        </mat-icon>
+
+        <input matInput [(ngModel)]="billInfo.Amount" type="number" placeholder="ex: 48.77" name="Amount" required>
       </mat-form-field>
 
       <mat-form-field appearance="fill" id="formField">

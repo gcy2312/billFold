@@ -42,7 +42,11 @@
 
       <mat-form-field appearance="fill" id="formField">
         <mat-label>Enter Amount</mat-label>
-        <mat-icon aria-hidden="true" aria-label="money icon" matPrefix>attach_money</mat-icon>
+        <mat-icon aria-hidden="true" aria-label="money icon" matPrefix>
+          {{data.user.CurrencyPref === 'EUR'
+          ?
+          'euro_symbol' :data.user.CurrencyPref === 'GBP' ? 'currency_pound' : 'attach_money'}}
+        </mat-icon>
         <input matInput [(ngModel)]="expenseInfo.Amount" type="number" placeholder="00.00" name="Amount" required>
       </mat-form-field>
 

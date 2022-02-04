@@ -24,7 +24,7 @@
       <li *ngFor="let expense of cmExpenses">
         <div id="expenseList">
           <p id="expenseItem" (click)="openEditExpenseDialog(expense)">{{expense.Description.toUpperCase()}}
-            ({{expense.Date}}) : ${{expense.Amount}}
+            ({{expense.Date}}) : {{expense.Amount}}
           </p>
           <button mat-icon-button color="warn" (click)="openDeleteExpenseDialog(expense)">
             <mat-icon aria-hidden="true" aria-label="delete icon">delete_forever</mat-icon>
