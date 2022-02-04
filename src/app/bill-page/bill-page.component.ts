@@ -36,6 +36,7 @@ export class BillPageComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user') || '');
 
   bills: Bill[] = [];
+  latestBills: Bill[] = [];
   calendarBills: any = [];
   bill = {
     _id: '',
@@ -76,6 +77,8 @@ export class BillPageComponent implements OnInit {
   getBills(userId: string, token: string): void {
     this.fetchApiData.getBills(userId, token).subscribe((resp: any) => {
       this.bills = resp;
+      this.latestBills = resp.slice(0, 30);
+
 
       this.calendarBills = resp.map((e: any) => ({ title: e.Description, start: e.Date, extendedProps: { Amount: e.Amount, Paid: e.Paid, Currency: e.Currency, userId: userId, _id: e._id } }));
 

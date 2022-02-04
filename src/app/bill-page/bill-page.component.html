@@ -24,7 +24,7 @@
       <mat-divider></mat-divider>
 
       <ul>
-        <li *ngFor='let bill of bills'>
+        <li *ngFor='let bill of latestBills'>
           <div id="billsList">
             <p id="billItem" (click)="openBillEditDialog(bill)">{{bill.Description.toUpperCase()}}
               ({{bill.Date}}) : {{bill.Amount}} </p>
