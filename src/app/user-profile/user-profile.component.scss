@@ -55,11 +55,19 @@ p{
 #divDeleteBtn{
 margin-top: 40px;
 margin-left: 10px;
+display: flex;
+justify-content: space-between;
 }
 #deleteBtn{
   font-family: $font;
   font-size:$textSize;
   background-color: darken($warn,10);
+}
+#logOutBtn{
+  font-family: $font;
+  font-size:$textSize;
+   background-color:darken($primary,5);
+   margin-right: 10px;
 }
 #deleteBtn:hover{
    text-decoration: underline;
