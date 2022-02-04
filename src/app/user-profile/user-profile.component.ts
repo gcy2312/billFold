@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -35,6 +36,7 @@ export class UserProfileComponent implements OnInit {
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     public fetchApiData: FetchApiDataService,
+    public router: Router,
 
   ) { }
 
@@ -166,6 +168,18 @@ export class UserProfileComponent implements OnInit {
   openDeleteDialog(): void {
     this.dialog.open(UserProfileDeleteComponent, {
       width: '500px'
+    });
+  }
+
+  /**
+ * function to logout user 
+ * clear localStorage
+ */
+  logOut(): void {
+    localStorage.clear();
+    this.router.navigate(['/welcome']);
+    this.snackBar.open('You have successfully logged out!', 'OK', {
+      duration: 2000,
     });
   }
 
