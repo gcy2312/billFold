@@ -203,7 +203,7 @@ export class ExpensesPageComponent implements OnInit {
       const savExp = resp.filter((x: { Category: string; }) => x.Category === 'Savings');
       const entExp = resp.filter((x: { Category: string; }) => x.Category === 'Entertainment');
       const persExp = resp.filter((x: { Category: string; }) => x.Category === 'Personal');
-      const micExp = resp.filter((x: { Category: string; }) => x.Category === 'Miscellaneous ');
+      const micExp = resp.filter((x: { Category: string; }) => x.Category === 'Miscellaneous');
 
       this.foodAmounts = foodExp.reduce(
         (accumulator: Record<string, number>,
