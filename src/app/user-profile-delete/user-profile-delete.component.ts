@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { User } from '../types';
 
@@ -25,6 +26,7 @@ export class UserProfileDeleteComponent implements OnInit {
    */
   constructor(
     public fetchApiData: FetchApiDataService,
+    public dialogRef: MatDialogRef<UserProfileDeleteComponent>,
     public snackBar: MatSnackBar,
     public router: Router,
   ) { }
@@ -41,21 +43,14 @@ export class UserProfileDeleteComponent implements OnInit {
    */
   deleteUserAccount(token: string, userId: string): void {
     this.fetchApiData.deleteUser(token, userId).subscribe((resp: any) => {
+      this.dialogRef.close();
       this.snackBar.open(
         'Your account has been deleted!', 'OK', {
         duration: 2000,
       }
       );
       localStorage.clear();
-    }, (result) => {
-      this.snackBar.open(result, 'OK', {
-        duration: 2000,
-      });
-      this.router.navigate(['/welcome']).then(() => {
-        window.location.reload();
-      });
-    }
-    );
+    });
   }
 
   /**
