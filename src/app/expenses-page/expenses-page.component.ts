@@ -112,7 +112,7 @@ export class ExpensesPageComponent implements OnInit {
   getDaysArrayByTwoPreviousMonth() {
     var now = moment();
     this.twoPreviousMonth = moment(now).subtract(2, "month").startOf("month").format('MMMM');
-    var daysInMonth = moment().daysInMonth();
+    var daysInMonth = moment(now).subtract(2, "month").daysInMonth();
     var twoPrevArrDays = [];
 
     while (daysInMonth) {
@@ -138,7 +138,7 @@ export class ExpensesPageComponent implements OnInit {
   getDaysArrayByPreviousMonth() {
     var now = moment();
     this.previousMonth = moment(now).subtract(1, "month").startOf("month").format('MMMM');
-    var daysInMonth = moment().daysInMonth();
+    var daysInMonth = moment(now).subtract(1, "month").daysInMonth();
     var prevArrDays = [];
 
     while (daysInMonth) {
