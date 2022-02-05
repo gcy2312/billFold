@@ -4,14 +4,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
-const PartialUser = {
-  FirstName: '',
-  LastName: '',
-  Username: '',
-  Password: '',
-  Email: '',
-  CurrencyPref: ''
-}
+import { User } from '../types';
+
+
 
 @Component({
   selector: 'app-user-update-email',
@@ -20,11 +15,12 @@ const PartialUser = {
 })
 export class UserUpdateEmailComponent implements OnInit {
   @Input()
-  userData = PartialUser;
+  userData: Partial<User> = {};
 
-  user: any = {};
+  user = JSON.parse(localStorage.getItem('user') || '');
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  code = localStorage.getItem('code') || '';
 
   /**
    * constructor for updateEmail
@@ -42,7 +38,7 @@ export class UserUpdateEmailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userData = this.data;
+    this.userData.Email = this.data.Email;
   }
 
   /**
@@ -53,11 +49,13 @@ export class UserUpdateEmailComponent implements OnInit {
    * @param userId 
    */
   updateUser(token: string, userId: string): void {
+    this.userData.Password = this.code;
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
-      localStorage.setItem('user', resp.Username);
+
       localStorage.setItem('userId', resp._id);
       localStorage.setItem('user', JSON.stringify(resp));
+
       this.snackBar.open('Your email has been successfully updated!', 'OK', {
         duration: 2000,
       });
@@ -65,6 +63,7 @@ export class UserUpdateEmailComponent implements OnInit {
       this.snackBar.open(resp, 'OK', {
         duration: 2000,
       });
+
     });
     setTimeout(function () {
       window.location.reload();

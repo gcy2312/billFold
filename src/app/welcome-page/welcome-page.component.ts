@@ -55,6 +55,8 @@ export class WelcomePageComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(result.user));
       localStorage.setItem('token', result.token);
 
+      localStorage.setItem('code', this.userCred.Password);
+
       this.snackBar.open('User successfull logged in', 'OK', {
         duration: 2000
       });

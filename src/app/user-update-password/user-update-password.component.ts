@@ -3,16 +3,8 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { User } from '../types';
 
-
-const PartialUser = {
-  FirstName: '',
-  LastName: '',
-  Username: '',
-  Password: '',
-  Email: '',
-  CurrencyPref: ''
-}
 
 @Component({
   selector: 'app-user-update-password',
@@ -21,12 +13,13 @@ const PartialUser = {
 })
 export class UserUpdatePasswordComponent implements OnInit {
   @Input()
-  userData = PartialUser;
+  userData: Partial<User> = {};
   hide = true;
 
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
   user = JSON.parse(localStorage.getItem('user') || '');
+  code = localStorage.getItem('code') || '';
 
   /**
    * constructor for updatePassword
@@ -44,7 +37,7 @@ export class UserUpdatePasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userData = this.data;
+    this.userData.Password = this.code;
   }
 
   /**
@@ -58,7 +51,6 @@ export class UserUpdatePasswordComponent implements OnInit {
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
 
-      localStorage.setItem('user', JSON.stringify(resp));
       localStorage.setItem('userId', resp._id);
       localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your password has been successfully updated!', 'OK', {

@@ -3,15 +3,9 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { User } from '../types';
 
-const PartialUser = {
-  FirstName: '',
-  LastName: '',
-  Username: '',
-  Password: '',
-  Email: '',
-  CurrencyPref: ''
-}
+
 
 @Component({
   selector: 'app-user-update-currency',
@@ -20,11 +14,12 @@ const PartialUser = {
 })
 export class UserUpdateCurrencyComponent implements OnInit {
   @Input()
-  userData = PartialUser;
+  userData: Partial<User> = {};
 
-  user: any = {};
+  user = JSON.parse(localStorage.getItem('user') || '');
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
+  code = localStorage.getItem('code') || '';
 
   /**
    * constructor for editCurrency page
@@ -42,7 +37,7 @@ export class UserUpdateCurrencyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userData = this.data;
+    this.userData.CurrencyPref = this.data.CurrencyPref;
   }
 
   /**
@@ -53,9 +48,10 @@ export class UserUpdateCurrencyComponent implements OnInit {
    * @param userId 
    */
   updateUser(token: string, userId: string): void {
+    this.userData.Password = this.code;
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
-      localStorage.setItem('user', resp.Username);
+
       localStorage.setItem('userId', resp._id);
       localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your currency preference has been successfully updated!', 'OK', {
@@ -65,6 +61,7 @@ export class UserUpdateCurrencyComponent implements OnInit {
       this.snackBar.open(resp, 'OK', {
         duration: 2000,
       });
+
     });
     setTimeout(function () {
       window.location.reload();
