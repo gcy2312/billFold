@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/billFold-client",
-    "gh-pages": "gh-pages",
-    "predeploy": "ng build --prod --base-href=/billFold/",
+    "predeploy": "ng build --prod --base-href=/billFold-client/",
     "deploy": "npx gh-pages -d dist/billFold-client"
   },
   "private": true,
