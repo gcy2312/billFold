@@ -97,6 +97,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#dialog" class="tsd-kind-icon">dialog</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#fetchApiData" class="tsd-kind-icon">fetch<wbr>Api<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#router" class="tsd-kind-icon">router</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#snackBar" class="tsd-kind-icon">snack<wbr>Bar</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#token" class="tsd-kind-icon">token</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#user" class="tsd-kind-icon">user</a></li>
@@ -107,7 +108,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#getUser" class="tsd-kind-icon">get<wbr>User</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#logOut" class="tsd-kind-icon">log<wbr>Out</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#ngOnInit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#openDeleteDialog" class="tsd-kind-icon">open<wbr>Delete<wbr>Dialog</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user_profile_user_profile_component.UserProfileComponent.html#openUpdateCurrencyDialog" class="tsd-kind-icon">open<wbr>Update<wbr>Currency<wbr>Dialog</a></li>
@@ -126,13 +127,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>User<wbr>Profile<wbr>Component<span class="tsd-signature-symbol">(</span>dialog<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MatDialog</span>, snackBar<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MatSnackBar</span>, fetchApiData<span class="tsd-signature-symbol">: </span><a href="fetch_api_data_service.FetchApiDataService.html" class="tsd-signature-type" data-tsd-kind="Class">FetchApiDataService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="user_profile_user_profile_component.UserProfileComponent.html" class="tsd-signature-type" data-tsd-kind="Class">UserProfileComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>User<wbr>Profile<wbr>Component<span class="tsd-signature-symbol">(</span>dialog<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MatDialog</span>, snackBar<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MatSnackBar</span>, fetchApiData<span class="tsd-signature-symbol">: </span><a href="fetch_api_data_service.FetchApiDataService.html" class="tsd-signature-type" data-tsd-kind="Class">FetchApiDataService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="user_profile_user_profile_component.UserProfileComponent.html" class="tsd-signature-type" data-tsd-kind="Class">UserProfileComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L34">user-profile/user-profile.component.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L39">user-profile/user-profile.component.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -150,6 +151,9 @@
 								</li>
 								<li>
 									<h5>fetchApiData: <a href="fetch_api_data_service.FetchApiDataService.html" class="tsd-signature-type" data-tsd-kind="Class">FetchApiDataService</a></h5>
+								</li>
+								<li>
+									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 										</div>
@@ -178,6 +182,13 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="router" class="tsd-anchor"></a>
+					<h3>router</h3>
+					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="snackBar" class="tsd-anchor"></a>
 					<h3>snack<wbr>Bar</h3>
 					<div class="tsd-signature tsd-kind-icon">snack<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">MatSnackBar</span></div>
@@ -190,52 +201,29 @@
 					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L25">user-profile/user-profile.component.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L29">user-profile/user-profile.component.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="user" class="tsd-anchor"></a>
 					<h3>user</h3>
-					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = {}</span></div>
+					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L26">user-profile/user-profile.component.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L30">user-profile/user-profile.component.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="userData" class="tsd-anchor"></a>
 					<h3>user<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>CurrencyPref<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>Email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>FirstName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>LastName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>Password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>Username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L22">user-profile/user-profile.component.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L26">user-profile/user-profile.component.ts:26</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>Currency<wbr>Pref<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>Email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>First<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>Last<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>Password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>Username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="userId" class="tsd-anchor"></a>
@@ -243,7 +231,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L24">user-profile/user-profile.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L28">user-profile/user-profile.component.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,34 +239,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getUser" class="tsd-anchor"></a>
-					<h3>get<wbr>User</h3>
+					<a name="logOut" class="tsd-anchor"></a>
+					<h3>log<wbr>Out</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>User<span class="tsd-signature-symbol">(</span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Out<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L51">user-profile/user-profile.component.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L179">user-profile/user-profile.component.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>call API to get user details</p>
+									<p>function to logout user
+									clear localStorage</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>userId: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>token: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -294,7 +272,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of OnInit.ngOnInit</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L41">user-profile/user-profile.component.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L47">user-profile/user-profile.component.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -311,12 +289,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L166">user-profile/user-profile.component.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L160">user-profile/user-profile.component.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>function to open delete user profile dialog</p>
+									<p>function to open delete user profile dialog
+										clear local storage
+									navigate to welcome page</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -327,13 +307,13 @@
 					<a name="openUpdateCurrencyDialog" class="tsd-anchor"></a>
 					<h3>open<wbr>Update<wbr>Currency<wbr>Dialog</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Currency<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Currency<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L147">user-profile/user-profile.component.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L140">user-profile/user-profile.component.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -345,7 +325,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>user: <span class="tsd-signature-type">any</span></h5>
+									<h5>user: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -358,13 +338,13 @@
 					<a name="openUpdateEmailDialog" class="tsd-anchor"></a>
 					<h3>open<wbr>Update<wbr>Email<wbr>Dialog</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Email<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Email<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L105">user-profile/user-profile.component.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L99">user-profile/user-profile.component.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -376,7 +356,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>user: <span class="tsd-signature-type">any</span></h5>
+									<h5>user: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -389,13 +369,13 @@
 					<a name="openUpdateNameDialog" class="tsd-anchor"></a>
 					<h3>open<wbr>Update<wbr>Name<wbr>Dialog</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Name<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Name<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L84">user-profile/user-profile.component.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L79">user-profile/user-profile.component.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -407,7 +387,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>user: <span class="tsd-signature-type">any</span></h5>
+									<h5>user: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -420,13 +400,13 @@
 					<a name="openUpdatePasswordDialog" class="tsd-anchor"></a>
 					<h3>open<wbr>Update<wbr>Password<wbr>Dialog</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Password<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Password<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L126">user-profile/user-profile.component.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L119">user-profile/user-profile.component.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,7 +418,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>user: <span class="tsd-signature-type">any</span></h5>
+									<h5>user: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -451,13 +431,13 @@
 					<a name="openUpdateUsernameDialog" class="tsd-anchor"></a>
 					<h3>open<wbr>Update<wbr>Username<wbr>Dialog</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Username<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Username<wbr>Dialog<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/55ec5c2/src/app/user-profile/user-profile.component.ts#L63">user-profile/user-profile.component.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/gcy2312/billFold/blob/58c20fa/src/app/user-profile/user-profile.component.ts#L59">user-profile/user-profile.component.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -469,7 +449,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>user: <span class="tsd-signature-type">any</span></h5>
+									<h5>user: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/types.User.html" class="tsd-signature-type" data-tsd-kind="Interface">User</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -580,6 +560,9 @@
 								<a href="user_profile_user_profile_component.UserProfileComponent.html#fetchApiData" class="tsd-kind-icon">fetch<wbr>Api<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user_profile_user_profile_component.UserProfileComponent.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="user_profile_user_profile_component.UserProfileComponent.html#snackBar" class="tsd-kind-icon">snack<wbr>Bar</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -595,7 +578,7 @@
 								<a href="user_profile_user_profile_component.UserProfileComponent.html#userId" class="tsd-kind-icon">user<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="user_profile_user_profile_component.UserProfileComponent.html#getUser" class="tsd-kind-icon">get<wbr>User</a>
+								<a href="user_profile_user_profile_component.UserProfileComponent.html#logOut" class="tsd-kind-icon">log<wbr>Out</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="user_profile_user_profile_component.UserProfileComponent.html#ngOnInit" class="tsd-kind-icon">ng<wbr>OnInit</a>
