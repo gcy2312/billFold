@@ -19,7 +19,7 @@ export class UserUpdateCurrencyComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user') || '');
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
-  code = localStorage.getItem('code') || '';
+
 
   /**
    * constructor for editCurrency page
@@ -48,12 +48,12 @@ export class UserUpdateCurrencyComponent implements OnInit {
    * @param userId 
    */
   updateUser(token: string, userId: string): void {
-    this.userData.Password = this.code;
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
 
       localStorage.setItem('userId', resp._id);
       localStorage.setItem('user', JSON.stringify(resp));
+
       this.snackBar.open('Your currency preference has been successfully updated!', 'OK', {
         duration: 2000,
       });
@@ -66,6 +66,7 @@ export class UserUpdateCurrencyComponent implements OnInit {
     setTimeout(function () {
       window.location.reload();
     }, 1000);
+
   }
 
 }

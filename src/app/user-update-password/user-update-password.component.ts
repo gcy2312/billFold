@@ -19,7 +19,7 @@ export class UserUpdatePasswordComponent implements OnInit {
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
   user = JSON.parse(localStorage.getItem('user') || '');
-  code = localStorage.getItem('code') || '';
+  // code = localStorage.getItem('code') || '';
 
   /**
    * constructor for updatePassword
@@ -37,7 +37,7 @@ export class UserUpdatePasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userData.Password = this.code;
+    // this.userData.Password = this.data.Password;
   }
 
   /**

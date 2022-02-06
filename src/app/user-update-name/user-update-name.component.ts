@@ -19,7 +19,7 @@ export class UserUpdateNameComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user') || '');
   userId = localStorage.getItem('userId') || '';
   token = localStorage.getItem('token') || '';
-  code = localStorage.getItem('code') || '';
+
 
   /**
    * constructor for updateName 
@@ -37,7 +37,6 @@ export class UserUpdateNameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.userData.FirstName = this.data.FirstName;
     this.userData.LastName = this.data.LastName;
   }
@@ -50,7 +49,7 @@ export class UserUpdateNameComponent implements OnInit {
    * @param userId 
    */
   updateUser(token: string, userId: string): void {
-    this.userData.Password = this.code;
+
     this.fetchApiData.editUser(this.userData, token, userId).subscribe((resp) => {
       this.dialogRef.close(); //this will close modal on success
 
