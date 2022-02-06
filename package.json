@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/billFold-client",
-    "predeploy": "ng build --prod --base-href https://gcy2312.github.io/billFold",
-    "deploy": "npx angular-cli-ghpages --dir=dist/billFold-client"
+    "predeploy": "ng build --prod --base-href=/billFold/",
+    "deploy": "npx gh-pages -d dist/billFold-client"
   },
   "private": true,
   "homepage": "https://gcy2312.github.io/billFold",
