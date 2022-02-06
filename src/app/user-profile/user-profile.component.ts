@@ -64,7 +64,6 @@ export class UserProfileComponent implements OnInit {
         Username: user.Username,
         Email: user.Email,
         CurrencyPref: user.CurrencyPref,
-        Password: user.Password
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -85,7 +84,6 @@ export class UserProfileComponent implements OnInit {
         Username: user.Username,
         Email: user.Email,
         CurrencyPref: user.CurrencyPref,
-        Password: user.Password
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -106,7 +104,6 @@ export class UserProfileComponent implements OnInit {
         Username: user.Username,
         Email: user.Email,
         CurrencyPref: user.CurrencyPref,
-        Password: user.Password
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -148,7 +145,6 @@ export class UserProfileComponent implements OnInit {
         Username: user.Username,
         Email: user.Email,
         CurrencyPref: user.CurrencyPref,
-        Password: user.Password
       }
     });
     dialogRef.afterClosed().subscribe(result => {
